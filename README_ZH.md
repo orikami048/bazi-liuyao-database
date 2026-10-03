@@ -8,9 +8,9 @@
 </p>
 
 <p align="center">
-  <a href="https://orikami048.github.io/bazi-liuyao-database/"><img src="https://img.shields.io/badge/🌐_Live_Web_App-orikami048.github.io-9E2A2B?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live App" /></a>
+  <a href="https://bazi-liuyao-database.pages.dev"><img src="https://img.shields.io/badge/🌐_Cloudflare_Pages-bazi--liuyao--database.pages.dev-F38020?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Cloudflare Pages" /></a>
+  <a href="https://orikami048.github.io/bazi-liuyao-database/"><img src="https://img.shields.io/badge/🌐_GitHub_Pages-orikami048.github.io-9E2A2B?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Pages" /></a>
   <img src="https://img.shields.io/badge/Dataset-BaZi_%26_LiuYao-8B0000?style=for-the-badge&logo=gitbook&logoColor=white" alt="Dataset" />
-  <img src="https://img.shields.io/badge/Format-JSON_%26_SQLite_%26_Python-2E8B57?style=for-the-badge" alt="Format" />
   <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" />
   <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
 </p>
@@ -22,7 +22,7 @@
 
 ---
 
-[🚀 立即在线体验 (Live Web App)](https://orikami048.github.io/bazi-liuyao-database/) · [🚀 快速上手与 CLI 运行](#-快速上手与-cli-排盘运行) · [🗂️ 目录与架构说明](#-目录与架构总览) · [☯️ 八字数据与引擎](#-八字命理数据库与推演引擎) · [🔮 六爻数据与引擎](#-六爻纳甲数据库与排盘引擎) · [💾 SQLite 直连查询](#-sqlite-单文件数据库直连) · [📚 权威典籍与参考文献](#-权威典籍与知识库索引)
+[🚀 立即在线体验 (Cloudflare Pages)](https://bazi-liuyao-database.pages.dev) · [🚀 备用线路 (GitHub Pages)](https://orikami048.github.io/bazi-liuyao-database/) · [📖 快速上手与 CLI 运行](#-快速上手与-cli-排盘运行) · [🗂️ 目录与架构说明](#-目录与架构总览) · [☯️ 八字数据与引擎](#-八字命理数据库与推演引擎) · [🔮 六爻数据与引擎](#-六爻纳甲数据库与排盘引擎) · [💾 SQLite 直连查询](#-sqlite-单文件数据库直连)
 
 ---
 
