@@ -10,6 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@600;700;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <!-- 权威历法计算引擎 -->
 <script src="https://cdn.jsdelivr.net/npm/lunar-javascript/lunar.js"></script>
+<!-- 四库古籍全息引证数据库 -->
+<script src="classics_data.js"></script>
 <style>
 :root {
   --bg-deep: #030712;
@@ -611,6 +613,128 @@ body {
   color: var(--text-sub);
 }
 
+/* ==================== 全息古籍秘典弹窗 (CLASSICS DETAIL MODAL) ==================== */
+.classic-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(3, 7, 18, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.classic-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.classic-modal-box {
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(3, 7, 18, 0.98) 100%);
+  border: 1px solid rgba(0, 242, 254, 0.38);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 35px rgba(0, 242, 254, 0.25);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.92) translateY(15px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.classic-modal-backdrop.open .classic-modal-box {
+  transform: scale(1) translateY(0);
+}
+.classic-modal-header {
+  padding: 18px 24px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.classic-modal-tag {
+  background: rgba(0, 242, 254, 0.15);
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+}
+.classic-modal-title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 900;
+  color: #FFFFFF;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+}
+.classic-modal-close {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFF;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; line-height: 1;
+  transition: all 0.2s;
+}
+.classic-modal-close:hover {
+  background: rgba(239, 68, 68, 0.3);
+  border-color: #EF4444;
+  color: #EF4444;
+  transform: rotate(90deg);
+}
+.classic-modal-sub {
+  padding: 6px 24px 12px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-sub);
+  font-family: var(--font-mono);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.classic-modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  scrollbar-width: thin;
+}
+.modal-quote-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: all 0.2s;
+}
+.modal-quote-card:hover {
+  border-color: var(--cyan);
+  background: rgba(0, 242, 254, 0.03);
+}
+.modal-quote-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--cyan);
+  margin-bottom: 8px;
+}
+.modal-quote-text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #E2E8F0;
+  white-space: pre-line;
+}
+
 /* ==================== 六爻量子演卦独立选项卡 ==================== */
 .hex-tree-graph {
   display: flex;
@@ -912,8 +1036,11 @@ footer {
       <div class="classics-tab-bar">
         <button type="button" class="classics-tab-btn active" data-classic="classic-qiongtong">📘《穷通宝鉴》调候密旨</button>
         <button type="button" class="classics-tab-btn" data-classic="classic-ditian">📕《滴天髓》旺衰体用</button>
-        <button type="button" class="classics-tab-btn" data-classic="classic-sanming">📗《三命通会》神煞源流</button>
-        <button type="button" class="classics-tab-btn" data-classic="classic-tiyao">📙《八字提要》时盘精解</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-ziping">📗《子平真诠》格局相神</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-sanming">📙《三命通会》神煞源流</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-yuanhai">📜《渊海子平》古赋指要</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-shenfeng">⚔️《神峰通考》病药真机</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-tiyao">🏛️《八字提要》时盘精解</button>
       </div>
 
       <!-- 1. 穷通宝鉴 -->
@@ -930,16 +1057,37 @@ footer {
         <div class="classic-commentary" id="dtCommentary">载入中...</div>
       </div>
 
-      <!-- 3. 三命通会 -->
+      <!-- 3. 子平真诠 -->
+      <div id="classic-ziping" class="classics-content-panel">
+        <div class="classic-quote-title" id="zpTitle">📗《子平真诠》沈孝瞻论月令用神与相神护卫</div>
+        <div class="classic-quote-body" id="zpQuote">载入中...</div>
+        <div class="classic-commentary" id="zpCommentary">载入中...</div>
+      </div>
+
+      <!-- 4. 三命通会 -->
       <div id="classic-sanming" class="classics-content-panel">
-        <div class="classic-quote-title" id="smTitle">📗《三命通会》万民英论四柱神煞</div>
+        <div class="classic-quote-title" id="smTitle">📙《三命通会》明·万民英论四柱神煞与命局吉凶</div>
         <div class="classic-quote-body" id="smQuote">载入中...</div>
         <div class="classic-commentary" id="smCommentary">载入中...</div>
       </div>
 
-      <!-- 4. 八字提要 -->
+      <!-- 5. 渊海子平 -->
+      <div id="classic-yuanhai" class="classics-content-panel">
+        <div class="classic-quote-title" id="yhTitle">📜《渊海子平》宋·徐子平《继善篇》《喜忌篇》古赋直指</div>
+        <div class="classic-quote-body" id="yhQuote">载入中...</div>
+        <div class="classic-commentary" id="yhCommentary">载入中...</div>
+      </div>
+
+      <!-- 6. 神峰通考 -->
+      <div id="classic-shenfeng" class="classics-content-panel">
+        <div class="classic-quote-title" id="sfTitle">⚔️《神峰通考》明·张楠《病药说》原局辩证剖析</div>
+        <div class="classic-quote-body" id="sfQuote">载入中...</div>
+        <div class="classic-commentary" id="sfCommentary">载入中...</div>
+      </div>
+
+      <!-- 7. 八字提要 -->
       <div id="classic-tiyao" class="classics-content-panel">
-        <div class="classic-quote-title" id="tyTitle">📙《八字提要》徐乐吾日元时盘详论</div>
+        <div class="classic-quote-title" id="tyTitle">🏛️《八字提要》徐乐吾日元干支时盘详论</div>
         <div class="classic-quote-body" id="tyQuote">载入中...</div>
         <div class="classic-commentary" id="tyCommentary">载入中...</div>
       </div>
@@ -1615,54 +1763,73 @@ function computeBaziMaster() {
     <path d="${pathD}" fill="none" stroke="url(#waveGlowGrad)" stroke-width="3" filter="drop-shadow(0 0 8px rgba(0,242,254,0.75))"/>
   `;
 
-  // ==================== 经典古籍原文联动渲染 ====================
-  // 1. 穷通宝鉴
-  const qtTxt = (QIONGTONG_DB[dayMaster]||{})[mZ] || `【穷通宝鉴】：${dayMaster}火生于${mZ}月，调候以通关、生克流通为上。`;
-  document.getElementById('qtTitle').textContent = `📘《穷通宝鉴》：${dayMaster}日元生于【${mZ}月】调候原著`;
+  // ==================== 七大经典古籍动态引证引擎 ====================
+  const db = window.CANON_SEVEN_DB || {};
+  const qtDB = db.QIONGTONG || (typeof QIONGTONG_DB !== 'undefined' ? QIONGTONG_DB : {});
+  const dtDB = db.DITIANSUI || (typeof DITIANSUI_DB !== 'undefined' ? DITIANSUI_DB : {});
+  const zpDB = db.ZIPING || {};
+  const smDB = db.SANMING || (typeof SANMING_DB !== 'undefined' ? SANMING_DB : {});
+  const yhDB = db.YUANHAI || {};
+  const sfDB = db.SHENFENG || {};
+  const tyDB = db.TIYAO || (typeof TIYAO_DB !== 'undefined' ? TIYAO_DB : {});
+
+  // 1. 《穷通宝鉴》
+  const qtTxt = (qtDB[dayMaster]||{})[mZ] || `【穷通宝鉴】：${dayMaster}生于${mZ}月，调候以通关、水火调和、生克流通为上。`;
+  document.getElementById('qtTitle').textContent = `📘《穷通宝鉴》：${dayMaster}日元生于【${mZ}月】调候原著秘旨`;
   document.getElementById('qtQuote').textContent = qtTxt;
   document.getElementById('qtCommentary').textContent = `【理法精要】：穷通宝鉴以月令四时气候为先。冬月重在暖局解冻，夏月重在滋润调候，春秋重在生扶克制得宜。`;
 
-  // 2. 滴天髓
-  const dtTxt = DITIANSUI_DB[dayMaster] || `《滴天髓》：能知衰旺之真机，其于三命之奥，思过半矣。`;
+  // 2. 《滴天髓》
+  const dtTxt = dtDB[dayMaster] || `《滴天髓》：能知衰旺之真机，其于三命之奥，思过半矣。`;
   document.getElementById('dtTitle').textContent = `📕《滴天髓阐微》：论【${dayMaster}${GAN_PROPS[dayMaster][0]}】日主性情与全局机要`;
   document.getElementById('dtQuote').textContent = dtTxt;
   document.getElementById('dtCommentary').textContent = `【理法精要】：滴天髓主张「中和为贵，旺则宜泄宜伤，衰则喜帮喜助」，精与神兼顾，顺气势之自然。`;
 
-  // 3. 三命通会
+  // 3. 《子平真诠》
+  // 获取月令主格
+  const monthMainGan = (CANGGAN_TABLE[mZ] && CANGGAN_TABLE[mZ][0]) ? CANGGAN_TABLE[mZ][0].g : '癸';
+  const mainPattern = getShiShen(dayMaster, monthMainGan);
+  const zpTxt = zpDB[mainPattern] || `《子平真诠·论格局》：“八字用神，专求月令。以日干配月令地支，而生克不同，格局乃分。财官印食，此用神之善而顺用之者也；煞伤劫刃，此用神之不善而逆用之者也。”`;
+  document.getElementById('zpTitle').textContent = `📗《子平真诠》：沈孝瞻论月令【${mainPattern}格】与相神护卫`;
+  document.getElementById('zpQuote').textContent = zpTxt;
+  document.getElementById('zpCommentary').textContent = `【理法精要】：沈孝瞻论命以月令格局为体，相神为用。善用神顺用（财宜生、官宜护、印宜清、食宜旺），不善用神逆用（七杀宜制化、伤官宜佩印生财、阳刃宜驾杀）。`;
+
+  // 4. 《三命通会》
   const uniqueShensha = [...new Set(allFoundShenshaNames)];
   let smQuotesHtml = '';
   uniqueShensha.slice(0, 6).forEach(sName => {
-    if(SANMING_DB[sName]) {
-      smQuotesHtml += `<div style="margin-bottom:10px;"><strong>【${sName}】</strong>：${SANMING_DB[sName]}</div>`;
+    const sDetail = (window.SHENSHA_EXPANDED_DB && window.SHENSHA_EXPANDED_DB[sName]) ? window.SHENSHA_EXPANDED_DB[sName].sanming : (smDB[sName] || '');
+    if(sDetail) {
+      smQuotesHtml += `<div style="margin-bottom:12px; cursor:pointer;" onclick="openShenshaModal('${sName}')"><strong>【${sName}】</strong>：${sDetail}</div>`;
     }
   });
-  document.getElementById('smTitle').textContent = `📗《三命通会》：明·万民英论本命所带神煞（${uniqueShensha.length} 尊）`;
+  document.getElementById('smTitle').textContent = `📙《三命通会》：明·万民英论本命所带神煞（${uniqueShensha.length} 尊）`;
   document.getElementById('smQuote').innerHTML = smQuotesHtml || '《三命通会》：神煞吉凶，须参合四柱生克制化、格局喜忌而定，不可执一而论。';
-  document.getElementById('smCommentary').textContent = `【理法精要】：万民英云：“贵人互换得位，遇难呈祥；吉神得令，福力倍增；凶煞有制，反主威权。”`;
+  document.getElementById('smCommentary').textContent = `【理法精要】：万民英云：“贵人互换得位，遇难呈祥；吉神得令，福力倍增；凶煞有制，反主威权。”（点击任意神煞可查看全息典籍考证）`;
 
-  // 4. 八字提要
+  // 5. 《渊海子平》
+  const yhTxt = `${yhDB.jishen || ''}\n\n${yhDB.xiji || ''}` || `《渊海子平》：“人禀天地，命属阴阳。欲知贵贱，先观日主；欲辨吉凶，全审提纲。”`;
+  document.getElementById('yhTitle').textContent = `📜《渊海子平》：宋·徐子平《继善篇》《喜忌篇》古赋指要`;
+  document.getElementById('yhQuote').textContent = yhTxt;
+  document.getElementById('yhCommentary').textContent = `【理法精要】：渊海子平为子平命理奠基之作，以五行生克、干支会合为纲，融汇十神、格局与古赋精义。`;
+
+  // 6. 《神峰通考》
+  const sfTxt = `${sfDB.bingyao || ''}\n\n${sfDB.dongjing || ''}` || `《神峰通考·病药说》：“格格寻病，格格寻药。有病方为贵，无伤不是奇。格中如去病，财禄两相随。”`;
+  document.getElementById('sfTitle').textContent = `⚔️《神峰通考》：明·张楠《病药说》原局辩证剖析`;
+  document.getElementById('sfQuote').textContent = sfTxt;
+  document.getElementById('sfCommentary').textContent = `【理法精要】：张楠主张八字辩证施治，以原局最旺、最衰或偏枯之处为“病”，以能克抑旺神、生扶衰神、调候解冻之五行为“药”。`;
+
+  // 7. 《八字提要》
   const tyKey = `${dayMaster}_${mZ}_${tG}${tZ}`;
-  const tyTxt = TIYAO_DB[tyKey] || TIYAO_DB[`${dayMaster}_${mZ}_${tZ}`] || `【八字提要 · 徐乐吾】：${dayMaster}日元生于${mZ}月${tZ}时，官印相停，日元通根得气，时干透出，格局纯清。`;
-  document.getElementById('tyTitle').textContent = `📙《八字提要》：徐乐吾详论【${dayMaster}日元 · ${mZ}月 · ${tG}${tZ}时】`;
+  const tyTxt = tyDB[tyKey] || tyDB[`${dayMaster}_${mZ}_${tZ}`] || `【八字提要 · 徐乐吾】：${dayMaster}日元生于${mZ}月${tZ}时，官印相停，日元通根得气，时干透出，格局纯清。`;
+  document.getElementById('tyTitle').textContent = `🏛️《八字提要》：徐乐吾详论【${dayMaster}日元 · ${mZ}月 · ${tG}${tZ}时】`;
   document.getElementById('tyQuote').textContent = tyTxt;
   document.getElementById('tyCommentary').textContent = `【理法精要】：八字提要将日元结合月令提纲与生时十二时辰，详尽剖析干支生克、旺衰消长之细微玄机。`;
 }
 
-// 点击神煞胶囊展示三命通会详细原文
+// 快速切换神煞古典引证面板
 function showClassicShenshaDetail(name) {
-  document.querySelectorAll('.classics-tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.classics-content-panel').forEach(p => p.classList.remove('active'));
-  
-  const smBtn = document.querySelector('[data-classic="classic-sanming"]');
-  const smPanel = document.getElementById('classic-sanming');
-  if(smBtn && smPanel) {
-    smBtn.classList.add('active');
-    smPanel.classList.add('active');
-    if(SANMING_DB[name]) {
-      document.getElementById('smQuote').innerHTML = `<div style="font-size:14px; color:#FDE047; margin-bottom:8px;">🎯 选中查阅【${name}】原著论述：</div><div>${SANMING_DB[name]}</div>`;
-    }
-    smPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+  openShenshaModal(name);
 }
 
 document.getElementById('btnRunBazi').addEventListener('click', computeBaziMaster);
@@ -1760,7 +1927,7 @@ function renderLiuyaoMatrix() {
 }
 renderLiuyaoMatrix();
 
-// ==================== 字典数据渲染 ====================
+// ==================== 字典与图谱渲染 (支持点击弹窗查阅古籍) ====================
 const GANZHI_ITEMS = [
   "甲子","乙丑","丙寅","丁卯","戊辰","己巳","庚午","辛未","壬申","癸酉",
   "甲戌","乙亥","丙子","丁丑","戊寅","己卯","庚辰","辛巳","壬午","癸未",
@@ -1777,10 +1944,12 @@ const NAYIN_NAMES = [
   "覆灯火","覆灯火","天河水","天河水","大驿土","大驿土","钗钏金","钗钏金","桑柘木","桑柘木",
   "大溪水","大溪水","沙中土","沙中土","天上火","天上火","石榴木","石榴木","大海水","大海水"
 ];
+
 document.getElementById('ganzhiBentoGrid').innerHTML = GANZHI_ITEMS.map((gz, idx) => `
-  <div class="codex-item-bento">
+  <div class="codex-item-bento" style="cursor:pointer;" onclick="openGanzhiModal('${gz}')">
     <div style="font-family:var(--font-serif); font-size:18px; font-weight:900; color:#FFF; margin-bottom:4px;">${gz}</div>
     <div style="font-size:11px; color:var(--cyan); font-family:var(--font-mono);">${NAYIN_NAMES[idx]}</div>
+    <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">点击查阅古籍 ➔</div>
   </div>
 `).join('');
 
@@ -1794,10 +1963,12 @@ const HEX_NAMES = [
   "坤为地", "地雷复", "地泽临", "地天泰", "雷天大壮", "泽天夬", "水天需", "水地比",
   "兑为泽", "泽水困", "泽地萃", "泽山咸", "水山蹇", "地山谦", "雷山小过", "雷泽归妹"
 ];
+
 document.getElementById('hex64BentoGrid').innerHTML = HEX_NAMES.map((name, idx) => `
-  <div class="codex-item-bento">
+  <div class="codex-item-bento" style="cursor:pointer;" onclick="openHexModal('${name}')">
     <div style="font-family:var(--font-serif); font-size:16px; font-weight:900; color:#FFF; margin-bottom:4px;">${name}</div>
     <div style="font-size:11px; color:var(--purple); font-family:var(--font-mono);">第 ${idx+1} 卦</div>
+    <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">《周易》经义 ➔</div>
   </div>
 `).join('');
 
@@ -1807,27 +1978,164 @@ const SHENSHA_ITEMS = [
   { name: '德秀贵人', desc: '阴阳德秀 · 聪慧纯粹' },
   { name: '天厨贵人', desc: '食禄丰盈 · 享天赐福' },
   { name: '福星贵人', desc: '福禄康宁 · 平安无忧' },
-  { name: '文昌星宿', desc: '才思敏捷 · 考学功名' },
+  { name: '文昌贵人', desc: '才思敏捷 · 考学功名' },
   { name: '国印贵人', desc: '掌印执柄 · 威严诚实' },
-  { name: '日禄归位', desc: '食禄丰厚 · 强健通达' },
-  { name: '金舆车辇', desc: '享荫庇福 · 良配资助' },
+  { name: '禄神', desc: '食禄丰厚 · 强健通达' },
+  { name: '金舆', desc: '享荫庇福 · 良配资助' },
   { name: '红艳煞', desc: '容貌姝丽 · 异性缘佳' },
-  { name: '羊刃飞刃', desc: '刚烈司刑 · 身弱喜帮' },
-  { name: '将星当权', desc: '领导统御 · 武职显贵' },
-  { name: '华盖哲思', desc: '孤高才智 · 喜哲学玄学' },
-  { name: '驿马星动', desc: '奔波迁居 · 升迁远行' },
+  { name: '羊刃', desc: '刚烈司刑 · 身弱喜帮' },
+  { name: '飞刃', desc: '机敏决断 · 逢吉化煞' },
+  { name: '将星', desc: '领导统御 · 武职显贵' },
+  { name: '华盖', desc: '孤高才智 · 喜哲学玄学' },
+  { name: '驿马', desc: '奔波迁居 · 升迁远行' },
   { name: '咸池桃花', desc: '风流多情 · 艺术容貌' },
   { name: '词馆学堂', desc: '文章锦绣 · 学术造诣' },
   { name: '披麻吊客', desc: '孝服关煞 · 行事谨慎' },
-  { name: '魁罡秉性', desc: '果决威严 · 发福百端' },
+  { name: '魁罡贵人', desc: '果决威严 · 发福百端' },
   { name: '劫煞亡神', desc: '敏锐勇决 · 喜吉神化' }
 ];
+
 document.getElementById('shenshaBentoGrid').innerHTML = SHENSHA_ITEMS.map(s => `
-  <div class="codex-item-bento">
+  <div class="codex-item-bento" style="cursor:pointer;" onclick="openShenshaModal('${s.name}')">
     <div style="font-family:var(--font-serif); font-size:16px; font-weight:900; color:var(--cyan); margin-bottom:4px;">${s.name}</div>
     <div style="font-size:11px; color:var(--text-sub);">${s.desc}</div>
+    <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">《三命通会》详论 ➔</div>
   </div>
 `).join('');
+
+// ==================== 全息古籍秘典弹窗控制函数 ====================
+function openGanzhiModal(gz) {
+  const data = (window.GANZHI_EXPANDED_DB && window.GANZHI_EXPANDED_DB[gz]) || {
+    nayin: "六十甲子",
+    nature: `【${gz}】日元属性与格局`,
+    canggan: "地支藏干五行生克",
+    sanming: `《三命通会》：“${gz}纳音纯和，生逢吉令，衣禄崇隆。”`,
+    yuanhai: `《渊海子平》：“${gz}日柱，审月令喜忌，顺应天道。”`,
+    tiyao: `徐乐吾注：“${gz}日元，配合四时气候，相生相化。”`
+  };
+
+  document.getElementById('modalBadge').textContent = '六十甲子秘典';
+  document.getElementById('modalTitle').textContent = `【${gz}】${data.nayin} · 古籍全息引证`;
+  document.getElementById('modalSubtitle').textContent = `GANZHI CODEX · ${data.nature} · ${data.canggan}`;
+
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">📙《三命通会》万民英论【${gz}】纳音象义与格局源流</div>
+      <div class="modal-quote-text">${data.sanming}</div>
+    </div>
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">📜《渊海子平》十干坐支论【${gz}】日元性情与行运喜忌</div>
+      <div class="modal-quote-text">${data.yuanhai}</div>
+    </div>
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">🏛️《八字提要》民国·徐乐吾干支时盘详论</div>
+      <div class="modal-quote-text">${data.tiyao}</div>
+    </div>
+  `;
+
+  document.getElementById('classicDetailModal').classList.add('open');
+}
+
+function openHexModal(name) {
+  const data = (window.HEX_EXPANDED_DB && window.HEX_EXPANDED_DB[name]) || {
+    num: 1,
+    palace: "易经六十四卦",
+    guaci: `《周易·${name}》卦辞：元亨利贞。`,
+    tuan: `《彖传·${name}》：顺天应时，保合太和。`,
+    xiang: `《象传·${name}》：君子以自强不息，厚德载物。`,
+    zengshan: `《增删卜易》：占得${name}，宜辨用神之动静生克。`,
+    xiangshu: `卦德意蕴：天地之数，阴阳交泰。`
+  };
+
+  document.getElementById('modalBadge').textContent = '周易与六爻秘典';
+  document.getElementById('modalTitle').textContent = `【第 ${data.num} 卦 · ${name}】${data.palace}`;
+  document.getElementById('modalSubtitle').textContent = `HEXAGRAM CANON · ${data.xiangshu}`;
+
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">📜《周易》经文本义 · 卦辞</div>
+      <div class="modal-quote-text">${data.guaci}</div>
+    </div>
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">☯️《易经·彖传》夫子释卦义</div>
+      <div class="modal-quote-text">${data.tuan}</div>
+    </div>
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">🌿《易经·象传》大象释德行</div>
+      <div class="modal-quote-text">${data.xiang}</div>
+    </div>
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">🔮 清·野鹤老人《增删卜易》六爻实占秘解</div>
+      <div class="modal-quote-text">${data.zengshan}</div>
+    </div>
+  `;
+
+  document.getElementById('classicDetailModal').classList.add('open');
+}
+
+function openShenshaModal(name) {
+  const data = (window.SHENSHA_EXPANDED_DB && window.SHENSHA_EXPANDED_DB[name]) || {
+    type: "星曜神煞",
+    qili: "四柱干支多维推演起例",
+    sanming: `《三命通会·论${name}》：“凡命中遇${name}者，须参合四柱生克制化与格局喜忌而定。”`,
+    yuanhai: `《渊海子平》：“吉神得令福力倍增，凶煞有制反生威权。”`,
+    jiexi: `【实务断法】：${name}在四柱中各具枢机，逢生扶则吉神更贵，逢制化则凶煞呈威。`
+  };
+
+  document.getElementById('modalBadge').textContent = `${data.type} · 神煞秘典`;
+  document.getElementById('modalTitle').textContent = `【${name}】万民英《三命通会》原著考证`;
+  document.getElementById('modalSubtitle').textContent = `SHENSHA CANON · 起例歌诀：${data.qili}`;
+
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">📙《三命通会》明·万民英论【${name}】神煞源流考与吉凶真机</div>
+      <div class="modal-quote-text">${data.sanming}</div>
+    </div>
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">📜《渊海子平》《星平会海》吉凶断诀歌</div>
+      <div class="modal-quote-text">${data.yuanhai}</div>
+    </div>
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">💡 现代实务命理心法与生克制化指要</div>
+      <div class="modal-quote-text">${data.jiexi}</div>
+    </div>
+  `;
+
+  document.getElementById('classicDetailModal').classList.add('open');
+}
+
+// 弹窗关闭监听
+document.getElementById('btnModalClose').addEventListener('click', () => {
+  document.getElementById('classicDetailModal').classList.remove('open');
+});
+document.getElementById('classicDetailModal').addEventListener('click', (e) => {
+  if(e.target.id === 'classicDetailModal') {
+    document.getElementById('classicDetailModal').classList.remove('open');
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape') {
+    document.getElementById('classicDetailModal').classList.remove('open');
+  }
+});
 </script>
+
+<!-- ==================== 全息古籍秘典弹窗 (CLASSICS DETAIL MODAL) ==================== -->
+<div id="classicDetailModal" class="classic-modal-backdrop">
+  <div class="classic-modal-box">
+    <div class="classic-modal-header">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span class="classic-modal-tag" id="modalBadge">四库密典</span>
+        <h3 class="classic-modal-title" id="modalTitle">典籍详论</h3>
+      </div>
+      <button type="button" class="classic-modal-close" id="btnModalClose">×</button>
+    </div>
+    <div class="classic-modal-sub" id="modalSubtitle">CLASSIC CANON PERSPECTIVE</div>
+    <div class="classic-modal-body" id="modalBody">
+      <!-- 动态注入多维古籍引证卡片 -->
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
