@@ -1414,26 +1414,21 @@ function computeBaziMaster() {
   // 绘制真正的面积雷达图 (五层同心五边形面积网格 + 平滑渐变面积填充 + 顶点光晕)
   const cx = 110, cy = 110;
   const maxRadius = 75;
-  const angles = [
-    -Math.PI / 2,                          // 木 Wood (Top)
-    -Math.PI / 2 + 0.4 * Math.PI * 2,      // 火 Fire (Top-Right)
-    -Math.PI / 2 + 0.8 * Math.PI * 2,      // 土 Earth (Bottom-Right)
-    -Math.PI / 2 + 1.2 * Math.PI * 2,      // 金 Metal (Bottom-Left)
-    -Math.PI / 2 + 1.6 * Math.PI * 2       // 水 Water (Top-Left)
-  ];
+  // 正五边形每步严格为 72 度 (2*PI/5)，相邻顶点顺次连接生成凸五边形，绝对不出现 144 度跳跃交叉星形
+  const angles = [0, 1, 2, 3, 4].map(i => -Math.PI / 2 + i * (2 * Math.PI / 5));
   
   // 生成 5 层同心五边形网格背景带 (Filled Concentric Pentagon Bands)
   let webGridSvg = '';
   const levels = [0.2, 0.4, 0.6, 0.8, 1.0];
   levels.forEach((ratio, lIdx) => {
     const r = maxRadius * ratio;
-    const pts = angles.map(a => `${cx + r * Math.cos(a)},${cy + r * Math.sin(a)}`).join(' ');
+    const pts = angles.map(a => `${(cx + r * Math.cos(a)).toFixed(1)},${(cy + r * Math.sin(a)).toFixed(1)}`).join(' ');
     const bandFill = (lIdx % 2 === 0) ? 'rgba(0, 242, 254, 0.035)' : 'rgba(255, 255, 255, 0.015)';
     webGridSvg += `<polygon points="${pts}" fill="${bandFill}" stroke="rgba(255,255,255,${ratio===1.0?'0.2':'0.08'})" stroke-width="${ratio===1.0?'1.5':'1'}"/>`;
   });
   // 5 条辐射轴线 (中心到五边形顶点)
   angles.forEach(a => {
-    webGridSvg += `<line x1="${cx}" y1="${cy}" x2="${cx + maxRadius * Math.cos(a)}" y2="${cy + maxRadius * Math.sin(a)}" stroke="rgba(255,255,255,0.12)" stroke-dasharray="2,2"/>`;
+    webGridSvg += `<line x1="${cx}" y1="${cy}" x2="${(cx + maxRadius * Math.cos(a)).toFixed(1)}" y2="${(cy + maxRadius * Math.sin(a)).toFixed(1)}" stroke="rgba(255,255,255,0.12)" stroke-dasharray="2,2"/>`;
   });
 
   // 计算五行面积多边形顶点 (采用合理基底半径保证饱满的五边形面积实体)
