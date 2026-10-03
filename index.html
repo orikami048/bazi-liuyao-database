@@ -1411,7 +1411,7 @@ function computeBaziMaster() {
   });
   document.getElementById('radarBarsStack').innerHTML = barsHtml;
 
-  // 绘制真正的面积雷达图 (五层同心面积网格 + 平滑渐变面积填充 + 顶点光晕)
+  // 绘制真正的面积雷达图 (五层同心五边形面积网格 + 平滑渐变面积填充 + 顶点光晕)
   const cx = 110, cy = 110;
   const maxRadius = 75;
   const angles = [
@@ -1422,65 +1422,69 @@ function computeBaziMaster() {
     -Math.PI / 2 + 1.6 * Math.PI * 2       // 水 Water (Top-Left)
   ];
   
-  // 生成 5 层同心五边形网格
+  // 生成 5 层同心五边形网格背景带 (Filled Concentric Pentagon Bands)
   let webGridSvg = '';
-  [0.2, 0.4, 0.6, 0.8, 1.0].forEach(ratio => {
+  const levels = [0.2, 0.4, 0.6, 0.8, 1.0];
+  levels.forEach((ratio, lIdx) => {
     const r = maxRadius * ratio;
     const pts = angles.map(a => `${cx + r * Math.cos(a)},${cy + r * Math.sin(a)}`).join(' ');
-    webGridSvg += `<polygon points="${pts}" fill="none" stroke="rgba(255,255,255,${ratio===1.0?'0.16':'0.07'})" stroke-width="${ratio===1.0?'1.2':'1'}"/>`;
+    const bandFill = (lIdx % 2 === 0) ? 'rgba(0, 242, 254, 0.035)' : 'rgba(255, 255, 255, 0.015)';
+    webGridSvg += `<polygon points="${pts}" fill="${bandFill}" stroke="rgba(255,255,255,${ratio===1.0?'0.2':'0.08'})" stroke-width="${ratio===1.0?'1.5':'1'}"/>`;
   });
-  // 5 条轴线
+  // 5 条辐射轴线 (中心到五边形顶点)
   angles.forEach(a => {
-    webGridSvg += `<line x1="${cx}" y1="${cy}" x2="${cx + maxRadius * Math.cos(a)}" y2="${cy + maxRadius * Math.sin(a)}" stroke="rgba(255,255,255,0.1)"/>`;
+    webGridSvg += `<line x1="${cx}" y1="${cy}" x2="${cx + maxRadius * Math.cos(a)}" y2="${cy + maxRadius * Math.sin(a)}" stroke="rgba(255,255,255,0.12)" stroke-dasharray="2,2"/>`;
   });
 
-  // 计算五行面积多边形顶点
-  const maxSc = Math.max(...Object.values(elemScores), 3.5);
+  // 计算五行面积多边形顶点 (采用合理基底半径保证饱满的五边形面积实体)
+  const maxSc = Math.max(...Object.values(elemScores), 3.0);
+  const minFloor = 0.32; // 确保五边形面积图饱满实体感
   const dataPoints = ['木', '火', '土', '金', '水'].map((el, i) => {
-    const ratio = Math.max(elemScores[el] / maxSc, 0.18);
-    const r = maxRadius * ratio;
+    const normalized = elemScores[el] / maxSc;
+    const r = maxRadius * (minFloor + (1 - minFloor) * normalized);
     const x = cx + r * Math.cos(angles[i]);
     const y = cy + r * Math.sin(angles[i]);
-    return { x, y, el, pct: Math.round((elemScores[el] / totalScore) * 100) };
+    return { x, y, el, pct: Math.round((elemScores[el] / totalScore) * 100), score: elemScores[el] };
   });
 
-  const polygonPointsStr = dataPoints.map(p => `${p.x},${p.y}`).join(' ');
+  // 相邻点顺次连接成五边形闭合面积
+  const polygonPointsStr = dataPoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
 
   // 顶点光晕圈与文字标注
   let vertexSvg = '';
   dataPoints.forEach((p, idx) => {
     const color = elemColors[p.el];
-    // 顶点圆圈
+    // 顶点发光圆圈
     vertexSvg += `
-      <circle cx="${p.x}" cy="${p.y}" r="4" fill="${color}" stroke="#FFFFFF" stroke-width="1.5" filter="drop-shadow(0 0 6px ${color})"/>
+      <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" fill="${color}" stroke="#FFFFFF" stroke-width="2" filter="drop-shadow(0 0 8px ${color})"/>
     `;
-    // 外部文字标签
+    // 外部文字标签与百分比
     const labelR = maxRadius + 18;
     const lx = cx + labelR * Math.cos(angles[idx]);
     const ly = cy + labelR * Math.sin(angles[idx]) + 4;
     vertexSvg += `
-      <text x="${lx}" y="${ly}" fill="${color}" font-size="10" font-weight="900" font-family="var(--font-sans)" text-anchor="middle">${p.el} ${p.pct}%</text>
+      <text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" fill="${color}" font-size="10.5" font-weight="900" font-family="var(--font-sans)" text-anchor="middle">${p.el} ${p.pct}%</text>
     `;
   });
 
   document.getElementById('radarSvgCanvas').innerHTML = `
     <defs>
       <linearGradient id="radarAreaGradient" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.55"/>
-        <stop offset="40%" stop-color="#8B5CF6" stop-opacity="0.45"/>
-        <stop offset="80%" stop-color="#10B981" stop-opacity="0.5"/>
-        <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.4"/>
+        <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.6"/>
+        <stop offset="35%" stop-color="#8B5CF6" stop-opacity="0.5"/>
+        <stop offset="70%" stop-color="#10B981" stop-opacity="0.55"/>
+        <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.45"/>
       </linearGradient>
       <filter id="areaGlow" x="-20%" y="-20%" width="140%" height="140%">
-        <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#00F2FE" flood-opacity="0.6"/>
+        <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#00F2FE" flood-opacity="0.65"/>
       </filter>
     </defs>
     
-    <!-- 同心五边形网格 -->
+    <!-- 5 层同心五边形网格背景 -->
     ${webGridSvg}
     
-    <!-- 真正的五行能量面积图 (Filled Gradient Area Polygon) -->
-    <polygon points="${polygonPointsStr}" fill="url(#radarAreaGradient)" stroke="#00F2FE" stroke-width="2.2" filter="url(#areaGlow)"/>
+    <!-- 真正的五行能量五边形面积图 (Convex Area Polygon) -->
+    <polygon points="${polygonPointsStr}" fill="url(#radarAreaGradient)" stroke="#00F2FE" stroke-width="2.5" stroke-linejoin="round" filter="url(#areaGlow)"/>
     
     <!-- 顶点发光指示与百分比标签 -->
     ${vertexSvg}
