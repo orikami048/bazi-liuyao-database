@@ -8,6 +8,7 @@
 </p>
 
 <p align="center">
+  <a href="https://orikami048.github.io/bazi-liuyao-database/"><img src="https://img.shields.io/badge/🌐_Live_Web_App-orikami048.github.io-9E2A2B?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live App" /></a>
   <img src="https://img.shields.io/badge/Dataset-BaZi_%26_LiuYao-8B0000?style=for-the-badge&logo=gitbook&logoColor=white" alt="Dataset" />
   <img src="https://img.shields.io/badge/Format-JSON_%26_SQLite_%26_Python-2E8B57?style=for-the-badge" alt="Format" />
   <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" />
@@ -21,7 +22,7 @@
 
 ---
 
-[🚀 Quick Start & CLI](#-quick-start--cli-usage) · [🗂️ Repository Architecture](#-repository-architecture) · [☯️ BaZi Data & Engine](#-four-pillars-bazi-data--engine) · [🔮 Liu Yao Data & Engine](#-liu-yao-i-ching-divination-data--engine) · [💾 SQLite Queries](#-sqlite-database-querying) · [🏷️ Indexing Keywords](#-indexing--topic-taxonomy-search-keywords)
+[🚀 Launch Live Web App](https://orikami048.github.io/bazi-liuyao-database/) · [🚀 Quick Start & CLI](#-quick-start--cli-usage) · [🗂️ Repository Architecture](#-repository-architecture) · [☯️ BaZi Data & Engine](#-four-pillars-bazi-data--engine) · [🔮 Liu Yao Data & Engine](#-liu-yao-i-ching-divination-data--engine) · [💾 SQLite Queries](#-sqlite-database-querying) · [🏷️ Indexing Keywords](#-indexing--topic-taxonomy-search-keywords)
 
 ---
 
