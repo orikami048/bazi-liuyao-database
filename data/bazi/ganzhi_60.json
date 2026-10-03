@@ -1,0 +1,1802 @@
+[
+  {
+    "order": 1,
+    "name": "甲子",
+    "tiangan": "甲",
+    "tiangan_wuxing": "木",
+    "tiangan_yinyang": "阳",
+    "dizhi": "子",
+    "dizhi_wuxing": "水",
+    "dizhi_yinyang": "阳",
+    "nayin": "海中金",
+    "xun": "甲子旬",
+    "xunkong": "戌亥",
+    "canggan": [
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "沐浴"
+  },
+  {
+    "order": 2,
+    "name": "乙丑",
+    "tiangan": "乙",
+    "tiangan_wuxing": "木",
+    "tiangan_yinyang": "阴",
+    "dizhi": "丑",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阴",
+    "nayin": "海中金",
+    "xun": "甲子旬",
+    "xunkong": "戌亥",
+    "canggan": [
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "衰"
+  },
+  {
+    "order": 3,
+    "name": "丙寅",
+    "tiangan": "丙",
+    "tiangan_wuxing": "火",
+    "tiangan_yinyang": "阳",
+    "dizhi": "寅",
+    "dizhi_wuxing": "木",
+    "dizhi_yinyang": "阳",
+    "nayin": "炉中火",
+    "xun": "甲子旬",
+    "xunkong": "戌亥",
+    "canggan": [
+      {
+        "gan": "甲",
+        "wuxing": "木",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "丙",
+        "wuxing": "火",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "长生"
+  },
+  {
+    "order": 4,
+    "name": "丁卯",
+    "tiangan": "丁",
+    "tiangan_wuxing": "火",
+    "tiangan_yinyang": "阴",
+    "dizhi": "卯",
+    "dizhi_wuxing": "木",
+    "dizhi_yinyang": "阴",
+    "nayin": "炉中火",
+    "xun": "甲子旬",
+    "xunkong": "戌亥",
+    "canggan": [
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "病"
+  },
+  {
+    "order": 5,
+    "name": "戊辰",
+    "tiangan": "戊",
+    "tiangan_wuxing": "土",
+    "tiangan_yinyang": "阳",
+    "dizhi": "辰",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阳",
+    "nayin": "大林木",
+    "xun": "甲子旬",
+    "xunkong": "戌亥",
+    "canggan": [
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "冠带"
+  },
+  {
+    "order": 6,
+    "name": "己巳",
+    "tiangan": "己",
+    "tiangan_wuxing": "土",
+    "tiangan_yinyang": "阴",
+    "dizhi": "巳",
+    "dizhi_wuxing": "火",
+    "dizhi_yinyang": "阴",
+    "nayin": "大林木",
+    "xun": "甲子旬",
+    "xunkong": "戌亥",
+    "canggan": [
+      {
+        "gan": "丙",
+        "wuxing": "火",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "庚",
+        "wuxing": "金",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "帝旺"
+  },
+  {
+    "order": 7,
+    "name": "庚午",
+    "tiangan": "庚",
+    "tiangan_wuxing": "金",
+    "tiangan_yinyang": "阳",
+    "dizhi": "午",
+    "dizhi_wuxing": "火",
+    "dizhi_yinyang": "阳",
+    "nayin": "路旁土",
+    "xun": "甲子旬",
+    "xunkong": "戌亥",
+    "canggan": [
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "本气",
+        "ratio": 0.7
+      },
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "中气",
+        "ratio": 0.3
+      }
+    ],
+    "changsheng_12": "沐浴"
+  },
+  {
+    "order": 8,
+    "name": "辛未",
+    "tiangan": "辛",
+    "tiangan_wuxing": "金",
+    "tiangan_yinyang": "阴",
+    "dizhi": "未",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阴",
+    "nayin": "路旁土",
+    "xun": "甲子旬",
+    "xunkong": "戌亥",
+    "canggan": [
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "衰"
+  },
+  {
+    "order": 9,
+    "name": "壬申",
+    "tiangan": "壬",
+    "tiangan_wuxing": "水",
+    "tiangan_yinyang": "阳",
+    "dizhi": "申",
+    "dizhi_wuxing": "金",
+    "dizhi_yinyang": "阳",
+    "nayin": "剑锋金",
+    "xun": "甲子旬",
+    "xunkong": "戌亥",
+    "canggan": [
+      {
+        "gan": "庚",
+        "wuxing": "金",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "壬",
+        "wuxing": "水",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "长生"
+  },
+  {
+    "order": 10,
+    "name": "癸酉",
+    "tiangan": "癸",
+    "tiangan_wuxing": "水",
+    "tiangan_yinyang": "阴",
+    "dizhi": "酉",
+    "dizhi_wuxing": "金",
+    "dizhi_yinyang": "阴",
+    "nayin": "剑锋金",
+    "xun": "甲子旬",
+    "xunkong": "戌亥",
+    "canggan": [
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "病"
+  },
+  {
+    "order": 11,
+    "name": "甲戌",
+    "tiangan": "甲",
+    "tiangan_wuxing": "木",
+    "tiangan_yinyang": "阳",
+    "dizhi": "戌",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阳",
+    "nayin": "山头火",
+    "xun": "甲戌旬",
+    "xunkong": "申酉",
+    "canggan": [
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "养"
+  },
+  {
+    "order": 12,
+    "name": "乙亥",
+    "tiangan": "乙",
+    "tiangan_wuxing": "木",
+    "tiangan_yinyang": "阴",
+    "dizhi": "亥",
+    "dizhi_wuxing": "水",
+    "dizhi_yinyang": "阴",
+    "nayin": "山头火",
+    "xun": "甲戌旬",
+    "xunkong": "申酉",
+    "canggan": [
+      {
+        "gan": "壬",
+        "wuxing": "水",
+        "type": "本气",
+        "ratio": 0.7
+      },
+      {
+        "gan": "甲",
+        "wuxing": "木",
+        "type": "中气",
+        "ratio": 0.3
+      }
+    ],
+    "changsheng_12": "死"
+  },
+  {
+    "order": 13,
+    "name": "丙子",
+    "tiangan": "丙",
+    "tiangan_wuxing": "火",
+    "tiangan_yinyang": "阳",
+    "dizhi": "子",
+    "dizhi_wuxing": "水",
+    "dizhi_yinyang": "阳",
+    "nayin": "涧下水",
+    "xun": "甲戌旬",
+    "xunkong": "申酉",
+    "canggan": [
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "胎"
+  },
+  {
+    "order": 14,
+    "name": "丁丑",
+    "tiangan": "丁",
+    "tiangan_wuxing": "火",
+    "tiangan_yinyang": "阴",
+    "dizhi": "丑",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阴",
+    "nayin": "涧下水",
+    "xun": "甲戌旬",
+    "xunkong": "申酉",
+    "canggan": [
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "墓"
+  },
+  {
+    "order": 15,
+    "name": "戊寅",
+    "tiangan": "戊",
+    "tiangan_wuxing": "土",
+    "tiangan_yinyang": "阳",
+    "dizhi": "寅",
+    "dizhi_wuxing": "木",
+    "dizhi_yinyang": "阳",
+    "nayin": "城头土",
+    "xun": "甲戌旬",
+    "xunkong": "申酉",
+    "canggan": [
+      {
+        "gan": "甲",
+        "wuxing": "木",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "丙",
+        "wuxing": "火",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "长生"
+  },
+  {
+    "order": 16,
+    "name": "己卯",
+    "tiangan": "己",
+    "tiangan_wuxing": "土",
+    "tiangan_yinyang": "阴",
+    "dizhi": "卯",
+    "dizhi_wuxing": "木",
+    "dizhi_yinyang": "阴",
+    "nayin": "城头土",
+    "xun": "甲戌旬",
+    "xunkong": "申酉",
+    "canggan": [
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "病"
+  },
+  {
+    "order": 17,
+    "name": "庚辰",
+    "tiangan": "庚",
+    "tiangan_wuxing": "金",
+    "tiangan_yinyang": "阳",
+    "dizhi": "辰",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阳",
+    "nayin": "白蜡金",
+    "xun": "甲戌旬",
+    "xunkong": "申酉",
+    "canggan": [
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "养"
+  },
+  {
+    "order": 18,
+    "name": "辛巳",
+    "tiangan": "辛",
+    "tiangan_wuxing": "金",
+    "tiangan_yinyang": "阴",
+    "dizhi": "巳",
+    "dizhi_wuxing": "火",
+    "dizhi_yinyang": "阴",
+    "nayin": "白蜡金",
+    "xun": "甲戌旬",
+    "xunkong": "申酉",
+    "canggan": [
+      {
+        "gan": "丙",
+        "wuxing": "火",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "庚",
+        "wuxing": "金",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "死"
+  },
+  {
+    "order": 19,
+    "name": "壬午",
+    "tiangan": "壬",
+    "tiangan_wuxing": "水",
+    "tiangan_yinyang": "阳",
+    "dizhi": "午",
+    "dizhi_wuxing": "火",
+    "dizhi_yinyang": "阳",
+    "nayin": "杨柳木",
+    "xun": "甲戌旬",
+    "xunkong": "申酉",
+    "canggan": [
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "本气",
+        "ratio": 0.7
+      },
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "中气",
+        "ratio": 0.3
+      }
+    ],
+    "changsheng_12": "胎"
+  },
+  {
+    "order": 20,
+    "name": "癸未",
+    "tiangan": "癸",
+    "tiangan_wuxing": "水",
+    "tiangan_yinyang": "阴",
+    "dizhi": "未",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阴",
+    "nayin": "杨柳木",
+    "xun": "甲戌旬",
+    "xunkong": "申酉",
+    "canggan": [
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "墓"
+  },
+  {
+    "order": 21,
+    "name": "甲申",
+    "tiangan": "甲",
+    "tiangan_wuxing": "木",
+    "tiangan_yinyang": "阳",
+    "dizhi": "申",
+    "dizhi_wuxing": "金",
+    "dizhi_yinyang": "阳",
+    "nayin": "泉中水",
+    "xun": "甲申旬",
+    "xunkong": "午未",
+    "canggan": [
+      {
+        "gan": "庚",
+        "wuxing": "金",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "壬",
+        "wuxing": "水",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "绝"
+  },
+  {
+    "order": 22,
+    "name": "乙酉",
+    "tiangan": "乙",
+    "tiangan_wuxing": "木",
+    "tiangan_yinyang": "阴",
+    "dizhi": "酉",
+    "dizhi_wuxing": "金",
+    "dizhi_yinyang": "阴",
+    "nayin": "泉中水",
+    "xun": "甲申旬",
+    "xunkong": "午未",
+    "canggan": [
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "绝"
+  },
+  {
+    "order": 23,
+    "name": "丙戌",
+    "tiangan": "丙",
+    "tiangan_wuxing": "火",
+    "tiangan_yinyang": "阳",
+    "dizhi": "戌",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阳",
+    "nayin": "屋上土",
+    "xun": "甲申旬",
+    "xunkong": "午未",
+    "canggan": [
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "墓"
+  },
+  {
+    "order": 24,
+    "name": "丁亥",
+    "tiangan": "丁",
+    "tiangan_wuxing": "火",
+    "tiangan_yinyang": "阴",
+    "dizhi": "亥",
+    "dizhi_wuxing": "水",
+    "dizhi_yinyang": "阴",
+    "nayin": "屋上土",
+    "xun": "甲申旬",
+    "xunkong": "午未",
+    "canggan": [
+      {
+        "gan": "壬",
+        "wuxing": "水",
+        "type": "本气",
+        "ratio": 0.7
+      },
+      {
+        "gan": "甲",
+        "wuxing": "木",
+        "type": "中气",
+        "ratio": 0.3
+      }
+    ],
+    "changsheng_12": "胎"
+  },
+  {
+    "order": 25,
+    "name": "戊子",
+    "tiangan": "戊",
+    "tiangan_wuxing": "土",
+    "tiangan_yinyang": "阳",
+    "dizhi": "子",
+    "dizhi_wuxing": "水",
+    "dizhi_yinyang": "阳",
+    "nayin": "霹雳火",
+    "xun": "甲申旬",
+    "xunkong": "午未",
+    "canggan": [
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "胎"
+  },
+  {
+    "order": 26,
+    "name": "己丑",
+    "tiangan": "己",
+    "tiangan_wuxing": "土",
+    "tiangan_yinyang": "阴",
+    "dizhi": "丑",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阴",
+    "nayin": "霹雳火",
+    "xun": "甲申旬",
+    "xunkong": "午未",
+    "canggan": [
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "墓"
+  },
+  {
+    "order": 27,
+    "name": "庚寅",
+    "tiangan": "庚",
+    "tiangan_wuxing": "金",
+    "tiangan_yinyang": "阳",
+    "dizhi": "寅",
+    "dizhi_wuxing": "木",
+    "dizhi_yinyang": "阳",
+    "nayin": "松柏木",
+    "xun": "甲申旬",
+    "xunkong": "午未",
+    "canggan": [
+      {
+        "gan": "甲",
+        "wuxing": "木",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "丙",
+        "wuxing": "火",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "绝"
+  },
+  {
+    "order": 28,
+    "name": "辛卯",
+    "tiangan": "辛",
+    "tiangan_wuxing": "金",
+    "tiangan_yinyang": "阴",
+    "dizhi": "卯",
+    "dizhi_wuxing": "木",
+    "dizhi_yinyang": "阴",
+    "nayin": "松柏木",
+    "xun": "甲申旬",
+    "xunkong": "午未",
+    "canggan": [
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "绝"
+  },
+  {
+    "order": 29,
+    "name": "壬辰",
+    "tiangan": "壬",
+    "tiangan_wuxing": "水",
+    "tiangan_yinyang": "阳",
+    "dizhi": "辰",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阳",
+    "nayin": "长流水",
+    "xun": "甲申旬",
+    "xunkong": "午未",
+    "canggan": [
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "墓"
+  },
+  {
+    "order": 30,
+    "name": "癸巳",
+    "tiangan": "癸",
+    "tiangan_wuxing": "水",
+    "tiangan_yinyang": "阴",
+    "dizhi": "巳",
+    "dizhi_wuxing": "火",
+    "dizhi_yinyang": "阴",
+    "nayin": "长流水",
+    "xun": "甲申旬",
+    "xunkong": "午未",
+    "canggan": [
+      {
+        "gan": "丙",
+        "wuxing": "火",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "庚",
+        "wuxing": "金",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "胎"
+  },
+  {
+    "order": 31,
+    "name": "甲午",
+    "tiangan": "甲",
+    "tiangan_wuxing": "木",
+    "tiangan_yinyang": "阳",
+    "dizhi": "午",
+    "dizhi_wuxing": "火",
+    "dizhi_yinyang": "阳",
+    "nayin": "沙中金",
+    "xun": "甲午旬",
+    "xunkong": "辰巳",
+    "canggan": [
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "本气",
+        "ratio": 0.7
+      },
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "中气",
+        "ratio": 0.3
+      }
+    ],
+    "changsheng_12": "死"
+  },
+  {
+    "order": 32,
+    "name": "乙未",
+    "tiangan": "乙",
+    "tiangan_wuxing": "木",
+    "tiangan_yinyang": "阴",
+    "dizhi": "未",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阴",
+    "nayin": "沙中金",
+    "xun": "甲午旬",
+    "xunkong": "辰巳",
+    "canggan": [
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "养"
+  },
+  {
+    "order": 33,
+    "name": "丙申",
+    "tiangan": "丙",
+    "tiangan_wuxing": "火",
+    "tiangan_yinyang": "阳",
+    "dizhi": "申",
+    "dizhi_wuxing": "金",
+    "dizhi_yinyang": "阳",
+    "nayin": "山下火",
+    "xun": "甲午旬",
+    "xunkong": "辰巳",
+    "canggan": [
+      {
+        "gan": "庚",
+        "wuxing": "金",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "壬",
+        "wuxing": "水",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "病"
+  },
+  {
+    "order": 34,
+    "name": "丁酉",
+    "tiangan": "丁",
+    "tiangan_wuxing": "火",
+    "tiangan_yinyang": "阴",
+    "dizhi": "酉",
+    "dizhi_wuxing": "金",
+    "dizhi_yinyang": "阴",
+    "nayin": "山下火",
+    "xun": "甲午旬",
+    "xunkong": "辰巳",
+    "canggan": [
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "长生"
+  },
+  {
+    "order": 35,
+    "name": "戊戌",
+    "tiangan": "戊",
+    "tiangan_wuxing": "土",
+    "tiangan_yinyang": "阳",
+    "dizhi": "戌",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阳",
+    "nayin": "平地木",
+    "xun": "甲午旬",
+    "xunkong": "辰巳",
+    "canggan": [
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "墓"
+  },
+  {
+    "order": 36,
+    "name": "己亥",
+    "tiangan": "己",
+    "tiangan_wuxing": "土",
+    "tiangan_yinyang": "阴",
+    "dizhi": "亥",
+    "dizhi_wuxing": "水",
+    "dizhi_yinyang": "阴",
+    "nayin": "平地木",
+    "xun": "甲午旬",
+    "xunkong": "辰巳",
+    "canggan": [
+      {
+        "gan": "壬",
+        "wuxing": "水",
+        "type": "本气",
+        "ratio": 0.7
+      },
+      {
+        "gan": "甲",
+        "wuxing": "木",
+        "type": "中气",
+        "ratio": 0.3
+      }
+    ],
+    "changsheng_12": "胎"
+  },
+  {
+    "order": 37,
+    "name": "庚子",
+    "tiangan": "庚",
+    "tiangan_wuxing": "金",
+    "tiangan_yinyang": "阳",
+    "dizhi": "子",
+    "dizhi_wuxing": "水",
+    "dizhi_yinyang": "阳",
+    "nayin": "壁上土",
+    "xun": "甲午旬",
+    "xunkong": "辰巳",
+    "canggan": [
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "死"
+  },
+  {
+    "order": 38,
+    "name": "辛丑",
+    "tiangan": "辛",
+    "tiangan_wuxing": "金",
+    "tiangan_yinyang": "阴",
+    "dizhi": "丑",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阴",
+    "nayin": "壁上土",
+    "xun": "甲午旬",
+    "xunkong": "辰巳",
+    "canggan": [
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "养"
+  },
+  {
+    "order": 39,
+    "name": "壬寅",
+    "tiangan": "壬",
+    "tiangan_wuxing": "水",
+    "tiangan_yinyang": "阳",
+    "dizhi": "寅",
+    "dizhi_wuxing": "木",
+    "dizhi_yinyang": "阳",
+    "nayin": "金箔金",
+    "xun": "甲午旬",
+    "xunkong": "辰巳",
+    "canggan": [
+      {
+        "gan": "甲",
+        "wuxing": "木",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "丙",
+        "wuxing": "火",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "病"
+  },
+  {
+    "order": 40,
+    "name": "癸卯",
+    "tiangan": "癸",
+    "tiangan_wuxing": "水",
+    "tiangan_yinyang": "阴",
+    "dizhi": "卯",
+    "dizhi_wuxing": "木",
+    "dizhi_yinyang": "阴",
+    "nayin": "金箔金",
+    "xun": "甲午旬",
+    "xunkong": "辰巳",
+    "canggan": [
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "长生"
+  },
+  {
+    "order": 41,
+    "name": "甲辰",
+    "tiangan": "甲",
+    "tiangan_wuxing": "木",
+    "tiangan_yinyang": "阳",
+    "dizhi": "辰",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阳",
+    "nayin": "覆灯火",
+    "xun": "甲辰旬",
+    "xunkong": "寅卯",
+    "canggan": [
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "衰"
+  },
+  {
+    "order": 42,
+    "name": "乙巳",
+    "tiangan": "乙",
+    "tiangan_wuxing": "木",
+    "tiangan_yinyang": "阴",
+    "dizhi": "巳",
+    "dizhi_wuxing": "火",
+    "dizhi_yinyang": "阴",
+    "nayin": "覆灯火",
+    "xun": "甲辰旬",
+    "xunkong": "寅卯",
+    "canggan": [
+      {
+        "gan": "丙",
+        "wuxing": "火",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "庚",
+        "wuxing": "金",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "沐浴"
+  },
+  {
+    "order": 43,
+    "name": "丙午",
+    "tiangan": "丙",
+    "tiangan_wuxing": "火",
+    "tiangan_yinyang": "阳",
+    "dizhi": "午",
+    "dizhi_wuxing": "火",
+    "dizhi_yinyang": "阳",
+    "nayin": "天河水",
+    "xun": "甲辰旬",
+    "xunkong": "寅卯",
+    "canggan": [
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "本气",
+        "ratio": 0.7
+      },
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "中气",
+        "ratio": 0.3
+      }
+    ],
+    "changsheng_12": "帝旺"
+  },
+  {
+    "order": 44,
+    "name": "丁未",
+    "tiangan": "丁",
+    "tiangan_wuxing": "火",
+    "tiangan_yinyang": "阴",
+    "dizhi": "未",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阴",
+    "nayin": "天河水",
+    "xun": "甲辰旬",
+    "xunkong": "寅卯",
+    "canggan": [
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "冠带"
+  },
+  {
+    "order": 45,
+    "name": "戊申",
+    "tiangan": "戊",
+    "tiangan_wuxing": "土",
+    "tiangan_yinyang": "阳",
+    "dizhi": "申",
+    "dizhi_wuxing": "金",
+    "dizhi_yinyang": "阳",
+    "nayin": "大驿土",
+    "xun": "甲辰旬",
+    "xunkong": "寅卯",
+    "canggan": [
+      {
+        "gan": "庚",
+        "wuxing": "金",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "壬",
+        "wuxing": "水",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "病"
+  },
+  {
+    "order": 46,
+    "name": "己酉",
+    "tiangan": "己",
+    "tiangan_wuxing": "土",
+    "tiangan_yinyang": "阴",
+    "dizhi": "酉",
+    "dizhi_wuxing": "金",
+    "dizhi_yinyang": "阴",
+    "nayin": "大驿土",
+    "xun": "甲辰旬",
+    "xunkong": "寅卯",
+    "canggan": [
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "长生"
+  },
+  {
+    "order": 47,
+    "name": "庚戌",
+    "tiangan": "庚",
+    "tiangan_wuxing": "金",
+    "tiangan_yinyang": "阳",
+    "dizhi": "戌",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阳",
+    "nayin": "钗钏金",
+    "xun": "甲辰旬",
+    "xunkong": "寅卯",
+    "canggan": [
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "衰"
+  },
+  {
+    "order": 48,
+    "name": "辛亥",
+    "tiangan": "辛",
+    "tiangan_wuxing": "金",
+    "tiangan_yinyang": "阴",
+    "dizhi": "亥",
+    "dizhi_wuxing": "水",
+    "dizhi_yinyang": "阴",
+    "nayin": "钗钏金",
+    "xun": "甲辰旬",
+    "xunkong": "寅卯",
+    "canggan": [
+      {
+        "gan": "壬",
+        "wuxing": "水",
+        "type": "本气",
+        "ratio": 0.7
+      },
+      {
+        "gan": "甲",
+        "wuxing": "木",
+        "type": "中气",
+        "ratio": 0.3
+      }
+    ],
+    "changsheng_12": "沐浴"
+  },
+  {
+    "order": 49,
+    "name": "壬子",
+    "tiangan": "壬",
+    "tiangan_wuxing": "水",
+    "tiangan_yinyang": "阳",
+    "dizhi": "子",
+    "dizhi_wuxing": "水",
+    "dizhi_yinyang": "阳",
+    "nayin": "桑柘木",
+    "xun": "甲辰旬",
+    "xunkong": "寅卯",
+    "canggan": [
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "帝旺"
+  },
+  {
+    "order": 50,
+    "name": "癸丑",
+    "tiangan": "癸",
+    "tiangan_wuxing": "水",
+    "tiangan_yinyang": "阴",
+    "dizhi": "丑",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阴",
+    "nayin": "桑柘木",
+    "xun": "甲辰旬",
+    "xunkong": "寅卯",
+    "canggan": [
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "冠带"
+  },
+  {
+    "order": 51,
+    "name": "甲寅",
+    "tiangan": "甲",
+    "tiangan_wuxing": "木",
+    "tiangan_yinyang": "阳",
+    "dizhi": "寅",
+    "dizhi_wuxing": "木",
+    "dizhi_yinyang": "阳",
+    "nayin": "大溪水",
+    "xun": "甲寅旬",
+    "xunkong": "子丑",
+    "canggan": [
+      {
+        "gan": "甲",
+        "wuxing": "木",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "丙",
+        "wuxing": "火",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "临官"
+  },
+  {
+    "order": 52,
+    "name": "乙卯",
+    "tiangan": "乙",
+    "tiangan_wuxing": "木",
+    "tiangan_yinyang": "阴",
+    "dizhi": "卯",
+    "dizhi_wuxing": "木",
+    "dizhi_yinyang": "阴",
+    "nayin": "大溪水",
+    "xun": "甲寅旬",
+    "xunkong": "子丑",
+    "canggan": [
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "临官"
+  },
+  {
+    "order": 53,
+    "name": "丙辰",
+    "tiangan": "丙",
+    "tiangan_wuxing": "火",
+    "tiangan_yinyang": "阳",
+    "dizhi": "辰",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阳",
+    "nayin": "沙中土",
+    "xun": "甲寅旬",
+    "xunkong": "子丑",
+    "canggan": [
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "癸",
+        "wuxing": "水",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "冠带"
+  },
+  {
+    "order": 54,
+    "name": "丁巳",
+    "tiangan": "丁",
+    "tiangan_wuxing": "火",
+    "tiangan_yinyang": "阴",
+    "dizhi": "巳",
+    "dizhi_wuxing": "火",
+    "dizhi_yinyang": "阴",
+    "nayin": "沙中土",
+    "xun": "甲寅旬",
+    "xunkong": "子丑",
+    "canggan": [
+      {
+        "gan": "丙",
+        "wuxing": "火",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "庚",
+        "wuxing": "金",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "帝旺"
+  },
+  {
+    "order": 55,
+    "name": "戊午",
+    "tiangan": "戊",
+    "tiangan_wuxing": "土",
+    "tiangan_yinyang": "阳",
+    "dizhi": "午",
+    "dizhi_wuxing": "火",
+    "dizhi_yinyang": "阳",
+    "nayin": "天上火",
+    "xun": "甲寅旬",
+    "xunkong": "子丑",
+    "canggan": [
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "本气",
+        "ratio": 0.7
+      },
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "中气",
+        "ratio": 0.3
+      }
+    ],
+    "changsheng_12": "帝旺"
+  },
+  {
+    "order": 56,
+    "name": "己未",
+    "tiangan": "己",
+    "tiangan_wuxing": "土",
+    "tiangan_yinyang": "阴",
+    "dizhi": "未",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阴",
+    "nayin": "天上火",
+    "xun": "甲寅旬",
+    "xunkong": "子丑",
+    "canggan": [
+      {
+        "gan": "己",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "乙",
+        "wuxing": "木",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "冠带"
+  },
+  {
+    "order": 57,
+    "name": "庚申",
+    "tiangan": "庚",
+    "tiangan_wuxing": "金",
+    "tiangan_yinyang": "阳",
+    "dizhi": "申",
+    "dizhi_wuxing": "金",
+    "dizhi_yinyang": "阳",
+    "nayin": "石榴木",
+    "xun": "甲寅旬",
+    "xunkong": "子丑",
+    "canggan": [
+      {
+        "gan": "庚",
+        "wuxing": "金",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "壬",
+        "wuxing": "水",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "临官"
+  },
+  {
+    "order": 58,
+    "name": "辛酉",
+    "tiangan": "辛",
+    "tiangan_wuxing": "金",
+    "tiangan_yinyang": "阴",
+    "dizhi": "酉",
+    "dizhi_wuxing": "金",
+    "dizhi_yinyang": "阴",
+    "nayin": "石榴木",
+    "xun": "甲寅旬",
+    "xunkong": "子丑",
+    "canggan": [
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "本气",
+        "ratio": 1.0
+      }
+    ],
+    "changsheng_12": "临官"
+  },
+  {
+    "order": 59,
+    "name": "壬戌",
+    "tiangan": "壬",
+    "tiangan_wuxing": "水",
+    "tiangan_yinyang": "阳",
+    "dizhi": "戌",
+    "dizhi_wuxing": "土",
+    "dizhi_yinyang": "阳",
+    "nayin": "大海水",
+    "xun": "甲寅旬",
+    "xunkong": "子丑",
+    "canggan": [
+      {
+        "gan": "戊",
+        "wuxing": "土",
+        "type": "本气",
+        "ratio": 0.6
+      },
+      {
+        "gan": "辛",
+        "wuxing": "金",
+        "type": "中气",
+        "ratio": 0.3
+      },
+      {
+        "gan": "丁",
+        "wuxing": "火",
+        "type": "余气",
+        "ratio": 0.1
+      }
+    ],
+    "changsheng_12": "冠带"
+  },
+  {
+    "order": 60,
+    "name": "癸亥",
+    "tiangan": "癸",
+    "tiangan_wuxing": "水",
+    "tiangan_yinyang": "阴",
+    "dizhi": "亥",
+    "dizhi_wuxing": "水",
+    "dizhi_yinyang": "阴",
+    "nayin": "大海水",
+    "xun": "甲寅旬",
+    "xunkong": "子丑",
+    "canggan": [
+      {
+        "gan": "壬",
+        "wuxing": "水",
+        "type": "本气",
+        "ratio": 0.7
+      },
+      {
+        "gan": "甲",
+        "wuxing": "木",
+        "type": "中气",
+        "ratio": 0.3
+      }
+    ],
+    "changsheng_12": "帝旺"
+  }
+]
