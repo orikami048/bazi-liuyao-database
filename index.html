@@ -1216,6 +1216,23 @@ footer {
 
 </div>
 
+<!-- ==================== 全息古籍秘典弹窗 (CLASSICS DETAIL MODAL) ==================== -->
+<div id="classicDetailModal" class="classic-modal-backdrop" onclick="if(event.target===this)closeClassicModal()">
+  <div class="classic-modal-box">
+    <div class="classic-modal-header">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span class="classic-modal-tag" id="modalBadge">四库密典</span>
+        <h3 class="classic-modal-title" id="modalTitle">典籍详论</h3>
+      </div>
+      <button type="button" class="classic-modal-close" id="btnModalClose" onclick="closeClassicModal()" aria-label="关闭窗口">×</button>
+    </div>
+    <div class="classic-modal-sub" id="modalSubtitle">CLASSIC CANON PERSPECTIVE</div>
+    <div class="classic-modal-body" id="modalBody">
+      <!-- 动态注入多维古籍引证卡片 -->
+    </div>
+  </div>
+</div>
+
 <script>
 // ==================== Tab 切换 ====================
 document.querySelectorAll('.nav-tab-btn').forEach(btn => {
@@ -2104,38 +2121,34 @@ function openShenshaModal(name) {
   document.getElementById('classicDetailModal').classList.add('open');
 }
 
-// 弹窗关闭监听
-document.getElementById('btnModalClose').addEventListener('click', () => {
-  document.getElementById('classicDetailModal').classList.remove('open');
-});
-document.getElementById('classicDetailModal').addEventListener('click', (e) => {
-  if(e.target.id === 'classicDetailModal') {
-    document.getElementById('classicDetailModal').classList.remove('open');
+// 弹窗关闭与控制函数
+function closeClassicModal() {
+  const modal = document.getElementById('classicDetailModal');
+  if(modal) {
+    modal.classList.remove('open');
   }
-});
+}
+window.closeClassicModal = closeClassicModal;
+
+const btnClose = document.getElementById('btnModalClose');
+if(btnClose) {
+  btnClose.addEventListener('click', closeClassicModal);
+}
+
+const modalBackdrop = document.getElementById('classicDetailModal');
+if(modalBackdrop) {
+  modalBackdrop.addEventListener('click', (e) => {
+    if(e.target === modalBackdrop) {
+      closeClassicModal();
+    }
+  });
+}
+
 document.addEventListener('keydown', (e) => {
   if(e.key === 'Escape') {
-    document.getElementById('classicDetailModal').classList.remove('open');
+    closeClassicModal();
   }
 });
 </script>
-
-<!-- ==================== 全息古籍秘典弹窗 (CLASSICS DETAIL MODAL) ==================== -->
-<div id="classicDetailModal" class="classic-modal-backdrop">
-  <div class="classic-modal-box">
-    <div class="classic-modal-header">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <span class="classic-modal-tag" id="modalBadge">四库密典</span>
-        <h3 class="classic-modal-title" id="modalTitle">典籍详论</h3>
-      </div>
-      <button type="button" class="classic-modal-close" id="btnModalClose">×</button>
-    </div>
-    <div class="classic-modal-sub" id="modalSubtitle">CLASSIC CANON PERSPECTIVE</div>
-    <div class="classic-modal-body" id="modalBody">
-      <!-- 动态注入多维古籍引证卡片 -->
-    </div>
-  </div>
-</div>
-
 </body>
 </html>
