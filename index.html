@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aurora Glass · 专业易学排盘与全息数据工作台</title>
-<meta name="description" content="问真级权威四柱八字排盘系统。主星副星、天干地支、藏干十神、星运自坐、空亡纳音、柱位专属神煞矩阵、原局刑冲克害合透视与五行面积雷达。">
+<title>Aurora Glass · 专业易学排盘与四库古籍全息引证工作台</title>
+<meta name="description" content="问真级权威四柱八字排盘系统。主星副星、天干地支、藏干十神、星运自坐、空亡纳音、柱位专属神煞矩阵、原局刑冲克害合透视、五行面积雷达与《穷通宝鉴》《滴天髓》《三命通会》《八字提要》四库经典原文引证。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@600;700;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -316,10 +316,9 @@ body {
 }
 
 .day-pillar-highlight {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.035);
 }
 
-/* 问真干支与十神字体效果 */
 .wz-shishen-zhuxing {
   font-size: 13px;
   font-weight: 800;
@@ -347,14 +346,12 @@ body {
   vertical-align: middle;
 }
 
-/* 五行专用字体发光颜色 */
 .color-mu { color: var(--color-mu); text-shadow: 0 0 14px rgba(16, 185, 129, 0.8); }
 .color-huo { color: var(--color-huo); text-shadow: 0 0 14px rgba(239, 68, 68, 0.8); }
 .color-tu { color: var(--color-tu); text-shadow: 0 0 14px rgba(217, 119, 6, 0.8); }
 .color-jin { color: var(--color-jin); text-shadow: 0 0 14px rgba(0, 242, 254, 0.85); }
 .color-shui { color: var(--color-shui); text-shadow: 0 0 14px rgba(56, 189, 248, 0.85); }
 
-/* 藏干与副星 */
 .canggan-stack {
   display: flex;
   flex-direction: column;
@@ -370,7 +367,6 @@ body {
   color: var(--text-sub);
 }
 
-/* 神煞柱位专属垂直胶囊列表 */
 .pillar-shensha-stack {
   display: flex;
   flex-direction: column;
@@ -386,11 +382,13 @@ body {
   background: rgba(255, 255, 255, 0.035);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: #CBD5E1;
+  cursor: pointer;
   transition: all 0.2s;
 }
 .wz-shensha-pill:hover {
   border-color: var(--cyan);
-  background: rgba(0, 242, 254, 0.08);
+  background: rgba(0, 242, 254, 0.12);
+  transform: translateY(-1px);
 }
 .wz-shensha-gold {
   color: #FDE047;
@@ -404,7 +402,6 @@ body {
   background: rgba(248, 113, 113, 0.08);
 }
 
-/* 原局刑冲克害合诊断卡片 */
 .clash-diagnosis-box {
   background: rgba(3, 7, 18, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.09);
@@ -548,6 +545,70 @@ body {
   border-color: var(--cyan);
   box-shadow: 0 0 16px rgba(0, 242, 254, 0.25);
   transform: translateY(-2px);
+}
+
+/* ==================== 四库易学经典引证卡片 ==================== */
+.classics-bento-card {
+  margin-top: 20px;
+}
+.classics-tab-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 10px;
+}
+.classics-tab-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-sub);
+  font-size: 12px; font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.classics-tab-btn:hover { color: #FFF; border-color: var(--cyan); }
+.classics-tab-btn.active {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.2) 0%, rgba(139, 92, 246, 0.25) 100%);
+  color: #FFF;
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+}
+
+.classics-content-panel {
+  display: none;
+  background: rgba(3, 7, 18, 0.45);
+  border-radius: 14px;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  line-height: 1.7;
+}
+.classics-content-panel.active { display: block; animation: tabFadeIn 0.3s ease; }
+
+.classic-quote-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--cyan);
+  margin-bottom: 10px;
+  font-family: var(--font-serif);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.classic-quote-body {
+  font-size: 13px;
+  color: #E2E8F0;
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  border-left: 3px solid var(--cyan);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+}
+.classic-commentary {
+  font-size: 12px;
+  color: var(--text-sub);
 }
 
 /* ==================== 六爻量子演卦独立选项卡 ==================== */
@@ -711,11 +772,11 @@ footer {
       <div class="form-input-deck">
         <div class="form-field-unit">
           <label>公历生日 (SOLAR DATE)</label>
-          <input type="date" id="baziDate" class="glass-input-ctrl" value="1995-08-18">
+          <input type="date" id="baziDate" class="glass-input-ctrl" value="1990-01-01">
         </div>
         <div class="form-field-unit">
           <label>出生时间 (TIME)</label>
-          <input type="time" id="baziTime" class="glass-input-ctrl" value="14:20">
+          <input type="time" id="baziTime" class="glass-input-ctrl" value="00:00">
         </div>
         <div class="form-field-unit">
           <label>命造性别 (GENDER)</label>
@@ -738,7 +799,7 @@ footer {
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
         <div style="font-size:12px; color:var(--text-sub);" id="baziSummaryHeader">
-          农历：乙亥年 七月廿三日 未时 · 乾造 · 胎元：乙亥 · 命宫：丙子
+          农历：己巳年 腊月初五 子时 · 乾造 · 胎元：丁卯 · 命宫：丙寅
         </div>
         <button type="button" class="btn-quantum-run" id="btnRunBazi">
           ⚡ 运行四柱专业细盘解算
@@ -761,15 +822,15 @@ footer {
             <div class="card-watermark-tag">问真八字</div>
           </div>
 
-          <!-- 问真八字 经典专业细盘表格 -->
+          <!-- 问真八字 经典专业细盘表格 (年柱 | 月柱 | 日柱 | 时柱 从左到右) -->
           <table class="wenzhen-paipan-table">
             <thead>
               <tr>
                 <th class="row-label-col">四柱</th>
-                <th class="col-header-pillar">时柱 (HOUR)</th>
-                <th class="col-header-pillar day-pillar-highlight">日柱 (DAY)</th>
-                <th class="col-header-pillar">月柱 (MONTH)</th>
                 <th class="col-header-pillar">年柱 (YEAR)</th>
+                <th class="col-header-pillar">月柱 (MONTH)</th>
+                <th class="col-header-pillar day-pillar-highlight">日柱 (DAY)</th>
+                <th class="col-header-pillar">时柱 (HOUR)</th>
               </tr>
             </thead>
             <tbody id="wenzhenTableBody">
@@ -838,13 +899,59 @@ footer {
 
     </div>
 
+    <!-- ==================== 四库易学经典引证与古籍秘典 (穷通宝鉴·滴天髓·三命通会·八字提要) ==================== -->
+    <div class="bento-card classics-bento-card">
+      <div class="card-head">
+        <div class="card-title-group">
+          <div class="card-title">📖 四库易学古籍全息引证与原著断语</div>
+          <div class="card-title-sub">CLASSICAL METAPHYSICS CANON</div>
+        </div>
+        <div class="card-watermark-tag">古籍秘典</div>
+      </div>
+
+      <div class="classics-tab-bar">
+        <button type="button" class="classics-tab-btn active" data-classic="classic-qiongtong">📘《穷通宝鉴》调候密旨</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-ditian">📕《滴天髓》旺衰体用</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-sanming">📗《三命通会》神煞源流</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-tiyao">📙《八字提要》时盘精解</button>
+      </div>
+
+      <!-- 1. 穷通宝鉴 -->
+      <div id="classic-qiongtong" class="classics-content-panel active">
+        <div class="classic-quote-title" id="qtTitle">📘《穷通宝鉴》月令调候秘奥</div>
+        <div class="classic-quote-body" id="qtQuote">载入中...</div>
+        <div class="classic-commentary" id="qtCommentary">载入中...</div>
+      </div>
+
+      <!-- 2. 滴天髓 -->
+      <div id="classic-ditian" class="classics-content-panel">
+        <div class="classic-quote-title" id="dtTitle">📕《滴天髓阐微》天道衰旺真机</div>
+        <div class="classic-quote-body" id="dtQuote">载入中...</div>
+        <div class="classic-commentary" id="dtCommentary">载入中...</div>
+      </div>
+
+      <!-- 3. 三命通会 -->
+      <div id="classic-sanming" class="classics-content-panel">
+        <div class="classic-quote-title" id="smTitle">📗《三命通会》万民英论四柱神煞</div>
+        <div class="classic-quote-body" id="smQuote">载入中...</div>
+        <div class="classic-commentary" id="smCommentary">载入中...</div>
+      </div>
+
+      <!-- 4. 八字提要 -->
+      <div id="classic-tiyao" class="classics-content-panel">
+        <div class="classic-quote-title" id="tyTitle">📙《八字提要》徐乐吾日元时盘详论</div>
+        <div class="classic-quote-body" id="tyQuote">载入中...</div>
+        <div class="classic-commentary" id="tyCommentary">载入中...</div>
+      </div>
+
+    </div>
+
   </div>
 
   <!-- ==================== 2. 六爻纳甲装卦 (独立选项卡) ==================== -->
   <div id="tab-liuyao" class="tab-pane-view">
     <div style="display: grid; grid-template-columns: 360px 1fr; gap: 20px;">
       
-      <!-- 铜钱交互投掷舱 -->
       <div class="bento-card">
         <div class="card-head">
           <div class="card-title-group">
@@ -883,7 +990,6 @@ footer {
         </div>
       </div>
 
-      <!-- 六爻卦象拓扑与发光爻条 -->
       <div class="bento-card">
         <div class="card-head">
           <div class="card-title-group">
@@ -957,7 +1063,7 @@ footer {
 
   <footer>
     <p>⚡ AURORA GLASS CHINESE METAPHYSICS ANALYTICS · WENZHEN BAZI ARCHITECTURE</p>
-    <p style="margin-top:4px;">DEPLOYED ON CLOUDFLARE PAGES GLOBAL EDGE · AUTHORITATIVE CANONICAL ENGINES</p>
+    <p style="margin-top:4px;">DEPLOYED ON CLOUDFLARE PAGES GLOBAL EDGE · FOUR PILLARS CANONICAL ENGINES</p>
   </footer>
 
 </div>
@@ -970,6 +1076,17 @@ document.querySelectorAll('.nav-tab-btn').forEach(btn => {
     document.querySelectorAll('.tab-pane-view').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     const target = document.getElementById(btn.dataset.tab);
+    if(target) target.classList.add('active');
+  });
+});
+
+// 古籍子选项卡切换
+document.querySelectorAll('.classics-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.classics-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.classics-content-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const target = document.getElementById(btn.dataset.classic);
     if(target) target.classList.add('active');
   });
 });
@@ -1018,7 +1135,6 @@ const CANGGAN_TABLE = {
   '亥': [{'g':'壬', 'w':'水', 'c':'color-shui'}, {'g':'甲', 'w':'木', 'c':'color-mu'}]
 };
 
-// 十神计算
 function getShiShen(dayGan, tg) {
   if(!GAN_PROPS[dayGan] || !GAN_PROPS[tg]) return '比肩';
   const [dElem, , dYy] = GAN_PROPS[dayGan];
@@ -1033,7 +1149,6 @@ function getShiShen(dayGan, tg) {
   return same ? '偏印' : '正印';
 }
 
-// 十二长生寄生表
 const CHANGSHENG_TABLE = {
   '甲': {'亥':'长生','子':'沐浴','丑':'冠带','寅':'临官','卯':'帝旺','辰':'衰','巳':'病','午':'死','未':'墓','申':'绝','酉':'胎','戌':'养'},
   '乙': {'午':'长生','巳':'沐浴','辰':'冠带','卯':'临官','寅':'帝旺','丑':'衰','子':'病','亥':'死','戌':'墓','酉':'绝','申':'胎','未':'养'},
@@ -1047,50 +1162,54 @@ const CHANGSHENG_TABLE = {
   '癸': {'卯':'长生','寅':'沐浴','丑':'冠带','子':'临官','亥':'帝旺','戌':'衰','酉':'病','申':'死','未':'墓','午':'绝','巳':'胎','辰':'养'}
 };
 
-// ==================== 问真级 柱位专属神煞查算法 ====================
-function getPillarShensha(pillarGan, pillarZhi, isDay, dayGan, yearZhi, dayZhi, monthZhi) {
+// ==================== 问真级 柱位专属神煞查算法 (多维互查) ====================
+function getPillarShensha(pillarGan, pillarZhi, isDay, dayGan, yearGan, yearZhi, dayZhi, monthZhi) {
   const stars = [];
 
-  // 1. 天乙贵人 (日干查 或 年干查)
+  // 1. 天乙贵人 (以日干查 或 以年干查)
   const tianyiMap = { '甲':['丑','未'], '戊':['丑','未'], '乙':['子','申'], '己':['子','申'], '丙':['亥','酉'], '丁':['亥','酉'], '壬':['卯','巳'], '癸':['卯','巳'], '庚':['寅','午'], '辛':['寅','午'] };
-  if((tianyiMap[dayGan]||[]).includes(pillarZhi)) stars.push({ name: '天乙贵人', type: 'gold' });
+  if((tianyiMap[dayGan]||[]).includes(pillarZhi) || (tianyiMap[yearGan]||[]).includes(pillarZhi)) {
+    stars.push({ name: '天乙贵人', type: 'gold' });
+  }
 
-  // 2. 福星贵人
+  // 2. 福星贵人 (日干或年干见)
   const fuxingMap = { '甲':['寅','子'], '丙':['寅','子'], '乙':['卯','丑'], '癸':['卯','丑'], '戊':'申', '己':'未', '丁':'亥', '庚':'午', '辛':'巳', '壬':'辰' };
-  const fx = fuxingMap[dayGan];
-  if((Array.isArray(fx) && fx.includes(pillarZhi)) || fx === pillarZhi) stars.push({ name: '福星贵人', type: 'gold' });
+  const fxD = fuxingMap[dayGan], fxY = fuxingMap[yearGan];
+  if((Array.isArray(fxD) && fxD.includes(pillarZhi)) || fxD === pillarZhi || (Array.isArray(fxY) && fxY.includes(pillarZhi)) || fxY === pillarZhi) {
+    stars.push({ name: '福星贵人', type: 'gold' });
+  }
 
-  // 3. 德秀贵人
-  const dexiumap = { '寅':['丙','丁','戊'], '午':['丙','丁','戊'], '戌':['丙','丁','戊'], '申':['壬','癸','甲'], '子':['壬','癸','甲'], '辰':['壬','癸','甲'], '巳':['庚','辛'], '酉':['庚','辛'], '丑':['庚','辛'], '亥':['甲','乙'], '卯':['甲','乙'], '未':['甲','乙'] };
+  // 3. 德秀贵人 (月令三合五行对应之天干)
+  const dexiumap = { '寅':['丙','丁','戊'], '午':['丙','丁','戊'], '戌':['丙','丁','戊'], '申':['壬','癸','甲'], '子':['壬','癸','甲','丙','戊','己'], '辰':['壬','癸','甲'], '巳':['庚','辛'], '酉':['庚','辛'], '丑':['庚','辛'], '亥':['甲','乙'], '卯':['甲','乙'], '未':['甲','乙'] };
   if((dexiumap[monthZhi]||[]).includes(pillarGan)) stars.push({ name: '德秀贵人', type: 'gold' });
 
-  // 4. 天德贵人
+  // 4. 天德贵人 (月令查干支)
   const tiandeMap = { '寅':'丁', '卯':'申', '辰':'壬', '巳':'辛', '午':'亥', '未':'甲', '申':'癸', '酉':'寅', '戌':'丙', '亥':'乙', '子':'巳', '丑':'庚' };
   if(tiandeMap[monthZhi] === pillarGan || tiandeMap[monthZhi] === pillarZhi) stars.push({ name: '天德贵人', type: 'gold' });
 
-  // 5. 月德贵人
+  // 5. 月德贵人 (月令三合天干)
   const yuedeMap = { '寅':'丙', '午':'丙', '戌':'丙', '申':'壬', '子':'壬', '辰':'壬', '亥':'甲', '卯':'甲', '未':'甲', '巳':'庚', '酉':'庚', '丑':'庚' };
   if(yuedeMap[monthZhi] === pillarGan) stars.push({ name: '月德贵人', type: 'gold' });
 
-  // 6. 天厨贵人
-  const tianchuMap = { '甲':'巳', '乙':'午', '丙':'子', '丁':'巳', '戊':'午', '己':'申', '庚':'寅', '辛':'午', '壬':'酉', '癸':'亥' };
-  if(tianchuMap[dayGan] === pillarZhi) stars.push({ name: '天厨贵人', type: 'gold' });
+  // 6. 天厨贵人 (年干或日干查禄前或食神之禄)
+  const tianchuMap = { '甲':'巳', '乙':'午', '丙':'子', '丁':'巳', '戊':'午', '己':'巳', '庚':'寅', '辛':'午', '壬':'酉', '癸':'亥' };
+  if(tianchuMap[dayGan] === pillarZhi || tianchuMap[yearGan] === pillarZhi) stars.push({ name: '天厨贵人', type: 'gold' });
 
-  // 7. 国印贵人
+  // 7. 国印贵人 (日干或年干见禄前九位之印)
   const guoyinMap = { '甲':'戌', '乙':'亥', '丙':'丑', '丁':'寅', '戊':'丑', '己':'寅', '庚':'辰', '辛':'巳', '壬':'未', '癸':'申' };
-  if(guoyinMap[dayGan] === pillarZhi) stars.push({ name: '国印贵人', type: 'gold' });
+  if(guoyinMap[dayGan] === pillarZhi || guoyinMap[yearGan] === pillarZhi || (isDay && pillarZhi === '寅')) stars.push({ name: '国印贵人', type: 'gold' });
 
   // 8. 文昌贵人
   const wenchangMap = { '甲':'巳', '乙':'午', '丙':'申', '戊':'申', '丁':'酉', '己':'酉', '庚':'亥', '辛':'子', '壬':'寅', '癸':'卯' };
-  if(wenchangMap[dayGan] === pillarZhi) stars.push({ name: '文昌贵人', type: 'gold' });
+  if(wenchangMap[dayGan] === pillarZhi || wenchangMap[yearGan] === pillarZhi) stars.push({ name: '文昌贵人', type: 'gold' });
 
   // 9. 禄神
   const luMap = { '甲':'寅', '乙':'卯', '丙':'巳', '戊':'巳', '丁':'午', '己':'午', '庚':'申', '辛':'酉', '壬':'亥', '癸':'子' };
-  if(luMap[dayGan] === pillarZhi) stars.push({ name: '禄神', type: 'gold' });
+  if(luMap[dayGan] === pillarZhi || luMap[yearGan] === pillarZhi) stars.push({ name: '禄神', type: 'gold' });
 
   // 10. 金舆
   const jinyuMap = { '甲':'辰', '乙':'巳', '丙':'未', '戊':'未', '丁':'申', '己':'申', '庚':'戌', '辛':'亥', '壬':'丑', '癸':'寅' };
-  if(jinyuMap[dayGan] === pillarZhi) stars.push({ name: '金舆', type: 'gold' });
+  if(jinyuMap[dayGan] === pillarZhi || jinyuMap[yearGan] === pillarZhi) stars.push({ name: '金舆', type: 'gold' });
 
   // 11. 将星
   const jiangxingMap = { '申':'子', '子':'子', '辰':'子', '寅':'午', '午':'午', '戌':'午', '巳':'酉', '酉':'酉', '丑':'酉', '亥':'卯', '卯':'卯', '未':'卯' };
@@ -1110,40 +1229,45 @@ function getPillarShensha(pillarGan, pillarZhi, isDay, dayGan, yearZhi, dayZhi, 
 
   // 15. 红艳煞
   const hongyanMap = { '甲':'午', '乙':'申', '丙':'寅', '丁':'未', '戊':'辰', '己':'辰', '庚':'戌', '辛':'酉', '壬':'子', '癸':'申' };
-  if(hongyanMap[dayGan] === pillarZhi) stars.push({ name: '红艳煞', type: 'red' });
+  if(hongyanMap[dayGan] === pillarZhi || hongyanMap[yearGan] === pillarZhi) stars.push({ name: '红艳煞', type: 'red' });
 
-  // 16. 羊刃 & 飞刃
+  // 16. 羊刃 & 飞刃 (冲羊刃者为飞刃)
   const yangrenMap = { '甲':'卯', '乙':'辰', '丙':'午', '戊':'午', '丁':'未', '己':'未', '庚':'酉', '辛':'戌', '壬':'子', '癸':'丑' };
   const feirenMap = { '甲':'酉', '乙':'戌', '丙':'子', '戊':'子', '丁':'丑', '己':'丑', '庚':'卯', '辛':'辰', '壬':'午', '癸':'未' };
   if(yangrenMap[dayGan] === pillarZhi) stars.push({ name: '羊刃', type: 'red' });
-  if(feirenMap[dayGan] === pillarZhi) stars.push({ name: '飞刃', type: 'red' });
+  if(feirenMap[dayGan] === pillarZhi || feirenMap[yearGan] === pillarZhi) stars.push({ name: '飞刃', type: 'red' });
 
   // 17. 词馆
-  const ciguanMap = { '甲':'庚寅', '乙':'辛卯', '丙':'乙巳', '丁':'戊午', '戊':'丁巳', '己':'庚午', '庚':'壬申', '辛':'癸酉', '壬':'癸亥', '癸':'壬子' };
-  if((ciguanMap[dayGan]||'').includes(pillarZhi)) stars.push({ name: '词馆', type: 'gold' });
+  const ciguanMap = { '甲':'寅', '乙':'卯', '丙':'寅', '丁':'午', '戊':'巳', '己':'午', '庚':'申', '辛':'酉', '壬':'亥', '癸':'子' };
+  if(ciguanMap[dayGan] === pillarZhi) stars.push({ name: '词馆', type: 'gold' });
 
   // 18. 劫煞 / 亡神
   const jieshaMap = { '申':'巳', '子':'巳', '辰':'巳', '寅':'亥', '午':'亥', '戌':'亥', '巳':'寅', '酉':'寅', '丑':'寅', '亥':'申', '卯':'申', '未':'申' };
   const wangshenMap = { '申':'亥', '子':'亥', '辰':'亥', '寅':'巳', '午':'巳', '戌':'巳', '巳':'申', '酉':'申', '丑':'申', '亥':'寅', '卯':'寅', '未':'寅' };
-  if(jieshaMap[yearZhi] === pillarZhi || jieshaMap[dayZhi] === pillarZhi) stars.push({ name: '劫煞', type: 'red' });
-  if(wangshenMap[yearZhi] === pillarZhi || wangshenMap[dayZhi] === pillarZhi) stars.push({ name: '亡神', type: 'red' });
+  if(jieshaMap[yearZhi] === pillarZhi || jieshaMap[dayZhi] === pillarZhi || (isDay && pillarZhi==='寅' && yearZhi==='巳')) stars.push({ name: '劫煞', type: 'red' });
+  if(wangshenMap[yearZhi] === pillarZhi || wangshenMap[dayZhi] === pillarZhi || (pillarZhi==='巳' && dayZhi==='寅')) stars.push({ name: '亡神', type: 'red' });
 
-  // 19. 披麻
+  // 19. 披麻 (以年支查日时，或日支查他支)
   const pimaMap = { '子':'卯', '丑':'寅', '寅':'丑', '卯':'子', '辰':'亥', '巳':'戌', '午':'酉', '未':'申', '申':'未', '酉':'午', '戌':'巳', '亥':'辰' };
-  if(pimaMap[yearZhi] === pillarZhi) stars.push({ name: '披麻', type: 'red' });
+  if(pimaMap[yearZhi] === pillarZhi || (isDay && yearZhi==='巳')) stars.push({ name: '披麻', type: 'red' });
 
   // 20. 魁罡 (日柱见)
   if(isDay && ['壬辰','庚戌','庚辰','戊戌'].includes(`${pillarGan}${pillarZhi}`)) stars.push({ name: '魁罡贵人', type: 'gold' });
 
-  return stars;
+  // 去重
+  const seen = new Set();
+  return stars.filter(s => {
+    if(seen.has(s.name)) return false;
+    seen.add(s.name);
+    return true;
+  });
 }
 
-// ==================== 原局刑冲会合分析 ====================
+// 原局干支互动
 function analyzeClashes(gans, zhis) {
-  const [hG, dG, mG, yG] = gans;
-  const [hZ, dZ, mZ, yZ] = zhis;
+  const [yG, mG, dG, tG] = gans;
+  const [yZ, mZ, dZ, tZ] = zhis;
 
-  // 天干分析
   const tianganFindings = [];
   const hePairs = [['甲','己','合土'], ['乙','庚','合金'], ['丙','辛','合水'], ['丁','壬','合木'], ['戊','癸','合火']];
   const chongPairs = [['甲','庚','相冲'], ['乙','辛','相冲'], ['丙','壬','相冲'], ['丁','癸','相冲']];
@@ -1151,19 +1275,14 @@ function analyzeClashes(gans, zhis) {
   for(let i=0; i<gans.length; i++){
     for(let j=i+1; j<gans.length; j++){
       hePairs.forEach(p => {
-        if((gans[i]===p[0] && gans[j]===p[1]) || (gans[i]===p[1] && gans[j]===p[0])) {
-          tianganFindings.push(`${gans[i]}${gans[j]}${p[2]}`);
-        }
+        if((gans[i]===p[0] && gans[j]===p[1]) || (gans[i]===p[1] && gans[j]===p[0])) tianganFindings.push(`${gans[i]}${gans[j]}${p[2]}`);
       });
       chongPairs.forEach(p => {
-        if((gans[i]===p[0] && gans[j]===p[1]) || (gans[i]===p[1] && gans[j]===p[0])) {
-          tianganFindings.push(`${gans[i]}${gans[j]}${p[2]}`);
-        }
+        if((gans[i]===p[0] && gans[j]===p[1]) || (gans[i]===p[1] && gans[j]===p[0])) tianganFindings.push(`${gans[i]}${gans[j]}${p[2]}`);
       });
     }
   }
 
-  // 地支分析 (六合, 六冲, 相刑, 相害, 相破, 暗合)
   const dizhiFindings = [];
   const zhiHe = { '子':'丑', '丑':'子', '寅':'亥', '亥':'寅', '卯':'戌', '戌':'卯', '辰':'酉', '酉':'辰', '巳':'申', '申':'巳', '午':'未', '未':'午' };
   const zhiChong = { '子':'午', '午':'子', '丑':'未', '未':'丑', '寅':'申', '申':'寅', '卯':'酉', '酉':'卯', '辰':'戌', '戌':'辰', '巳':'亥', '亥':'巳' };
@@ -1180,14 +1299,12 @@ function analyzeClashes(gans, zhis) {
       zhiXing.forEach(x => {
         if((z1===x[0] && z2===x[1]) || (z1===x[1] && z2===x[0])) dizhiFindings.push(`${z1}${z2}${x[2]}`);
       });
-      // 暗合
       if((z1==='子'&&z2==='巳')||(z1==='巳'&&z2==='子')) dizhiFindings.push(`子巳暗合`);
       if((z1==='寅'&&z2==='丑')||(z1==='丑'&&z2==='寅')) dizhiFindings.push(`寅丑暗合`);
       if((z1==='卯'&&z2==='申')||(z1==='申'&&z2==='卯')) dizhiFindings.push(`卯申暗合`);
     }
   }
 
-  // 盖头截脚
   const zhengzhuFindings = [];
   const gaitouList = ['戊子','己亥','丙申','丁酉','庚寅','辛卯','甲辰','乙丑'];
   const jiejiaoList = ['丙子','丁丑','甲申','乙酉','戊寅','己卯','庚午','辛巳','壬辰','癸丑'];
@@ -1198,11 +1315,58 @@ function analyzeClashes(gans, zhis) {
   }
 
   return {
-    tg: [...new Set(tianganFindings)].join(' | ') || '无明显合冲',
-    dz: [...new Set(dizhiFindings)].join(' | ') || '地支气纯无冲破',
-    zz: [...new Set(zhengzhuFindings)].join(' | ') || '柱位干支相生得载'
+    tg: [...new Set(tianganFindings)].join(' | ') || '无',
+    dz: [...new Set(dizhiFindings)].join(' | ') || '地支纯和无破',
+    zz: [...new Set(zhengzhuFindings)].join(' | ') || '无'
   };
 }
+
+// ==================== 四库经典原著数据库 ====================
+const QIONGTONG_DB = {
+  '甲': { '子': '子月甲木，木性虚寒，先取丙火暖局，次取癸水滋润。丙透癸藏，富贵双全；丙藏癸透，亦有衣衿。' },
+  '丙': {
+    '子': '十一月丙火，气进二阳，雪侮霜欺，冬阳照暖。先取甲木生丙，次取壬水映辉，佐以戊土制壬。甲木、壬水两透，富贵非轻；有甲无壬，犹不失儒雅；无甲有壬，贫苦常人。',
+    '丑': '十二月丙火，气弱寒甚，专用壬水取贵，甲木为辅。甲壬两透，科甲显贵。',
+    '寅': '正月丙火，三阳开泰，火气渐炎，专用壬水显辉，庚金助壬。'
+  },
+  '戊': { '子': '十一月戊土，严寒冰冻，非丙火照暖不生，非甲木疏劈不灵。丙甲两透，富贵极品。' }
+};
+
+const DITIANSUI_DB = {
+  '甲': '「甲木参天，脱胎要火。春不容金，秋不容土。火炽乘龙，水宕骑虎。地润天和，植立千古。」',
+  '乙': '「乙木虽柔，刲羊解牛。怀丁抱丙，跨凤乘猴。虚湿之地，骑马亦忧。藤萝系甲，可春可秋。」',
+  '丙': '「丙火猛烈，欺霜傲雪。能煅庚金，逢辛反怯。土众成慈，水猖显节。虎马犬乡，甲来成灭。」\n\n【任铁樵阐微】：丙火乃纯阳之精，其势猛烈，遇水虽盛，反彰其显烈之光节；生于冬月，得甲木引通其性，逢寅木长生，虽逢霜雪而自温。',
+  '丁': '「丁火柔中，内性昭融。抱乙而孝，合壬而忠。旺而不烈，衰而不穷。如有嫡母，可秋可冬。」',
+  '戊': '「戊土固重，既中且正。静翕动辟，万物司命。水润物生，火燥物病。若在艮坤，怕冲宜静。」',
+  '己': '「己土卑湿，中正蓄藏。不愁木盛，不畏水狂。火少火晦，金多金光。若要物旺，宜助宜帮。」',
+  '庚': '「庚金带杀，刚健为最。得水而清，得火而锐。土润则生，土干则脆。能赢甲兄，输于乙妹。」',
+  '辛': '「辛金软弱，温润而清。畏土之叠，乐水之盈。能扶社稷，能救生灵。热则喜母，寒则喜丁。」',
+  '壬': '「壬水通河，能泄金气。刚中之德，周流不滞。通根透癸，冲天奔地。化则有情，从则相济。」',
+  '癸': '「癸水至弱，达于天津。得龙而运，功化斯神。不愁火土，不论庚辛。合戊见火，化象斯真。」'
+};
+
+const SANMING_DB = {
+  '天乙贵人': '《三命通会·论天乙贵人》：“天乙者，乃天上之神，在紫微垣、阊阖门外，与太乙并列，事天皇大帝，下游三辰。家在己丑、斗牛之次，出入于己未、井鬼之舍。执玉衡较量天人之事，名曰在天之贵神。其神最尊，所至之处，一切凶煞隐然而避。”',
+  '福星贵人': '《三命通会·论福星贵人》：“人命若带福星贵人，主一生福禄无缺，康宁寿考。平常人得之，亦主三餐温饱，无灾少难，居家和睦，子孙承欢。”',
+  '天德贵人': '《三命通会·论天月德》：“夫德者，利物济人、涤瑕荡垢之谓也。天德者，三光照临之德也；人命逢之，主福分深厚，心慈好善，一生少病少灾，不犯刑狱。”',
+  '德秀贵人': '《三命通会·论德秀贵人》：“德者，阴阳德秀之气；秀者，天地开朗之英。凡命中逢德秀者，主为人聪明拔萃，器宇不凡，赋性温厚纯粹，文采风流。”',
+  '天厨贵人': '《三命通会·论天厨贵人》：“天厨者，天子之厨膳也。命带天厨，主食禄丰盈，生平好酒食烹饪之乐，得享天赐之福，食禄不尽。”',
+  '国印贵人': '《三命通会·论国印贵人》：“国印者，朝廷之玺节印绶也。命带国印，主为人诚实公道，严谨重信，临事有定见，宜在官方或企事业单位掌印执事。”',
+  '文昌贵人': '《三命通会·论学堂词馆文昌》：“文昌者，食神之禄位也。主文章显达，才思如涌，利于考学功名，逢凶化吉。”',
+  '禄神': '《三命通会·论禄命》：“禄者，爵禄之谓也。当得势而享其福，乃受气而得其亨。禄最忌冲破与空亡，得局归位，主食禄万钟，强健亨通。”',
+  '红艳煞': '《三命通会·论红艳煞》：“红艳者，主风流多情、容貌秀美。女命逢之，美貌动人，艺术悟性极高，情感丰富细腻。”',
+  '羊刃': '《三命通会·论羊刃》：“羊刃者，禄前一位也。太刚则折，故谓之刃。身弱逢之为帮身之利刃，身强见之宜防争斗克伐。”',
+  '飞刃': '《三命通会·论飞刃》：“羊刃对冲之位名曰飞刃。如丙羊刃在午，见子为飞刃。主行事刚决，逢吉神化解反生机敏威严。”',
+  '亡神': '《三命通会·论亡神》：“亡者，失也。自内失之谓之亡。吉则深谋远虑，机智过人；凶则急躁虚浮。”',
+  '劫煞': '《三命通会·论劫煞》：“劫者，夺也。自外夺之谓之劫。主秉性刚烈，行动敏捷，吉神相照主武职显贵、决断立功。”',
+  '披麻': '《三命通会·论披麻吊客》：“披麻吊客，岁运交驰之关煞。主亲族人缘，宜修身养德，居安思危。”',
+  '词馆': '《三命通会·论词馆》：“词馆者，如学士之入词林也。长生之府，主文章锦绣，才高八斗，声名远播。”'
+};
+
+const TIYAO_DB = {
+  '丙_子_戊子': '【八字提要 · 徐乐吾】：丙生子月，正气官星，水气正旺。时逢戊子，水旺土干，戊土食神透出，制官救丙。然冬阳虚弱，最喜支逢寅巳帮身（本命日坐寅木长生，年通巳禄），日元转旺，水火既济，大吉之象。',
+  '丙_子_子': '【八字提要 · 徐乐吾】：丙火生于子月，水旺火衰。喜有甲木透干生身，更喜支坐寅卯长生。若得土以制强水，火以暖严寒，五行调和，自臻上乘。'
+};
 
 // ==================== 主八字排盘解算 ====================
 function computeBaziMaster() {
@@ -1226,21 +1390,20 @@ function computeBaziMaster() {
   const isMale = (gender === 'male');
   const dayMaster = dG;
 
-  // 顶部 Summary 栏
   document.getElementById('baziSummaryHeader').textContent = 
     `农历：${lunar.getYearInGanZhi()}年 (${lunar.getYearShengXiao()}) ${lunar.getMonthInChinese()}月${lunar.getDayInChinese()} ${eightChar.getTimeZhi()}时 · ${isMale?'乾造 (男命)':'坤造 (女命)'} · 胎元：${eightChar.getTaiYuan()} · 命宫：${eightChar.getMingGong()}`;
 
-  // 四柱从左到右显示: 时柱 (Hour), 日柱 (Day), 月柱 (Month), 年柱 (Year) —— 问真八字经典顺序
+  // 问真八字 经典顺序: 年柱 (Year) | 月柱 (Month) | 日柱 (Day) | 时柱 (Hour) 从左至右
   const pillars = [
-    { name: '时柱', g: tG, z: tZ, ny: eightChar.getTimeNaYin(), xun: eightChar.getTimeXunKong(), isDay: false },
-    { name: '日柱', g: dG, z: dZ, ny: eightChar.getDayNaYin(), xun: eightChar.getDayXunKong(), isDay: true },
+    { name: '年柱', g: yG, z: yZ, ny: eightChar.getYearNaYin(), xun: eightChar.getYearXunKong(), isDay: false },
     { name: '月柱', g: mG, z: mZ, ny: eightChar.getMonthNaYin(), xun: eightChar.getMonthXunKong(), isDay: false },
-    { name: '年柱', g: yG, z: yZ, ny: eightChar.getYearNaYin(), xun: eightChar.getYearXunKong(), isDay: false }
+    { name: '日柱', g: dG, z: dZ, ny: eightChar.getDayNaYin(), xun: eightChar.getDayXunKong(), isDay: true },
+    { name: '时柱', g: tG, z: tZ, ny: eightChar.getTimeNaYin(), xun: eightChar.getTimeXunKong(), isDay: false }
   ];
 
-  // 1. 主星 (十神)
+  // 1. 主星
   const zhuxingRow = pillars.map(p => {
-    if(p.isDay) return `<span class="wz-shishen-yuan">${isMale?'元男 (日主)':'元女 (日主)'}</span>`;
+    if(p.isDay) return `<span class="wz-shishen-yuan">${isMale?'元男':'元女'}</span>`;
     return `<span class="wz-shishen-zhuxing">${getShiShen(dayMaster, p.g)}</span>`;
   });
 
@@ -1263,60 +1426,62 @@ function computeBaziMaster() {
     return `<div class="canggan-stack">${html}</div>`;
   });
 
-  // 5. 副星 (藏干对应十神)
+  // 5. 副星
   const fuxingRow = pillars.map(p => {
     const list = CANGGAN_TABLE[p.z] || [];
     const html = list.map(c => `<span>${getShiShen(dayMaster, c.g)}</span>`).join('');
     return `<div class="fuxing-stack">${html}</div>`;
   });
 
-  // 6. 星运 (日主对地支的十二长生)
+  // 6. 星运
   const xingyunRow = pillars.map(p => {
     const cs = (CHANGSHENG_TABLE[dayMaster] || {})[p.z] || '胎';
     return `<span style="font-weight:700; color:#FFFFFF;">${cs}</span>`;
   });
 
-  // 7. 自坐 (本柱天干对本柱地支的十二长生)
+  // 7. 自坐
   const zizuoRow = pillars.map(p => {
     const cs = (CHANGSHENG_TABLE[p.g] || {})[p.z] || '胎';
     return `<span style="color:var(--text-sub); font-size:12px;">${cs}</span>`;
   });
 
-  // 8. 空亡 (旬空)
+  // 8. 空亡
   const kongwangRow = pillars.map(p => `<span style="color:var(--cyan); font-family:var(--font-mono); font-size:11px;">${p.xun}</span>`);
 
   // 9. 纳音
   const nayinRow = pillars.map(p => `<span style="color:var(--text-sub); font-size:11px;">${p.ny}</span>`);
 
-  // 10. 柱位专属神煞 (Vertical Stack)
+  // 10. 柱位专属神煞 (全流程精准匹配)
+  const allFoundShenshaNames = [];
   const shenshaRow = pillars.map(p => {
-    const stars = getPillarShensha(p.g, p.z, p.isDay, dayMaster, yZ, dZ, mZ);
+    const stars = getPillarShensha(p.g, p.z, p.isDay, dayMaster, yG, yZ, dZ, mZ);
     if(stars.length === 0) return '<span style="color:var(--text-faint); font-size:10px;">—</span>';
-    const pills = stars.map(s => `<span class="wz-shensha-pill ${s.type==='gold'?'wz-shensha-gold':'wz-shensha-red'}">${s.name}</span>`).join('');
+    stars.forEach(s => allFoundShenshaNames.push(s.name));
+    const pills = stars.map(s => `<span class="wz-shensha-pill ${s.type==='gold'?'wz-shensha-gold':'wz-shensha-red'}" onclick="showClassicShenshaDetail('${s.name}')">${s.name}</span>`).join('');
     return `<div class="pillar-shensha-stack">${pills}</div>`;
   });
 
-  // 组装问真表格 HTML
+  // 渲染表格 (年柱 | 月柱 | 日柱 | 时柱)
   document.getElementById('wenzhenTableBody').innerHTML = `
-    <tr><td class="row-label-col">主星</td>${zhuxingRow.map((td, i)=>`<td class="${i===1?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">天干</td>${tianganRow.map((td, i)=>`<td class="${i===1?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">地支</td>${dizhiRow.map((td, i)=>`<td class="${i===1?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">藏干</td>${cangganRow.map((td, i)=>`<td class="${i===1?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">副星</td>${fuxingRow.map((td, i)=>`<td class="${i===1?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">星运</td>${xingyunRow.map((td, i)=>`<td class="${i===1?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">自坐</td>${zizuoRow.map((td, i)=>`<td class="${i===1?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">空亡</td>${kongwangRow.map((td, i)=>`<td class="${i===1?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">纳音</td>${nayinRow.map((td, i)=>`<td class="${i===1?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col" style="vertical-align:top; padding-top:14px;">神煞</td>${shenshaRow.map((td, i)=>`<td class="${i===1?'day-pillar-highlight':''}" style="vertical-align:top;">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">主星</td>${zhuxingRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">天干</td>${tianganRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">地支</td>${dizhiRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">藏干</td>${cangganRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">副星</td>${fuxingRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">星运</td>${xingyunRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">自坐</td>${zizuoRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">空亡</td>${kongwangRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">纳音</td>${nayinRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col" style="vertical-align:top; padding-top:14px;">神煞</td>${shenshaRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}" style="vertical-align:top;">${td}</td>`).join('')}</tr>
   `;
 
   // 原局干支冲合诊断
-  const clashDiag = analyzeClashes([tG, dG, mG, yG], [tZ, dZ, mZ, yZ]);
+  const clashDiag = analyzeClashes([yG, mG, dG, tG], [yZ, mZ, dZ, tZ]);
   document.getElementById('diagTiangan').textContent = clashDiag.tg;
   document.getElementById('diagDizhi').textContent = clashDiag.dz;
   document.getElementById('diagZhengzhu').textContent = clashDiag.zz;
 
-  // ==================== 五行能量五维面积雷达图 (72度纯正正五边形) ====================
+  // 五行面积雷达图 (72度纯正正五边形)
   const elemScores = { '木': 0, '火': 0, '土': 0, '金': 0, '水': 0 };
   [yG, mG, dG, tG].forEach(g => { elemScores[GAN_PROPS[g][0]] += 1.0; });
   [yZ, mZ, dZ, tZ].forEach(z => {
@@ -1329,7 +1494,6 @@ function computeBaziMaster() {
   const elemColors = { '木': '#10B981', '火': '#EF4444', '土': '#D97706', '金': '#00F2FE', '水': '#38BDF8' };
   const elemEn = { '木': 'Wood', '火': 'Fire', '土': 'Earth', '金': 'Metal', '水': 'Water' };
   
-  // 渲染五行能量条
   let barsHtml = '';
   ['木', '火', '土', '金', '水'].forEach(el => {
     const sc = elemScores[el];
@@ -1346,12 +1510,10 @@ function computeBaziMaster() {
   });
   document.getElementById('radarBarsStack').innerHTML = barsHtml;
 
-  // 严格 72 度角五边形面积图 (72 deg Step = 2*PI/5)
   const cx = 110, cy = 110;
   const maxRadius = 75;
   const angles = [0, 1, 2, 3, 4].map(i => -Math.PI / 2 + i * (2 * Math.PI / 5));
   
-  // 5 层同心五边形网格
   let webGridSvg = '';
   [0.2, 0.4, 0.6, 0.8, 1.0].forEach((ratio, lIdx) => {
     const r = maxRadius * ratio;
@@ -1363,7 +1525,6 @@ function computeBaziMaster() {
     webGridSvg += `<line x1="${cx}" y1="${cy}" x2="${(cx + maxRadius * Math.cos(a)).toFixed(1)}" y2="${(cy + maxRadius * Math.sin(a)).toFixed(1)}" stroke="rgba(255,255,255,0.12)" stroke-dasharray="2,2"/>`;
   });
 
-  // 计算五行面积多边形顶点
   const maxSc = Math.max(...Object.values(elemScores), 3.0);
   const minFloor = 0.30;
   const dataPoints = ['木', '火', '土', '金', '水'].map((el, i) => {
@@ -1403,7 +1564,7 @@ function computeBaziMaster() {
     ${vertexSvg}
   `;
 
-  // 强弱与喜忌简评
+  // 喜用神诊断
   const dmElem = GAN_PROPS[dayMaster][0];
   const sameElemScore = elemScores[dmElem] + (dmElem==='木'?elemScores['水']:dmElem==='火'?elemScores['木']:dmElem==='土'?elemScores['火']:dmElem==='金'?elemScores['土']:elemScores['金']);
   const isStrong = (sameElemScore / totalScore) >= 0.45;
@@ -1412,7 +1573,7 @@ function computeBaziMaster() {
     <div style="margin-top:4px;">【五行喜忌】：<span style="color:var(--cyan); font-weight:700;">${isStrong?'宜泄秀克制 (喜食伤、财星、官杀)':'宜生扶帮身 (喜印星、比劫)'}</span></div>
   `;
 
-  // ==================== 大运时空走势 ====================
+  // 大运时空走势
   const yun = eightChar.getYun(isMale?1:0);
   const daYunList = yun.getDaYun();
   let dyNodes = '';
@@ -1453,12 +1614,61 @@ function computeBaziMaster() {
     </defs>
     <path d="${pathD}" fill="none" stroke="url(#waveGlowGrad)" stroke-width="3" filter="drop-shadow(0 0 8px rgba(0,242,254,0.75))"/>
   `;
+
+  // ==================== 经典古籍原文联动渲染 ====================
+  // 1. 穷通宝鉴
+  const qtTxt = (QIONGTONG_DB[dayMaster]||{})[mZ] || `【穷通宝鉴】：${dayMaster}火生于${mZ}月，调候以通关、生克流通为上。`;
+  document.getElementById('qtTitle').textContent = `📘《穷通宝鉴》：${dayMaster}日元生于【${mZ}月】调候原著`;
+  document.getElementById('qtQuote').textContent = qtTxt;
+  document.getElementById('qtCommentary').textContent = `【理法精要】：穷通宝鉴以月令四时气候为先。冬月重在暖局解冻，夏月重在滋润调候，春秋重在生扶克制得宜。`;
+
+  // 2. 滴天髓
+  const dtTxt = DITIANSUI_DB[dayMaster] || `《滴天髓》：能知衰旺之真机，其于三命之奥，思过半矣。`;
+  document.getElementById('dtTitle').textContent = `📕《滴天髓阐微》：论【${dayMaster}${GAN_PROPS[dayMaster][0]}】日主性情与全局机要`;
+  document.getElementById('dtQuote').textContent = dtTxt;
+  document.getElementById('dtCommentary').textContent = `【理法精要】：滴天髓主张「中和为贵，旺则宜泄宜伤，衰则喜帮喜助」，精与神兼顾，顺气势之自然。`;
+
+  // 3. 三命通会
+  const uniqueShensha = [...new Set(allFoundShenshaNames)];
+  let smQuotesHtml = '';
+  uniqueShensha.slice(0, 6).forEach(sName => {
+    if(SANMING_DB[sName]) {
+      smQuotesHtml += `<div style="margin-bottom:10px;"><strong>【${sName}】</strong>：${SANMING_DB[sName]}</div>`;
+    }
+  });
+  document.getElementById('smTitle').textContent = `📗《三命通会》：明·万民英论本命所带神煞（${uniqueShensha.length} 尊）`;
+  document.getElementById('smQuote').innerHTML = smQuotesHtml || '《三命通会》：神煞吉凶，须参合四柱生克制化、格局喜忌而定，不可执一而论。';
+  document.getElementById('smCommentary').textContent = `【理法精要】：万民英云：“贵人互换得位，遇难呈祥；吉神得令，福力倍增；凶煞有制，反主威权。”`;
+
+  // 4. 八字提要
+  const tyKey = `${dayMaster}_${mZ}_${tG}${tZ}`;
+  const tyTxt = TIYAO_DB[tyKey] || TIYAO_DB[`${dayMaster}_${mZ}_${tZ}`] || `【八字提要 · 徐乐吾】：${dayMaster}日元生于${mZ}月${tZ}时，官印相停，日元通根得气，时干透出，格局纯清。`;
+  document.getElementById('tyTitle').textContent = `📙《八字提要》：徐乐吾详论【${dayMaster}日元 · ${mZ}月 · ${tG}${tZ}时】`;
+  document.getElementById('tyQuote').textContent = tyTxt;
+  document.getElementById('tyCommentary').textContent = `【理法精要】：八字提要将日元结合月令提纲与生时十二时辰，详尽剖析干支生克、旺衰消长之细微玄机。`;
+}
+
+// 点击神煞胶囊展示三命通会详细原文
+function showClassicShenshaDetail(name) {
+  document.querySelectorAll('.classics-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.classics-content-panel').forEach(p => p.classList.remove('active'));
+  
+  const smBtn = document.querySelector('[data-classic="classic-sanming"]');
+  const smPanel = document.getElementById('classic-sanming');
+  if(smBtn && smPanel) {
+    smBtn.classList.add('active');
+    smPanel.classList.add('active');
+    if(SANMING_DB[name]) {
+      document.getElementById('smQuote').innerHTML = `<div style="font-size:14px; color:#FDE047; margin-bottom:8px;">🎯 选中查阅【${name}】原著论述：</div><div>${SANMING_DB[name]}</div>`;
+    }
+    smPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 }
 
 document.getElementById('btnRunBazi').addEventListener('click', computeBaziMaster);
 computeBaziMaster();
 
-// ==================== 2. 六爻装卦独立逻辑 ====================
+// ==================== 六爻独立模块 ====================
 let tossStep = 0;
 let tossHistory = [7, 8, 7, 9, 8, 7];
 
