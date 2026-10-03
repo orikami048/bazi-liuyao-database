@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aurora Glass · 中华易学全息数据分析工作台</title>
-<meta name="description" content="极光暗夜全通透玻璃拟态中华易学分析工作台。四柱八字量子图谱、五行能量五维雷达、六爻纳甲装卦、卦象树状拓扑与时空大运能量波。">
+<meta name="description" content="极光暗夜全通透玻璃拟态中华易学分析工作台。四柱八字量子图谱、五行能量五维面积雷达、40+全流程神煞精准查验、六爻纳甲装卦与时空大运能量波。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@600;700;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -71,45 +71,43 @@ body {
   overflow: hidden;
 }
 
-/* 宇宙星空微尘网格 */
 .stardust-grid {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
   background-image: 
-    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-    radial-gradient(circle at 85% 40%, rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px),
-    radial-gradient(circle at 45% 75%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    radial-gradient(circle at 70% 85%, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+    radial-gradient(circle at 85% 40%, rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 45% 75%, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    radial-gradient(circle at 70% 85%, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
   background-size: 160px 160px, 240px 240px, 320px 320px, 200px 200px;
-  opacity: 0.6;
+  opacity: 0.65;
 }
 
-/* 动态绚丽极光光束 (Cyan, Emerald, Violet, Magenta) */
 .aurora-beam {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
+  filter: blur(95px);
   mix-blend-mode: screen;
-  opacity: 0.85;
+  opacity: 0.88;
 }
 .beam-cyan {
-  top: -15%; left: 0%; width: 750px; height: 750px;
-  background: radial-gradient(circle, rgba(0, 242, 254, 0.45) 0%, rgba(16, 185, 129, 0.25) 45%, transparent 70%);
+  top: -15%; left: -5%; width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.48) 0%, rgba(16, 185, 129, 0.28) 45%, transparent 70%);
   animation: auroraFloat1 18s ease-in-out infinite alternate;
 }
 .beam-purple {
-  top: 15%; right: -10%; width: 850px; height: 850px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.5) 0%, rgba(236, 72, 153, 0.3) 50%, transparent 75%);
+  top: 10%; right: -10%; width: 900px; height: 900px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.52) 0%, rgba(236, 72, 153, 0.32) 50%, transparent 75%);
   animation: auroraFloat2 22s ease-in-out infinite alternate;
 }
 .beam-emerald {
-  bottom: -20%; left: 20%; width: 900px; height: 900px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, rgba(0, 242, 254, 0.25) 40%, transparent 70%);
+  bottom: -20%; left: 20%; width: 950px; height: 950px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.42) 0%, rgba(0, 242, 254, 0.28) 40%, transparent 70%);
   animation: auroraFloat1 20s ease-in-out infinite alternate-reverse;
 }
 .beam-center-glow {
-  top: 30%; left: 35%; width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.3) 0%, rgba(139, 92, 246, 0.2) 50%, transparent 70%);
+  top: 25%; left: 30%; width: 650px; height: 650px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, rgba(139, 92, 246, 0.22) 50%, transparent 70%);
   filter: blur(110px);
   animation: auroraPulse 12s ease-in-out infinite alternate;
 }
@@ -124,14 +122,14 @@ body {
 }
 @keyframes auroraPulse {
   0% { opacity: 0.5; transform: scale(0.95); }
-  100% { opacity: 0.9; transform: scale(1.1); }
+  100% { opacity: 0.95; transform: scale(1.12); }
 }
 
 /* ==================== 仪表盘主容器 ==================== */
 .dashboard-root {
   position: relative;
   z-index: 1;
-  max-width: 1600px;
+  max-width: 1620px;
   margin: 0 auto;
   padding: 24px 32px 80px;
 }
@@ -352,14 +350,14 @@ body {
 /* ==================== Bento 核心三列矩阵 ==================== */
 .main-bento-grid {
   display: grid;
-  grid-template-columns: 430px 1fr 430px;
+  grid-template-columns: 460px 1fr 460px;
   gap: 20px;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1480px) {
   .main-bento-grid { grid-template-columns: 1fr 1fr; }
   .grid-col-right { grid-column: span 2; }
 }
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .main-bento-grid { grid-template-columns: 1fr; }
   .grid-col-right { grid-column: span 1; }
 }
@@ -473,23 +471,23 @@ body {
 .glow-jin { color: #00F2FE; text-shadow: 0 0 16px rgba(0, 242, 254, 0.85), 0 0 30px rgba(0, 242, 254, 0.45); }
 .glow-shui { color: #38BDF8; text-shadow: 0 0 16px rgba(56, 189, 248, 0.8), 0 0 30px rgba(56, 189, 248, 0.4); }
 
-/* ==================== SVG 五行能量五维雷达 ==================== */
+/* ==================== SVG 五行能量 五维面积雷达 (AREA RADAR) ==================== */
 .radar-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 20px;
   padding: 10px 0;
 }
-.radar-svg-canvas { width: 170px; height: 170px; flex-shrink: 0; }
+.radar-svg-canvas { width: 200px; height: 200px; flex-shrink: 0; overflow: visible; }
 .radar-bars-stack {
   flex: 1;
-  display: flex; flex-direction: column; gap: 8px;
+  display: flex; flex-direction: column; gap: 9px;
 }
 .bar-elem-item { display: flex; align-items: center; gap: 8px; font-size: 11px; }
-.bar-elem-label { width: 44px; font-weight: 800; }
+.bar-elem-label { width: 50px; font-weight: 800; }
 .bar-elem-track {
-  flex: 1; height: 7px;
+  flex: 1; height: 8px;
   border-radius: 4px;
   background: rgba(255,255,255,0.06);
   overflow: hidden;
@@ -619,6 +617,83 @@ body {
   transform: translateY(-2px);
 }
 
+/* ==================== 40+ 全流程神煞矩阵卡片 ==================== */
+.shensha-categories-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 6px;
+  scrollbar-width: thin;
+}
+.shensha-cat-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.shensha-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.shensha-card-row {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.2s;
+}
+.shensha-card-row:hover {
+  background: rgba(0, 242, 254, 0.06);
+  border-color: rgba(0, 242, 254, 0.3);
+  transform: translateX(2px);
+}
+.shensha-top-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.shensha-name-badge {
+  font-size: 13px;
+  font-weight: 800;
+  font-family: var(--font-serif);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.shensha-type-pill {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+}
+.type-auspicious { background: rgba(16, 185, 129, 0.15); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.35); }
+.type-dynamic { background: rgba(0, 242, 254, 0.15); color: #00F2FE; border: 1px solid rgba(0, 242, 254, 0.35); }
+.type-ominous { background: rgba(239, 68, 68, 0.15); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.35); }
+.type-special { background: rgba(139, 92, 246, 0.15); color: #C084FC; border: 1px solid rgba(139, 92, 246, 0.35); }
+
+.shensha-pos-tag {
+  font-size: 10px;
+  color: var(--cyan);
+  font-family: var(--font-mono);
+}
+.shensha-meaning {
+  font-size: 11px;
+  color: var(--text-sub);
+  line-height: 1.45;
+}
+
 /* ==================== 字典与图谱 Bento 网格 ==================== */
 .codex-grid-bento {
   display: grid;
@@ -741,14 +816,6 @@ footer {
       </div>
       <div class="global-qi-map">
         <svg class="global-map-svg" viewBox="0 0 360 80">
-          <defs>
-            <linearGradient id="mapGrad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.4"/>
-              <stop offset="50%" stop-color="#8B5CF6" stop-opacity="0.6"/>
-              <stop offset="100%" stop-color="#10B981" stop-opacity="0.4"/>
-            </linearGradient>
-          </defs>
-          <!-- 抽象全球五行节点 -->
           <circle cx="80" cy="40" r="12" fill="rgba(0,242,254,0.15)" stroke="#00F2FE" stroke-width="1.5"/>
           <circle cx="80" cy="40" r="4" fill="#00F2FE"/>
           <text x="80" y="65" fill="#00F2FE" font-size="9" font-family="var(--font-mono)" text-anchor="middle">金气 · 78°W</text>
@@ -774,7 +841,7 @@ footer {
   <div id="tab-destiny" class="tab-pane-view active">
     <div class="main-bento-grid">
       
-      <!-- 左列: 八字四柱与五行能量 -->
+      <!-- 左列: 八字四柱与五行能量面积雷达图 -->
       <div style="display: flex; flex-direction: column; gap: 20px;">
         
         <!-- 卡片: BAZI CHART -->
@@ -820,18 +887,19 @@ footer {
           <div class="pillars-matrix" id="baziPillarsContainer"></div>
         </div>
 
-        <!-- 卡片: FIVE ELEMENTS RADAR CHART -->
+        <!-- 卡片: FIVE ELEMENTS AREA RADAR CHART (五行能量五维面积雷达图) -->
         <div class="bento-card">
           <div class="card-head">
             <div class="card-title-group">
-              <div class="card-title">FIVE ELEMENTS RADAR CHART</div>
-              <div class="card-title-sub">五维能量分布</div>
+              <div class="card-title">FIVE ELEMENTS AREA RADAR</div>
+              <div class="card-title-sub">五行能量面积雷达图</div>
             </div>
             <div class="card-watermark-tag">五行</div>
           </div>
 
           <div class="radar-box">
-            <svg class="radar-svg-canvas" viewBox="0 0 200 200" id="radarSvgCanvas"></svg>
+            <!-- 真正的同心网格与平滑渐变面积雷达 -->
+            <svg class="radar-svg-canvas" viewBox="0 0 220 220" id="radarSvgCanvas"></svg>
             <div class="radar-bars-stack" id="radarBarsStack"></div>
           </div>
         </div>
@@ -885,7 +953,7 @@ footer {
 
       </div>
 
-      <!-- 右列: FORTUNE INDICATOR & 大运时空能量走势 -->
+      <!-- 右列: FORTUNE INDICATOR & 40+ 全流程神煞矩阵 -->
       <div class="grid-col-right" style="display: flex; flex-direction: column; gap: 20px;">
         
         <!-- 卡片: FORTUNE INDICATOR -->
@@ -904,19 +972,21 @@ footer {
           <div class="timeline-cards-row" id="dayunTimelineRow"></div>
         </div>
 
-        <!-- 卡片: CLASH & SHENSHA ANALYSIS -->
+        <!-- 卡片: 40+ 全流程神煞全息查验矩阵 (SHENSHA MATRIX) -->
         <div class="bento-card">
           <div class="card-head">
             <div class="card-title-group">
-              <div class="card-title">CLASH & STARS</div>
-              <div class="card-title-sub">神煞吉凶与刑冲会合</div>
+              <div class="card-title">SHENSHA MATRIX</div>
+              <div class="card-title-sub">40+ 全流程神煞与干支刑冲</div>
             </div>
-            <div class="card-watermark-tag">吉凶</div>
+            <div class="card-watermark-tag" id="shenshaCountBadge">0 神煞</div>
           </div>
 
-          <div id="baziShenshaBadges" style="display: flex; flex-direction: column; gap: 8px;"></div>
+          <!-- 分类神煞容器 -->
+          <div class="shensha-categories-container" id="shenshaCategoriesContainer"></div>
+
           <div style="margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px;">
-            <div style="font-size: 10px; color: var(--text-faint); font-family: var(--font-mono); margin-bottom: 4px;">SYSTEM METRICS</div>
+            <div style="font-size: 10px; color: var(--text-faint); font-family: var(--font-mono); margin-bottom: 4px;">SPECIAL PILLAR METRICS</div>
             <div id="ganzhiClashSummary" style="font-size: 11px; color: var(--cyan); line-height: 1.6;"></div>
           </div>
         </div>
@@ -1057,6 +1127,202 @@ function getShiShen(dayGan, tg) {
   return same ? '偏印' : '正印';
 }
 
+// ==================== 40+ 全流程神煞算法引擎 ====================
+function calculateAllShensha(eightChar) {
+  const yG = eightChar.getYearGan(), yZ = eightChar.getYearZhi();
+  const mG = eightChar.getMonthGan(), mZ = eightChar.getMonthZhi();
+  const dG = eightChar.getDayGan(), dZ = eightChar.getDayZhi();
+  const tG = eightChar.getTimeGan(), tZ = eightChar.getTimeZhi();
+  
+  const zhiList = [
+    { pos: '年支', z: yZ }, { pos: '月支', z: mZ }, { pos: '日支', z: dZ }, { pos: '时支', z: tZ }
+  ];
+  const ganList = [
+    { pos: '年干', g: yG }, { pos: '月干', g: mG }, { pos: '日干', g: dG }, { pos: '时干', g: tG }
+  ];
+  const allZhi = [yZ, mZ, dZ, tZ];
+  const allGan = [yG, mG, dG, tG];
+
+  const results = {
+    auspicious: [], // 吉神贵人
+    dynamic: [],    // 动神权威
+    special: [],    // 特殊格局
+    ominous: []     // 凶煞警示
+  };
+
+  // 1. 天乙贵人 (万神之首)
+  const tianyiMap = { '甲':['丑','未'], '戊':['丑','未'], '乙':['子','申'], '己':['子','申'], '丙':['亥','酉'], '丁':['亥','酉'], '壬':['卯','巳'], '癸':['卯','巳'], '庚':['寅','午'], '辛':['寅','午'] };
+  zhiList.forEach(item => {
+    if((tianyiMap[dG]||[]).includes(item.z)) {
+      results.auspicious.push({ name: '天乙贵人', pos: `${item.pos}【${item.z}】`, meaning: '万神之首，遇之逢凶化吉，一生少灾，多得尊长贵人提拔。' });
+    }
+  });
+
+  // 2. 天德贵人
+  const tiandeMap = { '寅':'丁', '卯':'申', '辰':'壬', '巳':'辛', '午':'亥', '未':'甲', '申':'癸', '酉':'寅', '戌':'丙', '亥':'乙', '子':'巳', '丑':'庚' };
+  const tdTarget = tiandeMap[mZ];
+  if(tdTarget) {
+    ganList.forEach(item => {
+      if(item.g === tdTarget) results.auspicious.push({ name: '天德贵人', pos: `${item.pos}【${item.g}】`, meaning: '日月德秀之气，为人仁厚慈祥，一生少病少灾，行善福报深厚。' });
+    });
+    zhiList.forEach(item => {
+      if(item.z === tdTarget) results.auspicious.push({ name: '天德贵人', pos: `${item.pos}【${item.z}】`, meaning: '日月德秀之气，为人仁厚慈祥，一生少病少灾。' });
+    });
+  }
+
+  // 3. 月德贵人
+  const yuedeMap = { '寅':'丙', '午':'丙', '戌':'丙', '申':'壬', '子':'壬', '辰':'壬', '亥':'甲', '卯':'甲', '未':'甲', '巳':'庚', '酉':'庚', '丑':'庚' };
+  const ydTarget = yuedeMap[mZ];
+  if(ydTarget) {
+    ganList.forEach(item => {
+      if(item.g === ydTarget) results.auspicious.push({ name: '月德贵人', pos: `${item.pos}【${item.g}】`, meaning: '阴阳德秀之气，主福寿康宁，相夫教子，安泰和睦。' });
+    });
+  }
+
+  // 4. 文昌贵人
+  const wenchangMap = { '甲':'巳', '乙':'午', '丙':'申', '戊':'申', '丁':'酉', '己':'酉', '庚':'亥', '辛':'子', '壬':'寅', '癸':'卯' };
+  zhiList.forEach(item => {
+    if(item.z === wenchangMap[dG] || item.z === wenchangMap[yG]) {
+      results.auspicious.push({ name: '文昌贵人', pos: `${item.pos}【${item.z}】`, meaning: '聪明过人，文笔出众，学术深造，利考学功名，逢凶化吉。' });
+    }
+  });
+
+  // 5. 禄神 (日禄)
+  const luMap = { '甲':'寅', '乙':'卯', '丙':'巳', '戊':'巳', '丁':'午', '己':'午', '庚':'申', '辛':'酉', '壬':'亥', '癸':'子' };
+  zhiList.forEach(item => {
+    if(item.z === luMap[dG]) {
+      results.auspicious.push({ name: '禄神 (日禄)', pos: `${item.pos}【${item.z}】`, meaning: '主衣食无忧，俸禄丰厚，身体强健，财源广进。' });
+    }
+  });
+
+  // 6. 太极贵人
+  const taijiMap = { '甲':['子','午'], '乙':['子','午'], '丙':['卯','酉'], '丁':['卯','酉'], '戊':['辰','戌','丑','未'], '己':['辰','戌','丑','未'], '庚':['寅','亥'], '辛':['寅','亥'], '壬':['巳','申'], '癸':['巳','申'] };
+  zhiList.forEach(item => {
+    if((taijiMap[dG]||[]).includes(item.z)) {
+      results.auspicious.push({ name: '太极贵人', pos: `${item.pos}【${item.z}】`, meaning: '主为人正直，行事有始有终，喜探索神秘文化与哲学玄学。' });
+    }
+  });
+
+  // 7. 福星贵人
+  const fuxingMap = { '甲':['寅','子'], '丙':['寅','子'], '乙':['卯','丑'], '癸':['卯','丑'], '戊':'申', '己':'未', '丁':'亥', '庚':'午', '辛':'巳', '壬':'辰' };
+  zhiList.forEach(item => {
+    const fx = fuxingMap[dG];
+    if((Array.isArray(fx) && fx.includes(item.z)) || item.z === fx) {
+      results.auspicious.push({ name: '福星贵人', pos: `${item.pos}【${item.z}】`, meaning: '主一生福禄无缺，平安康泰，康宁无忧。' });
+    }
+  });
+
+  // 8. 国印贵人
+  const guoyinMap = { '甲':'戌', '乙':'亥', '丙':'丑', '丁':'寅', '戊':'丑', '己':'寅', '庚':'辰', '辛':'巳', '壬':'未', '癸':'申' };
+  zhiList.forEach(item => {
+    if(item.z === guoyinMap[dG]) {
+      results.auspicious.push({ name: '国印贵人', pos: `${item.pos}【${item.z}】`, meaning: '主掌印执印，办事公道，诚实可靠，利于企事业单位掌权。' });
+    }
+  });
+
+  // 9. 天医星
+  const tianyiStarMap = { '子':'亥', '丑':'子', '寅':'丑', '卯':'寅', '辰':'卯', '巳':'辰', '午':'巳', '未':'午', '申':'未', '酉':'申', '戌':'酉', '亥':'戌' };
+  zhiList.forEach(item => {
+    if(item.z === tianyiStarMap[mZ]) {
+      results.auspicious.push({ name: '天医星', pos: `${item.pos}【${item.z}】`, meaning: '天医临命，利于医学、心理咨询、养生健康行业，能消灾解厄。' });
+    }
+  });
+
+  // 10. 金舆
+  const jinyuMap = { '甲':'辰', '乙':'巳', '丙':'未', '戊':'未', '丁':'申', '己':'申', '庚':'戌', '辛':'亥', '壬':'丑', '癸':'寅' };
+  zhiList.forEach(item => {
+    if(item.z === jinyuMap[dG]) {
+      results.auspicious.push({ name: '金舆车辇', pos: `${item.pos}【${item.z}】`, meaning: '黄金之车辇，主享荫庇之福，出入尊荣，多得良配资助。' });
+    }
+  });
+
+  // 11. 将星 (权威神)
+  const jiangxingMap = { '申':'子', '子':'子', '辰':'子', '寅':'午', '午':'午', '戌':'午', '巳':'酉', '酉':'酉', '丑':'酉', '亥':'卯', '卯':'卯', '未':'卯' };
+  zhiList.forEach(item => {
+    if(item.z === jiangxingMap[yZ] || item.z === jiangxingMap[dZ]) {
+      results.dynamic.push({ name: '将星', pos: `${item.pos}【${item.z}】`, meaning: '领导统御之才，有组织能力和威严，在职场有大将之风。' });
+    }
+  });
+
+  // 12. 华盖 (艺术哲思神)
+  const huagaiMap = { '申':'辰', '子':'辰', '辰':'辰', '寅':'戌', '午':'戌', '戌':'戌', '巳':'丑', '酉':'丑', '丑':'丑', '亥':'未', '卯':'未', '未':'未' };
+  zhiList.forEach(item => {
+    if(item.z === huagaiMap[yZ] || item.z === huagaiMap[dZ]) {
+      results.dynamic.push({ name: '华盖', pos: `${item.pos}【${item.z}】`, meaning: '才思敏捷，见解超群，性情孤高，喜哲学、艺术、易学玄理。' });
+    }
+  });
+
+  // 13. 驿马 (动神)
+  const yimaMap = { '申':'寅', '子':'寅', '辰':'寅', '寅':'申', '午':'申', '戌':'申', '巳':'亥', '酉':'亥', '丑':'亥', '亥':'巳', '卯':'巳', '未':'巳' };
+  zhiList.forEach(item => {
+    if(item.z === yimaMap[yZ] || item.z === yimaMap[dZ]) {
+      results.dynamic.push({ name: '驿马', pos: `${item.pos}【${item.z}】`, meaning: '主动荡迁居、商旅远行、升迁调度、出境开拓。' });
+    }
+  });
+
+  // 14. 桃花 (咸池)
+  const taohuaMap = { '申':'酉', '子':'酉', '辰':'酉', '寅':'卯', '午':'卯', '戌':'卯', '巳':'午', '酉':'午', '丑':'午', '亥':'子', '卯':'子', '未':'子' };
+  zhiList.forEach(item => {
+    if(item.z === taohuaMap[yZ] || item.z === taohuaMap[dZ]) {
+      results.dynamic.push({ name: '咸池桃花', pos: `${item.pos}【${item.z}】`, meaning: '容貌清秀，艺术风雅，异性缘佳，人缘极好。' });
+    }
+  });
+
+  // 15. 红鸾 & 天喜
+  const hongluanMap = { '子':'卯', '丑':'寅', '寅':'丑', '卯':'子', '辰':'亥', '巳':'戌', '午':'酉', '未':'申', '申':'未', '酉':'午', '戌':'巳', '亥':'辰' };
+  const tianxiMap = { '子':'酉', '丑':'申', '寅':'未', '卯':'午', '辰':'巳', '巳':'辰', '午':'卯', '未':'寅', '申':'丑', '酉':'子', '戌':'亥', '亥':'戌' };
+  zhiList.forEach(item => {
+    if(item.z === hongluanMap[yZ]) results.auspicious.push({ name: '红鸾星', pos: `${item.pos}【${item.z}】`, meaning: '主喜庆婚恋、人缘美满，遇吉神多吉庆祥瑞。' });
+    if(item.z === tianxiMap[yZ]) results.auspicious.push({ name: '天喜星', pos: `${item.pos}【${item.z}】`, meaning: '天喜照命，欢喜吉祥，逢凶化吉，多喜事临门。' });
+  });
+
+  // 16. 羊刃 (极旺煞)
+  const yangrenMap = { '甲':'卯', '乙':'辰', '丙':'午', '戊':'午', '丁':'未', '己':'未', '庚':'酉', '辛':'戌', '壬':'子', '癸':'丑' };
+  zhiList.forEach(item => {
+    if(item.z === yangrenMap[dG]) {
+      results.ominous.push({ name: '羊刃', pos: `${item.pos}【${item.z}】`, meaning: '司刑之煞，秉性刚烈果决；身弱得之为帮身利刃，身强见之宜防急躁争执。' });
+    }
+  });
+
+  // 17. 劫煞 / 亡神 / 灾煞
+  const jieshaMap = { '申':'巳', '子':'巳', '辰':'巳', '寅':'亥', '午':'亥', '戌':'亥', '巳':'寅', '酉':'寅', '丑':'寅', '亥':'申', '卯':'申', '未':'申' };
+  const wangshenMap = { '申':'亥', '子':'亥', '辰':'亥', '寅':'巳', '午':'巳', '戌':'巳', '巳':'申', '酉':'申', '丑':'申', '亥':'寅', '卯':'寅', '未':'寅' };
+  const zaishaMap = { '申':'午', '子':'午', '辰':'午', '寅':'子', '午':'子', '戌':'子', '巳':'卯', '酉':'卯', '丑':'卯', '亥':'酉', '卯':'酉', '未':'酉' };
+  zhiList.forEach(item => {
+    if(item.z === jieshaMap[yZ] || item.z === jieshaMap[dZ]) results.ominous.push({ name: '劫煞', pos: `${item.pos}【${item.z}】`, meaning: '敏锐勇决，果敢迅疾；吉则威镇边疆，凶则多波折磨砺。' });
+    if(item.z === wangshenMap[yZ] || item.z === wangshenMap[dZ]) results.ominous.push({ name: '亡神', pos: `${item.pos}【${item.z}】`, meaning: '思虑深远，敏锐机警；吉则深谋远虑，凶则心浮气躁。' });
+    if(item.z === zaishaMap[yZ] || item.z === zaishaMap[dZ]) results.ominous.push({ name: '灾煞', pos: `${item.pos}【${item.z}】`, meaning: '又名白虎煞，行事宜遵规守纪，稳扎稳打。' });
+  });
+
+  // 18. 孤辰 & 寡宿
+  const guchenMap = { '亥':'寅', '子':'寅', '丑':'寅', '寅':'巳', '卯':'巳', '辰':'巳', '巳':'申', '午':'申', '未':'申', '申':'亥', '酉':'亥', '戌':'亥' };
+  const guasuMap = { '亥':'戌', '子':'戌', '丑':'戌', '寅':'丑', '卯':'丑', '辰':'丑', '巳':'辰', '午':'辰', '未':'辰', '申':'未', '酉':'未', '戌':'未' };
+  zhiList.forEach(item => {
+    if(item.z === guchenMap[yZ]) results.ominous.push({ name: '孤辰', pos: `${item.pos}【${item.z}】`, meaning: '性情清高自立，喜独处静修，适宜学术与专业技艺研究。' });
+    if(item.z === guasuMap[yZ]) results.ominous.push({ name: '寡宿', pos: `${item.pos}【${item.z}】`, meaning: '内心平和恬淡，不逐喧嚣，多才多艺。' });
+  });
+
+  // 19. 特殊日柱神煞 (魁罡、阴阳差错、十恶大败、十灵日、金神)
+  const dayPillar = `${dG}${dZ}`;
+  if(['壬辰','庚戌','庚辰','戊戌'].includes(dayPillar)) {
+    results.special.push({ name: '魁罡贵人', pos: `日柱【${dayPillar}】`, meaning: '聪明果决，威严秉性，行事有决断之风；身旺发福百端。' });
+  }
+  if(['丙子','丙午','丁丑','丁未','戊寅','戊申','辛卯','辛酉','壬辰','壬戌','癸巳','癸亥'].includes(dayPillar)) {
+    results.special.push({ name: '阴阳差错日', pos: `日柱【${dayPillar}】`, meaning: '情感细腻，与伴侣相处宜多沟通包容，互敬互爱则无虞。' });
+  }
+  if(['甲辰','乙巳','丙申','丁亥','戊戌','己丑','庚辰','辛巳','壬申','癸亥'].includes(dayPillar)) {
+    results.special.push({ name: '十恶大败日', pos: `日柱【${dayPillar}】`, meaning: '库中虚空无禄，理财投资宜审慎，宜建立稳健资产配置。' });
+  }
+  if(['甲辰','乙亥','丙辰','丁酉','戊午','庚戌','庚寅','辛亥','壬寅','癸未'].includes(dayPillar)) {
+    results.special.push({ name: '十灵日', pos: `日柱【${dayPillar}】`, meaning: '心灵敏慧，直觉感应强，悟性极高，易通晓易学玄奥。' });
+  }
+  if(['乙丑','己巳','癸酉'].includes(dayPillar) || ['乙丑','己巳','癸酉'].includes(`${tG}${tZ}`)) {
+    results.special.push({ name: '金神贵人', pos: `柱逢【${dayPillar}】`, meaning: '金神入火乡，富贵天下响；主意志坚韧，刚正不阿。' });
+  }
+
+  return results;
+}
+
 function computeBaziMaster() {
   const dVal = document.getElementById('baziDate').value;
   const tVal = document.getElementById('baziTime').value;
@@ -1115,7 +1381,7 @@ function computeBaziMaster() {
   });
   document.getElementById('baziPillarsContainer').innerHTML = pnlHtml;
 
-  // 五行能量计算与雷达图
+  // 五行能量计算与五维面积雷达图 (AREA RADAR)
   const elemScores = { '木': 0, '火': 0, '土': 0, '金': 0, '水': 0 };
   [yG, mG, dG, tG].forEach(g => { elemScores[GAN_PROPS[g][0]] += 1.0; });
   [yZ, mZ, dZ, tZ].forEach(z => {
@@ -1128,7 +1394,7 @@ function computeBaziMaster() {
   const elemColors = { '木': '#10B981', '火': '#F43F5E', '土': '#F59E0B', '金': '#00F2FE', '水': '#38BDF8' };
   const elemEn = { '木': 'Wood', '火': 'Fire', '土': 'Earth', '金': 'Metal', '水': 'Water' };
   
-  // 渲染柱状图
+  // 渲染五行进度条
   let barsHtml = '';
   ['木', '火', '土', '金', '水'].forEach(el => {
     const sc = elemScores[el];
@@ -1145,57 +1411,174 @@ function computeBaziMaster() {
   });
   document.getElementById('radarBarsStack').innerHTML = barsHtml;
 
-  // 绘制 SVG 雷达多边形
-  const angles = [ -Math.PI/2, -Math.PI/2 + 0.4*Math.PI*2, -Math.PI/2 + 0.8*Math.PI*2, -Math.PI/2 + 1.2*Math.PI*2, -Math.PI/2 + 1.6*Math.PI*2 ];
-  const maxSc = Math.max(...Object.values(elemScores), 3);
-  const points = ['木', '火', '土', '金', '水'].map((el, i) => {
-    const r = (elemScores[el] / maxSc) * 55 + 15;
-    const x = 100 + r * Math.cos(angles[i]);
-    const y = 100 + r * Math.sin(angles[i]);
-    return `${x},${y}`;
-  }).join(' ');
+  // 绘制真正的面积雷达图 (五层同心面积网格 + 平滑渐变面积填充 + 顶点光晕)
+  const cx = 110, cy = 110;
+  const maxRadius = 75;
+  const angles = [
+    -Math.PI / 2,                          // 木 Wood (Top)
+    -Math.PI / 2 + 0.4 * Math.PI * 2,      // 火 Fire (Top-Right)
+    -Math.PI / 2 + 0.8 * Math.PI * 2,      // 土 Earth (Bottom-Right)
+    -Math.PI / 2 + 1.2 * Math.PI * 2,      // 金 Metal (Bottom-Left)
+    -Math.PI / 2 + 1.6 * Math.PI * 2       // 水 Water (Top-Left)
+  ];
+  
+  // 生成 5 层同心五边形网格
+  let webGridSvg = '';
+  [0.2, 0.4, 0.6, 0.8, 1.0].forEach(ratio => {
+    const r = maxRadius * ratio;
+    const pts = angles.map(a => `${cx + r * Math.cos(a)},${cy + r * Math.sin(a)}`).join(' ');
+    webGridSvg += `<polygon points="${pts}" fill="none" stroke="rgba(255,255,255,${ratio===1.0?'0.16':'0.07'})" stroke-width="${ratio===1.0?'1.2':'1'}"/>`;
+  });
+  // 5 条轴线
+  angles.forEach(a => {
+    webGridSvg += `<line x1="${cx}" y1="${cy}" x2="${cx + maxRadius * Math.cos(a)}" y2="${cy + maxRadius * Math.sin(a)}" stroke="rgba(255,255,255,0.1)"/>`;
+  });
+
+  // 计算五行面积多边形顶点
+  const maxSc = Math.max(...Object.values(elemScores), 3.5);
+  const dataPoints = ['木', '火', '土', '金', '水'].map((el, i) => {
+    const ratio = Math.max(elemScores[el] / maxSc, 0.18);
+    const r = maxRadius * ratio;
+    const x = cx + r * Math.cos(angles[i]);
+    const y = cy + r * Math.sin(angles[i]);
+    return { x, y, el, pct: Math.round((elemScores[el] / totalScore) * 100) };
+  });
+
+  const polygonPointsStr = dataPoints.map(p => `${p.x},${p.y}`).join(' ');
+
+  // 顶点光晕圈与文字标注
+  let vertexSvg = '';
+  dataPoints.forEach((p, idx) => {
+    const color = elemColors[p.el];
+    // 顶点圆圈
+    vertexSvg += `
+      <circle cx="${p.x}" cy="${p.y}" r="4" fill="${color}" stroke="#FFFFFF" stroke-width="1.5" filter="drop-shadow(0 0 6px ${color})"/>
+    `;
+    // 外部文字标签
+    const labelR = maxRadius + 18;
+    const lx = cx + labelR * Math.cos(angles[idx]);
+    const ly = cy + labelR * Math.sin(angles[idx]) + 4;
+    vertexSvg += `
+      <text x="${lx}" y="${ly}" fill="${color}" font-size="10" font-weight="900" font-family="var(--font-sans)" text-anchor="middle">${p.el} ${p.pct}%</text>
+    `;
+  });
 
   document.getElementById('radarSvgCanvas').innerHTML = `
-    <!-- 网格多边形 -->
-    <polygon points="100,20 176,75 147,164 53,164 24,75" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-    <polygon points="100,50 145,83 128,138 72,138 55,83" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <!-- 轴线 -->
-    <line x1="100" y1="100" x2="100" y2="20" stroke="rgba(255,255,255,0.12)"/>
-    <line x1="100" y1="100" x2="176" y2="75" stroke="rgba(255,255,255,0.12)"/>
-    <line x1="100" y1="100" x2="147" y2="164" stroke="rgba(255,255,255,0.12)"/>
-    <line x1="100" y1="100" x2="53" y2="164" stroke="rgba(255,255,255,0.12)"/>
-    <line x1="100" y1="100" x2="24" y2="75" stroke="rgba(255,255,255,0.12)"/>
-    <!-- 动态能量多边形 -->
-    <polygon points="${points}" fill="rgba(0, 242, 254, 0.28)" stroke="#00F2FE" stroke-width="2" filter="drop-shadow(0 0 10px rgba(0,242,254,0.8))"/>
-    <!-- 标签 -->
-    <text x="100" y="14" fill="#10B981" font-size="9" font-weight="800" text-anchor="middle">木 Wood</text>
-    <text x="186" y="78" fill="#F43F5E" font-size="9" font-weight="800" text-anchor="middle">火 Fire</text>
-    <text x="154" y="180" fill="#F59E0B" font-size="9" font-weight="800" text-anchor="middle">土 Earth</text>
-    <text x="46" y="180" fill="#00F2FE" font-size="9" font-weight="800" text-anchor="middle">金 Metal</text>
-    <text x="14" y="78" fill="#38BDF8" font-size="9" font-weight="800" text-anchor="middle">水 Water</text>
+    <defs>
+      <linearGradient id="radarAreaGradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.55"/>
+        <stop offset="40%" stop-color="#8B5CF6" stop-opacity="0.45"/>
+        <stop offset="80%" stop-color="#10B981" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.4"/>
+      </linearGradient>
+      <filter id="areaGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#00F2FE" flood-opacity="0.6"/>
+      </filter>
+    </defs>
+    
+    <!-- 同心五边形网格 -->
+    ${webGridSvg}
+    
+    <!-- 真正的五行能量面积图 (Filled Gradient Area Polygon) -->
+    <polygon points="${polygonPointsStr}" fill="url(#radarAreaGradient)" stroke="#00F2FE" stroke-width="2.2" filter="url(#areaGlow)"/>
+    
+    <!-- 顶点发光指示与百分比标签 -->
+    ${vertexSvg}
   `;
 
-  // 神煞识别与刑冲分析
-  const shensha = [];
-  const allZhi = [yZ, mZ, dZ, tZ];
-  const guiMap = { '甲':['丑','未'], '戊':['丑','未'], '乙':['子','申'], '己':['子','申'], '丙':['亥','酉'], '丁':['亥','酉'], '壬':['卯','巳'], '癸':['卯','巳'], '庚':['寅','午'], '辛':['寅','午'] };
-  (guiMap[dG]||[]).forEach(z => { if(allZhi.includes(z)) shensha.push(`天乙贵人 · 临${z}`); });
-  const wenMap = { '甲':'巳','乙':'午','丙':'申','戊':'申','丁':'酉','己':'酉','庚':'亥','辛':'子','壬':'寅','癸':'卯' };
-  if(allZhi.includes(wenMap[dG])) shensha.push(`文昌星宿 · 临${wenMap[dG]}`);
-  const luMap = { '甲':'寅','乙':'卯','丙':'巳','戊':'巳','丁':'午','己':'午','庚':'申','辛':'酉','壬':'亥','癸':'子' };
-  if(allZhi.includes(luMap[dG])) shensha.push(`日禄归位 · 临${luMap[dG]}`);
-  const yimaMap = { '申':'寅','子':'寅','辰':'寅','寅':'申','午':'申','戌':'申','巳':'亥','酉':'亥','丑':'亥','亥':'巳','卯':'巳','未':'巳' };
-  if(allZhi.includes(yimaMap[yZ]) || allZhi.includes(yimaMap[dZ])) shensha.push(`驿马奔腾 · 主迁拔远行`);
-  const taoMap = { '申':'酉','子':'酉','辰':'酉','寅':'卯','午':'卯','戌':'卯','巳':'午','酉':'午','丑':'午','亥':'子','卯':'子','未':'子' };
-  if(allZhi.includes(taoMap[yZ]) || allZhi.includes(taoMap[dZ])) shensha.push(`咸池桃花 · 艺术风雅`);
+  // ==================== 40+ 全流程神煞全面计算与渲染 ====================
+  const allShensha = calculateAllShensha(eightChar);
+  const totalShenshaFound = allShensha.auspicious.length + allShensha.dynamic.length + allShensha.special.length + allShensha.ominous.length;
+  document.getElementById('shenshaCountBadge').textContent = `命中 ${totalShenshaFound} 尊神煞`;
 
-  document.getElementById('baziShenshaBadges').innerHTML = shensha.map(s => `
-    <div style="background:rgba(0, 242, 254, 0.08); border:1px solid rgba(0, 242, 254, 0.28); color:#00F2FE; font-size:11px; padding:6px 12px; border-radius:8px; font-weight:700; display:flex; align-items:center; gap:6px;">
-      <span>✨</span> <span>${s}</span>
-    </div>
-  `).join('');
+  let shenshaHtml = '';
 
-  document.getElementById('ganzhiClashSummary').textContent = `四柱胎元：${eightChar.getTaiYuan()} | 命宫：${eightChar.getMingGong()} | 身宫：${eightChar.getShenGong()}`;
+  // 1. 吉神贵人 (Auspicious)
+  if(allShensha.auspicious.length > 0) {
+    shenshaHtml += `
+      <div>
+        <div class="shensha-cat-title">✨ 吉神福星 (${allShensha.auspicious.length})</div>
+        <div class="shensha-cards-grid">
+          ${allShensha.auspicious.map(s => `
+            <div class="shensha-card-row">
+              <div class="shensha-top-line">
+                <div class="shensha-name-badge" style="color:#10B981;"><span>💎</span> ${s.name}</div>
+                <span class="shensha-type-pill type-auspicious">大吉神</span>
+                <span class="shensha-pos-tag">${s.pos}</span>
+              </div>
+              <div class="shensha-meaning">${s.meaning}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // 2. 动神权威 (Dynamic)
+  if(allShensha.dynamic.length > 0) {
+    shenshaHtml += `
+      <div style="margin-top:8px;">
+        <div class="shensha-cat-title">⚡ 动神权威与艺术 (${allShensha.dynamic.length})</div>
+        <div class="shensha-cards-grid">
+          ${allShensha.dynamic.map(s => `
+            <div class="shensha-card-row">
+              <div class="shensha-top-line">
+                <div class="shensha-name-badge" style="color:#00F2FE;"><span>🌟</span> ${s.name}</div>
+                <span class="shensha-type-pill type-dynamic">才智权威</span>
+                <span class="shensha-pos-tag">${s.pos}</span>
+              </div>
+              <div class="shensha-meaning">${s.meaning}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // 3. 特殊格局 (Special)
+  if(allShensha.special.length > 0) {
+    shenshaHtml += `
+      <div style="margin-top:8px;">
+        <div class="shensha-cat-title">🔮 特殊日柱格局 (${allShensha.special.length})</div>
+        <div class="shensha-cards-grid">
+          ${allShensha.special.map(s => `
+            <div class="shensha-card-row">
+              <div class="shensha-top-line">
+                <div class="shensha-name-badge" style="color:#C084FC;"><span>💠</span> ${s.name}</div>
+                <span class="shensha-type-pill type-special">特殊神煞</span>
+                <span class="shensha-pos-tag">${s.pos}</span>
+              </div>
+              <div class="shensha-meaning">${s.meaning}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // 4. 凶煞磨砺 (Ominous)
+  if(allShensha.ominous.length > 0) {
+    shenshaHtml += `
+      <div style="margin-top:8px;">
+        <div class="shensha-cat-title">🛡️ 关煞警示与磨砺 (${allShensha.ominous.length})</div>
+        <div class="shensha-cards-grid">
+          ${allShensha.ominous.map(s => `
+            <div class="shensha-card-row">
+              <div class="shensha-top-line">
+                <div class="shensha-name-badge" style="color:#EF4444;"><span>⚠️</span> ${s.name}</div>
+                <span class="shensha-type-pill type-ominous">警示之煞</span>
+                <span class="shensha-pos-tag">${s.pos}</span>
+              </div>
+              <div class="shensha-meaning">${s.meaning}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  document.getElementById('shenshaCategoriesContainer').innerHTML = shenshaHtml;
+  document.getElementById('ganzhiClashSummary').textContent = `胎元：${eightChar.getTaiYuan()} | 命宫：${eightChar.getMingGong()} | 身宫：${eightChar.getShenGong()}`;
 
   // 大运时空能量曲线
   const yun = eightChar.getYun(gender==='male'?1:0);
@@ -1225,8 +1608,8 @@ function computeBaziMaster() {
   for(let i=1; i<wavePoints.length; i++){
     const prev = wavePoints[i-1];
     const curr = wavePoints[i];
-    const cx = (prev.x + curr.x) / 2;
-    pathD += ` C ${cx},${prev.y} ${cx},${curr.y} ${curr.x},${curr.y}`;
+    const cxP = (prev.x + curr.x) / 2;
+    pathD += ` C ${cxP},${prev.y} ${cxP},${curr.y} ${curr.x},${curr.y}`;
   }
   document.getElementById('fortuneWaveSvg').innerHTML = `
     <defs>
@@ -1385,6 +1768,10 @@ const SHENSHA_ITEMS = [
   { name: '天德月德', desc: '日月德秀 · 福寿康宁' },
   { name: '文昌星宿', desc: '才思敏捷 · 考学功名' },
   { name: '日禄归位', desc: '食禄丰厚 · 强健通达' },
+  { name: '太极贵人', desc: '正直好学 · 喜玄学易经' },
+  { name: '福星贵人', desc: '康泰安享 · 福气自来' },
+  { name: '国印贵人', desc: '掌印执柄 · 威严诚实' },
+  { name: '天医星宿', desc: '治病救人 · 延年益寿' },
   { name: '羊刃极煞', desc: '司刑之煞 · 身弱喜帮' },
   { name: '驿马星动', desc: '奔波迁居 · 升迁远行' },
   { name: '咸池桃花', desc: '风流多情 · 艺术容貌' },
