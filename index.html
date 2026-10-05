@@ -222,6 +222,32 @@ body {
 }
 @keyframes pulseDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.8); } }
 
+/* 语言切换按钮 Language Switcher */
+.lang-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  border-radius: 12px;
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 800;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 14px rgba(0, 242, 254, 0.15);
+  user-select: none;
+}
+.lang-toggle-btn:hover {
+  background: rgba(0, 242, 254, 0.18);
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+  transform: translateY(-1px);
+  color: #FFFFFF;
+}
+
 /* ==================== 顶级 Glass Bento 玻璃卡片 ==================== */
 .bento-card {
   background: var(--glass-bg);
@@ -869,55 +895,61 @@ footer {
     <a href="#" class="brand-group">
       <div class="logo-badge">AG</div>
       <div class="brand-titles">
-        <h1>AURORA GLASS</h1>
-        <p>Chinese Metaphysics Analytics</p>
+        <h1 data-i18n="brandTitle">极光易学</h1>
+        <p data-i18n="brandSubtitle">东方命理与古籍量化分析系统</p>
       </div>
     </a>
     
     <nav class="nav-switcher">
-      <button type="button" class="nav-tab-btn active" data-tab="tab-bazi">☯️ 八字排盘 · BAZI NATAL</button>
-      <button type="button" class="nav-tab-btn" data-tab="tab-liuyao">🔮 六爻纳甲 · LIUYAO I-CHING</button>
-      <button type="button" class="nav-tab-btn" data-tab="tab-ganzhi">📖 六十甲子 · 60 GANZHI</button>
-      <button type="button" class="nav-tab-btn" data-tab="tab-hex">📜 六十四卦 · 64 HEXAGRAMS</button>
-      <button type="button" class="nav-tab-btn" data-tab="tab-shensha">🌟 神煞大典 · SHENSHA STARS</button>
+      <button type="button" class="nav-tab-btn active" data-tab="tab-bazi" data-i18n="navBazi">☯️ 八字排盘</button>
+      <button type="button" class="nav-tab-btn" data-tab="tab-liuyao" data-i18n="navLiuyao">🔮 六爻纳甲</button>
+      <button type="button" class="nav-tab-btn" data-tab="tab-ganzhi" data-i18n="navGanzhi">📖 六十甲子</button>
+      <button type="button" class="nav-tab-btn" data-tab="tab-hex" data-i18n="navHex">📜 六十四卦</button>
+      <button type="button" class="nav-tab-btn" data-tab="tab-shensha" data-i18n="navShensha">🌟 神煞大典</button>
     </nav>
 
-    <div class="status-pill">
-      <div class="pulse-dot"></div>
-      <span>QUANTUM ENGINE ACTIVE</span>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button type="button" class="lang-toggle-btn" id="btnLangToggle" title="切换语言 / Switch Language">
+        🌐 <span id="langToggleText">English</span>
+      </button>
+
+      <div class="status-pill">
+        <div class="pulse-dot"></div>
+        <span data-i18n="statusPill">计算引擎就绪</span>
+      </div>
     </div>
   </header>
 
-  <!-- ==================== 1. 八字基本排盘主页 (纯粹八字，无六爻杂项) ==================== -->
+  <!-- ==================== 1. 八字基本排盘主页 ==================== -->
   <div id="tab-bazi" class="tab-pane-view active">
     
     <!-- 输入参数控制栏 -->
     <div class="bento-card" style="margin-bottom: 20px; padding: 18px 22px;">
       <div class="form-input-deck">
         <div class="form-field-unit">
-          <label>公历生日 · SOLAR DATE</label>
+          <label data-i18n="labelSolarDate">公历生日</label>
           <input type="date" id="baziDate" class="glass-input-ctrl" value="1990-01-01">
         </div>
         <div class="form-field-unit">
-          <label>出生时间 · BIRTH TIME</label>
+          <label data-i18n="labelBirthTime">出生时间</label>
           <input type="time" id="baziTime" class="glass-input-ctrl" value="00:00">
         </div>
         <div class="form-field-unit">
-          <label>命造性别 · GENDER</label>
+          <label data-i18n="labelGender">命造性别</label>
           <select id="baziGender" class="glass-input-ctrl">
-            <option value="male">乾造 · 男命 (Male / Yang Forward)</option>
-            <option value="female">坤造 · 女命 (Female / Yin Forward)</option>
+            <option value="male" data-i18n="genderMale">乾造 (男命 / 阳年生男顺行)</option>
+            <option value="female" data-i18n="genderFemale">坤造 (女命 / 阴年生女顺行)</option>
           </select>
         </div>
         <div class="form-field-unit">
-          <label>真太阳时校准 · LONGITUDE</label>
+          <label data-i18n="labelLongitude">真太阳时校准</label>
           <select id="baziLng" class="glass-input-ctrl">
-            <option value="120.0">北京时间标准 (Beijing Standard 120.0°E)</option>
-            <option value="121.47">上海 / 华东 (Shanghai / East 121.47°E)</option>
-            <option value="113.26">广州 / 深圳 (Guangzhou / South 113.26°E)</option>
-            <option value="116.40">北京 / 华北 (Beijing / North 116.40°E)</option>
-            <option value="104.06">成都 / 西南 (Chengdu / SW 104.06°E)</option>
-            <option value="108.93">西安 / 西北 (Xi'an / NW 108.93°E)</option>
+            <option value="120.0" data-i18n="cityBeijingStd">北京时间标准 (东经 120.0°)</option>
+            <option value="121.47" data-i18n="cityShanghai">上海 / 华东 (东经 121.47°)</option>
+            <option value="113.26" data-i18n="cityGuangzhou">广州 / 深圳 (东经 113.26°)</option>
+            <option value="116.40" data-i18n="cityBeijing">北京 / 华北 (东经 116.40°)</option>
+            <option value="104.06" data-i18n="cityChengdu">成都 / 西南 (东经 104.06°)</option>
+            <option value="108.93" data-i18n="cityXian">西安 / 西北 (东经 108.93°)</option>
           </select>
         </div>
       </div>
@@ -926,7 +958,7 @@ footer {
           农历：己巳年 腊月初五 子时 · 乾造 · 胎元：丁卯 · 命宫：丙寅
         </div>
         <button type="button" class="btn-quantum-run" id="btnRunBazi">
-          ⚡ 运行四柱专业细盘解算 · RUN QUANTUM ENGINE
+          <span data-i18n="btnRunText">⚡ 运行四柱专业细盘解算</span>
         </button>
       </div>
     </div>
@@ -940,21 +972,21 @@ footer {
         <div class="bento-card" style="padding: 20px;">
           <div class="card-head">
             <div class="card-title-group">
-              <div class="card-title">基本排盘 · 四柱神煞全息透视</div>
-              <div class="card-title-sub">WENZHEN FOUR PILLARS MATRIX</div>
+              <div class="card-title" data-i18n="wenzhenCardTitle">基本排盘 · 四柱神煞全息透视</div>
+              <div class="card-title-sub" data-i18n="wenzhenCardSub">四柱八字神煞全息透视矩阵</div>
             </div>
-            <div class="card-watermark-tag">问真八字</div>
+            <div class="card-watermark-tag" data-i18n="watermarkWenzhen">问真八字</div>
           </div>
 
           <!-- 问真八字 经典专业细盘表格 (年柱 | 月柱 | 日柱 | 时柱 从左到右) -->
           <table class="wenzhen-paipan-table">
             <thead>
               <tr>
-                <th class="row-label-col">四柱 · PILLARS</th>
-                <th class="col-header-pillar">年柱 (YEAR)</th>
-                <th class="col-header-pillar">月柱 (MONTH)</th>
-                <th class="col-header-pillar day-pillar-highlight">日柱 (DAY)</th>
-                <th class="col-header-pillar">时柱 (HOUR)</th>
+                <th class="row-label-col" data-i18n="thPillars">四柱</th>
+                <th class="col-header-pillar" data-i18n="thYear">年柱</th>
+                <th class="col-header-pillar" data-i18n="thMonth">月柱</th>
+                <th class="col-header-pillar day-pillar-highlight" data-i18n="thDay">日柱</th>
+                <th class="col-header-pillar" data-i18n="thHour">时柱</th>
               </tr>
             </thead>
             <tbody id="wenzhenTableBody">
@@ -965,15 +997,15 @@ footer {
           <!-- 原局刑冲克害合诊断卡片 -->
           <div class="clash-diagnosis-box">
             <div class="clash-diag-row">
-              <span class="clash-diag-tag">原局天干 · STEMS：</span>
+              <span class="clash-diag-tag" data-i18n="diagLabelTiangan">原局天干：</span>
               <span class="clash-diag-content" id="diagTiangan">无冲克</span>
             </div>
             <div class="clash-diag-row">
-              <span class="clash-diag-tag">原局地支 · BRANCHES：</span>
+              <span class="clash-diag-tag" data-i18n="diagLabelDizhi">原局地支：</span>
               <span class="clash-diag-content" id="diagDizhi">无特殊刑冲</span>
             </div>
             <div class="clash-diag-row">
-              <span class="clash-diag-tag">原局整柱 · PILLARS：</span>
+              <span class="clash-diag-tag" data-i18n="diagLabelZhengzhu">原局整柱：</span>
               <span class="clash-diag-content" id="diagZhengzhu">无盖头截脚</span>
             </div>
           </div>
@@ -983,10 +1015,10 @@ footer {
         <div class="bento-card">
           <div class="card-head">
             <div class="card-title-group">
-              <div class="card-title">大运时空能量走势与流年节点</div>
-              <div class="card-title-sub" id="dayunStartAgeLabel">DECADE LUCK PILLARS & AGE TIMELINE</div>
+              <div class="card-title" data-i18n="dayunCardTitle">大运时空能量走势与流年节点</div>
+              <div class="card-title-sub" id="dayunStartAgeLabel">十年大运与年龄时光轴</div>
             </div>
-            <div class="card-watermark-tag">大运走势</div>
+            <div class="card-watermark-tag" data-i18n="watermarkDayun">大运走势</div>
           </div>
           <div class="fortune-wave-box">
             <svg class="fortune-svg" id="fortuneWaveSvg" viewBox="0 0 1000 110" preserveAspectRatio="none"></svg>
@@ -1002,10 +1034,10 @@ footer {
         <div class="bento-card">
           <div class="card-head">
             <div class="card-title-group">
-              <div class="card-title">五行能量面积雷达</div>
-              <div class="card-title-sub">FIVE ELEMENTS AREA RADAR</div>
+              <div class="card-title" data-i18n="radarCardTitle">五行能量面积雷达</div>
+              <div class="card-title-sub" data-i18n="radarCardSub">五行生克与能量平衡透视</div>
             </div>
-            <div class="card-watermark-tag">五行</div>
+            <div class="card-watermark-tag" data-i18n="watermarkWuxing">五行</div>
           </div>
 
           <div class="radar-box">
@@ -1027,20 +1059,20 @@ footer {
     <div class="bento-card classics-bento-card">
       <div class="card-head">
         <div class="card-title-group">
-          <div class="card-title">📖 四库易学古籍全息引证与原著断语</div>
-          <div class="card-title-sub">CLASSICAL METAPHYSICS CANONICAL ENGINES</div>
+          <div class="card-title" data-i18n="classicsCardTitle">📖 四库易学古籍全息引证与原著断语</div>
+          <div class="card-title-sub" data-i18n="classicsCardSub">历代经典易学古籍权威引证引擎</div>
         </div>
-        <div class="card-watermark-tag">古籍秘典</div>
+        <div class="card-watermark-tag" data-i18n="watermarkClassics">古籍秘典</div>
       </div>
 
       <div class="classics-tab-bar">
-        <button type="button" class="classics-tab-btn active" data-classic="classic-qiongtong">📘《穷通宝鉴》调候密旨 · Climate Tuning</button>
-        <button type="button" class="classics-tab-btn" data-classic="classic-ditian">📕《滴天髓》旺衰体用 · Stems Balance</button>
-        <button type="button" class="classics-tab-btn" data-classic="classic-ziping">📗《子平真诠》格局相神 · 8 Patterns</button>
-        <button type="button" class="classics-tab-btn" data-classic="classic-sanming">📙《三命通会》神煞源流 · Shensha Origin</button>
-        <button type="button" class="classics-tab-btn" data-classic="classic-yuanhai">📜《渊海子平》古赋指要 · Classical Poems</button>
-        <button type="button" class="classics-tab-btn" data-classic="classic-shenfeng">⚔️《神峰通考》病药真机 · Excess & Remedy</button>
-        <button type="button" class="classics-tab-btn" data-classic="classic-tiyao">🏛️《八字提要》时盘精解 · Hourly Matrix</button>
+        <button type="button" class="classics-tab-btn active" data-classic="classic-qiongtong" data-i18n="cTabQiongtong">📘《穷通宝鉴》调候密旨</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-ditian" data-i18n="cTabDitian">📕《滴天髓》旺衰体用</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-ziping" data-i18n="cTabZiping">📗《子平真诠》格局相神</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-sanming" data-i18n="cTabSanming">📙《三命通会》神煞源流</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-yuanhai" data-i18n="cTabYuanhai">📜《渊海子平》古赋指要</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-shenfeng" data-i18n="cTabShenfeng">⚔️《神峰通考》病药真机</button>
+        <button type="button" class="classics-tab-btn" data-classic="classic-tiyao" data-i18n="cTabTiyao">🏛️《八字提要》时盘精解</button>
       </div>
 
       <!-- 1. 穷通宝鉴 -->
@@ -1103,28 +1135,28 @@ footer {
       <div class="bento-card">
         <div class="card-head">
           <div class="card-title-group">
-            <div class="card-title">量子投掷摇卦台 · COIN TOSS ARENA</div>
-            <div class="card-title-sub">COIN TOSS MATRIX</div>
+            <div class="card-title" data-i18n="liuyaoCardTitle">量子投掷摇卦台</div>
+            <div class="card-title-sub" data-i18n="liuyaoCardSub">三币全息投掷推演</div>
           </div>
-          <div class="card-watermark-tag">六爻</div>
+          <div class="card-watermark-tag" data-i18n="watermarkLiuyao">六爻</div>
         </div>
         
         <div style="margin-bottom: 14px;">
-          <label style="font-size: 10px; font-weight: 700; color: var(--text-sub); text-transform: uppercase; font-family: var(--font-mono); display: block; margin-bottom: 5px;">占问主题 · QUERY INTENT</label>
+          <label style="font-size: 11px; font-weight: 700; color: var(--text-sub); display: block; margin-bottom: 5px;" data-i18n="labelLiuyaoIntent">占问主题</label>
           <select id="liuyaoQuerySelect" class="glass-input-ctrl" style="width: 100%;">
-            <option value="wealth">💰 商业投资 / 经营求财 (Wealth & Investment · 用神: 妻财)</option>
-            <option value="career">🏆 职位升迁 / 事业前途 (Career & Promotion · 用神: 官鬼)</option>
-            <option value="health">💊 身体健康 / 疾病安危 (Health & Vitality · 用神: 子孙/世爻)</option>
-            <option value="marriage_m">💍 婚恋情感 · 男占 (Male Marriage & Love · 看妻财)</option>
-            <option value="marriage_f">👰 婚恋情感 · 女占 (Female Marriage & Love · 看官鬼)</option>
-            <option value="travel">✈️ 远行平安 / 归期 (Travel & Return · 看世应)</option>
-            <option value="exam">📚 学业功名 / 考学证书 (Academics & Exams · 用神: 父母)</option>
+            <option value="wealth" data-i18n="qWealth">💰 商业投资 / 经营求财 (用神：妻财)</option>
+            <option value="career" data-i18n="qCareer">🏆 职位升迁 / 事业前途 (用神：官鬼)</option>
+            <option value="health" data-i18n="qHealth">💊 身体健康 / 疾病安危 (用神：子孙/世爻)</option>
+            <option value="marriage_m" data-i18n="qMarriageM">💍 婚恋情感 · 男占 (用神：妻财)</option>
+            <option value="marriage_f" data-i18n="qMarriageF">👰 婚恋情感 · 女占 (用神：官鬼)</option>
+            <option value="travel" data-i18n="qTravel">✈️ 远行平安 / 归期 (看世应)</option>
+            <option value="exam" data-i18n="qExam">📚 学业功名 / 考学证书 (用神：父母)</option>
           </select>
         </div>
 
         <div style="text-align: center; padding: 18px; background: rgba(3, 7, 18, 0.6); border-radius: 14px; border: 1px dashed rgba(0, 242, 254, 0.3);">
-          <div style="font-size: 11px; color: var(--cyan); font-family: var(--font-mono); margin-bottom: 10px;" id="coinTossStatus">
-            点击投掷铜钱（需投 6 次，当前第 1 爻）· Toss Coins (6 Steps)
+          <div style="font-size: 12px; color: var(--cyan); font-family: var(--font-mono); margin-bottom: 10px;" id="coinTossStatus">
+            点击投掷铜钱（需投 6 次，当前第 1 爻）
           </div>
           <div class="coin-deck-3d">
             <div class="quantum-coin" id="coinA">字</div>
@@ -1132,8 +1164,12 @@ footer {
             <div class="quantum-coin" id="coinC">字</div>
           </div>
           <div style="display: flex; gap: 10px; justify-content: center; margin-top: 12px;">
-            <button type="button" class="btn-quantum-run" id="btnTossOneYao" style="padding: 8px 20px;">🪙 投掷一爻 · TOSS LINE</button>
-            <button type="button" class="btn-quantum-run" id="btnResetLiuyaoDeck" style="padding: 8px 16px; background: rgba(255,255,255,0.08); color: #FFF; box-shadow: none;">重置 · RESET</button>
+            <button type="button" class="btn-quantum-run" id="btnTossOneYao" style="padding: 8px 20px;">
+              <span data-i18n="btnTossText">🪙 投掷一爻</span>
+            </button>
+            <button type="button" class="btn-quantum-run" id="btnResetLiuyaoDeck" style="padding: 8px 16px; background: rgba(255,255,255,0.08); color: #FFF; box-shadow: none;">
+              <span data-i18n="btnResetText">重置</span>
+            </button>
           </div>
         </div>
       </div>
@@ -1141,21 +1177,21 @@ footer {
       <div class="bento-card">
         <div class="card-head">
           <div class="card-title-group">
-            <div class="card-title">HEXAGRAM MATRIX · 全息卦象与变动透视</div>
-            <div class="card-title-sub" id="liuyaoDayTimeBadge">LIUYAO I-CHING MATRIX</div>
+            <div class="card-title" data-i18n="hexMatrixTitle">六爻全息卦象与变动透视</div>
+            <div class="card-title-sub" id="liuyaoDayTimeBadge">周易纳甲全息推演系统</div>
           </div>
-          <div class="card-watermark-tag">卦象</div>
+          <div class="card-watermark-tag" data-i18n="watermarkGua">卦象</div>
         </div>
 
         <div class="hex-tree-graph">
           <div class="tree-node-box">
             <div class="tree-node-title" id="benGuaName">天雷无妄</div>
-            <div class="tree-node-desc">MAIN HEXAGRAM</div>
+            <div class="tree-node-desc" data-i18n="descBenGua">本卦（当前体局）</div>
           </div>
           <div style="font-size: 20px; color: var(--cyan); font-weight: 900;">➔</div>
           <div class="tree-node-box" style="border-color: var(--purple); box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);">
             <div class="tree-node-title" id="bianGuaName">水火既济</div>
-            <div class="tree-node-desc">CHANGED HEXAGRAM</div>
+            <div class="tree-node-desc" data-i18n="descBianGua">变卦（事态演化）</div>
           </div>
         </div>
 
@@ -1172,10 +1208,10 @@ footer {
     <div class="bento-card">
       <div class="card-head">
         <div class="card-title-group">
-          <div class="card-title">60 JIAZI CODEX · 六十甲子纳音全息图谱</div>
-          <div class="card-title-sub">60 SEXAGENARY CYCLE ENCYCLOPEDIA</div>
+          <div class="card-title" data-i18n="ganzhiCardTitle">六十甲子纳音全息图谱</div>
+          <div class="card-title-sub" data-i18n="ganzhiCardSub">六十花甲纳音五行与四库典籍详注</div>
         </div>
-        <div class="card-watermark-tag">干支</div>
+        <div class="card-watermark-tag" data-i18n="watermarkGanzhi">干支</div>
       </div>
       <div class="codex-grid-bento" id="ganzhiBentoGrid"></div>
     </div>
@@ -1186,10 +1222,10 @@ footer {
     <div class="bento-card">
       <div class="card-head">
         <div class="card-title-group">
-          <div class="card-title">64 I-CHING HEXAGRAMS · 易经六十四卦全息字典</div>
-          <div class="card-title-sub">64 HEXAGRAMS CANONICAL COMPENDIUM</div>
+          <div class="card-title" data-i18n="hex64CardTitle">易经六十四卦全息字典</div>
+          <div class="card-title-sub" data-i18n="hex64CardSub">周易本义、彖辞、象辞与增删卜易解卦</div>
         </div>
-        <div class="card-watermark-tag">周易</div>
+        <div class="card-watermark-tag" data-i18n="watermarkZhouyi">周易</div>
       </div>
       <div class="codex-grid-bento" id="hex64BentoGrid"></div>
     </div>
@@ -1200,18 +1236,18 @@ footer {
     <div class="bento-card">
       <div class="card-head">
         <div class="card-title-group">
-          <div class="card-title">SHENSHA STARS CODEX · 权威神煞查法大全</div>
-          <div class="card-title-sub">40+ SYMBOLIC STARS ENCYCLOPEDIA</div>
+          <div class="card-title" data-i18n="shenshaCardTitle">权威神煞查法大全</div>
+          <div class="card-title-sub" data-i18n="shenshaCardSub">四十余尊吉凶神煞起例与三命通会考证</div>
         </div>
-        <div class="card-watermark-tag">神煞</div>
+        <div class="card-watermark-tag" data-i18n="watermarkShensha">神煞</div>
       </div>
       <div class="codex-grid-bento" id="shenshaBentoGrid"></div>
     </div>
   </div>
 
   <footer>
-    <p>⚡ AURORA GLASS CHINESE METAPHYSICS ANALYTICS · WENZHEN BAZI ARCHITECTURE</p>
-    <p style="margin-top:4px;">DEPLOYED ON CLOUDFLARE PAGES GLOBAL EDGE · FOUR PILLARS CANONICAL ENGINES</p>
+    <p data-i18n="footerLine1">⚡ 极光易学东方命理与古籍量化分析系统 · 问真八字排盘架构</p>
+    <p style="margin-top:4px;" data-i18n="footerLine2">基于全球边缘网络部署 · 历代易学古籍全息引证引擎</p>
   </footer>
 
 </div>
@@ -1226,7 +1262,7 @@ footer {
       </div>
       <button type="button" class="classic-modal-close" id="btnModalClose" onclick="closeClassicModal()" aria-label="关闭窗口">×</button>
     </div>
-    <div class="classic-modal-sub" id="modalSubtitle">CLASSIC CANON PERSPECTIVE</div>
+    <div class="classic-modal-sub" id="modalSubtitle">古籍典藏多维引证</div>
     <div class="classic-modal-body" id="modalBody">
       <!-- 动态注入多维古籍引证卡片 -->
     </div>
@@ -1234,6 +1270,319 @@ footer {
 </div>
 
 <script>
+// ==================== 国际化 (i18n) 字典与动态切换引擎 ====================
+let currentLang = localStorage.getItem('aurora_lang') || 'zh';
+
+const I18N_DICT = {
+  zh: {
+    brandTitle: "极光易学",
+    brandSubtitle: "东方命理与古籍量化分析系统",
+    navBazi: "☯️ 八字排盘",
+    navLiuyao: "🔮 六爻纳甲",
+    navGanzhi: "📖 六十甲子",
+    navHex: "📜 六十四卦",
+    navShensha: "🌟 神煞大典",
+    statusPill: "计算引擎就绪",
+    langBtnText: "English",
+
+    // 输入栏
+    labelSolarDate: "公历生日",
+    labelBirthTime: "出生时间",
+    labelGender: "命造性别",
+    genderMale: "乾造 (男命 / 阳年生男顺行)",
+    genderFemale: "坤造 (女命 / 阴年生女顺行)",
+    labelLongitude: "真太阳时校准",
+    cityBeijingStd: "北京时间标准 (东经 120.0°)",
+    cityShanghai: "上海 / 华东 (东经 121.47°)",
+    cityGuangzhou: "广州 / 深圳 (东经 113.26°)",
+    cityBeijing: "北京 / 华北 (东经 116.40°)",
+    cityChengdu: "成都 / 西南 (东经 104.06°)",
+    cityXian: "西安 / 西北 (东经 108.93°)",
+    btnRunText: "⚡ 运行四柱专业细盘解算",
+
+    // 卡片标题
+    wenzhenCardTitle: "基本排盘 · 四柱神煞全息透视",
+    wenzhenCardSub: "四柱八字神煞全息透视矩阵",
+    watermarkWenzhen: "问真八字",
+    thPillars: "四柱",
+    thYear: "年柱",
+    thMonth: "月柱",
+    thDay: "日柱",
+    thHour: "时柱",
+    
+    // 表格行
+    rowZhuxing: "主星",
+    rowTiangan: "天干",
+    rowDizhi: "地支",
+    rowCanggan: "藏干",
+    rowFuxing: "副星",
+    rowXingyun: "星运",
+    rowZizuo: "自坐",
+    rowKongwang: "空亡",
+    rowNayin: "纳音",
+    rowShensha: "神煞",
+
+    // 刑冲诊断
+    diagLabelTiangan: "原局天干：",
+    diagLabelDizhi: "原局地支：",
+    diagLabelZhengzhu: "原局整柱：",
+    diagNoneTg: "无冲克",
+    diagNoneDz: "地支纯和无破",
+    diagNoneZz: "无盖头截脚",
+
+    // 大运
+    dayunCardTitle: "大运时空能量走势与流年节点",
+    dayunCardSub: "十年大运与年龄时光轴",
+    watermarkDayun: "大运走势",
+    ageSuffix: "岁",
+    yearSuffix: "年",
+    dayunStartPrefix: "起运：",
+
+    // 五行雷达
+    radarCardTitle: "五行能量面积雷达",
+    radarCardSub: "五行生克与能量平衡透视",
+    watermarkWuxing: "五行",
+
+    // 古籍选项卡
+    classicsCardTitle: "📖 四库易学古籍全息引证与原著断语",
+    classicsCardSub: "历代经典易学古籍权威引证引擎",
+    watermarkClassics: "古籍秘典",
+    cTabQiongtong: "📘《穷通宝鉴》调候密旨",
+    cTabDitian: "📕《滴天髓》旺衰体用",
+    cTabZiping: "📗《子平真诠》格局相神",
+    cTabSanming: "📙《三命通会》神煞源流",
+    cTabYuanhai: "📜《渊海子平》古赋指要",
+    cTabShenfeng: "⚔️《神峰通考》病药真机",
+    cTabTiyao: "🏛️《八字提要》时盘精解",
+
+    // 六爻
+    liuyaoCardTitle: "量子投掷摇卦台",
+    liuyaoCardSub: "三币全息投掷推演",
+    watermarkLiuyao: "六爻",
+    labelLiuyaoIntent: "占问主题",
+    qWealth: "💰 商业投资 / 经营求财 (用神：妻财)",
+    qCareer: "🏆 职位升迁 / 事业前途 (用神：官鬼)",
+    qHealth: "💊 身体健康 / 疾病安危 (用神：子孙/世爻)",
+    qMarriageM: "💍 婚恋情感 · 男占 (用神：妻财)",
+    qMarriageF: "👰 婚恋情感 · 女占 (用神：官鬼)",
+    qTravel: "✈️ 远行平安 / 归期 (看世应)",
+    qExam: "📚 学业功名 / 考学证书 (用神：父母)",
+    btnTossText: "🪙 投掷一爻",
+    btnResetText: "重置",
+    hexMatrixTitle: "六爻全息卦象与变动透视",
+    watermarkGua: "卦象",
+    descBenGua: "本卦（当前体局）",
+    descBianGua: "变卦（事态演化）",
+
+    // 其它字典
+    ganzhiCardTitle: "六十甲子纳音全息图谱",
+    ganzhiCardSub: "六十花甲纳音五行与四库典籍详注",
+    watermarkGanzhi: "干支",
+    hex64CardTitle: "易经六十四卦全息字典",
+    hex64CardSub: "周易本义、彖辞、象辞与增删卜易解卦",
+    watermarkZhouyi: "周易",
+    shenshaCardTitle: "权威神煞查法大全",
+    shenshaCardSub: "四十余尊吉凶神煞起例与三命通会考证",
+    watermarkShensha: "神煞",
+    footerLine1: "⚡ 极光易学东方命理与古籍量化分析系统 · 问真八字排盘架构",
+    footerLine2: "基于全球边缘网络部署 · 历代易学古籍全息引证引擎",
+
+    // 典籍弹窗
+    modalBadgeGanzhi: "六十甲子秘典",
+    modalBadgeHex: "周易与六爻秘典",
+    modalBadgeShensha: "星曜神煞 · 典藏考证",
+    clickReadClassic: "点击查阅古籍 ➔",
+    clickHexDetail: "《周易》经义 ➔",
+    clickShenshaDetail: "《三命通会》详论 ➔"
+  },
+
+  en: {
+    brandTitle: "Aurora Metaphysics",
+    brandSubtitle: "Eastern Astrology & Classical Analytics System",
+    navBazi: "☯️ BaZi Natal Chart",
+    navLiuyao: "🔮 Liu Yao I-Ching",
+    navGanzhi: "📖 60 Ganzhi Cycle",
+    navHex: "📜 64 Hexagrams",
+    navShensha: "🌟 ShenSha Stars",
+    statusPill: "Engine Ready",
+    langBtnText: "中文",
+
+    // Inputs
+    labelSolarDate: "Solar Birth Date",
+    labelBirthTime: "Birth Time",
+    labelGender: "Gender",
+    genderMale: "Male (Yang Forward Luck)",
+    genderFemale: "Female (Yin Forward Luck)",
+    labelLongitude: "True Solar Time Calibration",
+    cityBeijingStd: "Beijing Standard (120.0°E)",
+    cityShanghai: "Shanghai / East China (121.47°E)",
+    cityGuangzhou: "Guangzhou / South China (113.26°E)",
+    cityBeijing: "Beijing / North China (116.40°E)",
+    cityChengdu: "Chengdu / SW China (104.06°E)",
+    cityXian: "Xi'an / NW China (108.93°E)",
+    btnRunText: "⚡ Calculate Natal Chart",
+
+    // Card Titles
+    wenzhenCardTitle: "Four Pillars & Symbolic Stars Matrix",
+    wenzhenCardSub: "Canonical Natal Horizon Analysis",
+    watermarkWenzhen: "BaZi Matrix",
+    thPillars: "Pillars",
+    thYear: "Year",
+    thMonth: "Month",
+    thDay: "Day",
+    thHour: "Hour",
+
+    // Table rows
+    rowZhuxing: "Main Deity",
+    rowTiangan: "Heavenly Stem",
+    rowDizhi: "Earthly Branch",
+    rowCanggan: "Hidden Stems",
+    rowFuxing: "Sub Deities",
+    rowXingyun: "Life Stage",
+    rowZizuo: "Self-Sitting",
+    rowKongwang: "Void Xun",
+    rowNayin: "Melodic NaYin",
+    rowShensha: "Stars",
+
+    // Diagnosis
+    diagLabelTiangan: "Stems Clashes & Combinations: ",
+    diagLabelDizhi: "Branches Clashes & Harm: ",
+    diagLabelZhengzhu: "Pillars Structure: ",
+    diagNoneTg: "Harmonious Stems",
+    diagNoneDz: "Peaceful Branches without Clashes",
+    diagNoneZz: "Balanced Pillar Flow",
+
+    // Decade Luck
+    dayunCardTitle: "Decade Luck Timeline & Age Milestones",
+    dayunCardSub: "Ten-Year Cosmic Cycles & Life Stages",
+    watermarkDayun: "Luck Waves",
+    ageSuffix: " yrs",
+    yearSuffix: " AD",
+    dayunStartPrefix: "Luck Start: Age ",
+
+    // Five Elements
+    radarCardTitle: "Five Elements Energy Area Radar",
+    radarCardSub: "Elemental Distribution & Balance Analysis",
+    watermarkWuxing: "5 Elements",
+
+    // Classics
+    classicsCardTitle: "📖 Classical Metaphysics Canonical References",
+    classicsCardSub: "Imperial Canon Quotes & Commentary",
+    watermarkClassics: "Ancient Canon",
+    cTabQiongtong: "📘 Qiong Tong Bao Jian · Climate Tuning",
+    cTabDitian: "📕 Di Tian Sui · Stems Essence",
+    cTabZiping: "📗 Zi Ping Zhen Quan · 8 Patterns",
+    cTabSanming: "📙 San Ming Tong Hui · Stars Origin",
+    cTabYuanhai: "📜 Yuan Hai Zi Ping · Classical Poems",
+    cTabShenfeng: "⚔️ Shen Feng Tong Kao · Excess & Remedy",
+    cTabTiyao: "🏛️ Ba Zi Ti Yao · Hourly Matrix",
+
+    // Liu Yao
+    liuyaoCardTitle: "Quantum Coin Divination Arena",
+    liuyaoCardSub: "Three-Coin Holographic Casting",
+    watermarkLiuyao: "Liu Yao",
+    labelLiuyaoIntent: "Divination Topic",
+    qWealth: "💰 Wealth, Investment & Business (Focus: Wealth Deity)",
+    qCareer: "🏆 Career Promotion & Status (Focus: Officer Deity)",
+    qHealth: "💊 Health, Wellness & Recovery (Focus: Offspring Deity)",
+    qMarriageM: "💍 Love & Marriage · Male Querent (Focus: Wealth Line)",
+    qMarriageF: "👰 Love & Marriage · Female Querent (Focus: Officer Line)",
+    qTravel: "✈️ Travel Safety & Return Timing (Focus: Subject / Object)",
+    qExam: "📚 Academics, Exams & Certifications (Focus: Parent Line)",
+    btnTossText: "🪙 Cast One Line",
+    btnResetText: "Reset",
+    hexMatrixTitle: "Hexagram Matrix & Dynamic Shifts",
+    watermarkGua: "Hexagram",
+    descBenGua: "Original Hexagram (Current State)",
+    descBianGua: "Transformed Hexagram (Future Shift)",
+
+    // Codex
+    ganzhiCardTitle: "60 Ganzhi Sexagenary Cycle Compendium",
+    ganzhiCardSub: "NaYin Melodic Elements & Imperial Commentary",
+    watermarkGanzhi: "Ganzhi",
+    hex64CardTitle: "64 I-Ching Hexagrams Encyclopedia",
+    hex64CardSub: "Original Text, Judgments, Images & Practical Divination",
+    watermarkZhouyi: "I-Ching",
+    shenshaCardTitle: "Symbolic Stars (ShenSha) Compendium",
+    shenshaCardSub: "40+ Auspicious & Inauspicious Stars Analysis",
+    watermarkShensha: "ShenSha",
+    footerLine1: "⚡ Aurora Metaphysics Analytics System · Professional BaZi Architecture",
+    footerLine2: "Deployed on Cloudflare Pages Global Edge · Canonical Classical Engines",
+
+    // Modal
+    modalBadgeGanzhi: "60 Ganzhi Canon",
+    modalBadgeHex: "I-Ching & Liu Yao Canon",
+    modalBadgeShensha: "Symbolic Stars Canon",
+    clickReadClassic: "View Canon ➔",
+    clickHexDetail: "I-Ching Canon ➔",
+    clickShenshaDetail: "San Ming Canon ➔"
+  }
+};
+
+const SHISHEN_EN_MAP = {
+  '比肩': 'Friend (Bi Jian)',
+  '劫财': 'Rob Wealth (Jie Cai)',
+  '食神': 'Eating God (Shi Shen)',
+  '伤官': 'Hurting Officer (Shang Guan)',
+  '偏财': 'Indirect Wealth (Pian Cai)',
+  '正财': 'Direct Wealth (Zheng Cai)',
+  '七杀': 'Seven Killings (Qi Sha)',
+  '正官': 'Direct Officer (Zheng Guan)',
+  '偏印': 'Indirect Resource (Pian Yin)',
+  '正印': 'Direct Resource (Zheng Yin)'
+};
+
+const CHANGSHENG_EN_MAP = {
+  '长生': 'Birth',
+  '沐浴': 'Bath',
+  '冠带': 'Youth',
+  '临官': 'Prime',
+  '帝旺': 'Peak',
+  '衰': 'Decline',
+  '病': 'Sick',
+  '死': 'Death',
+  '墓': 'Tomb',
+  '绝': 'Extinction',
+  '胎': 'Embryo',
+  '养': 'Nourish'
+};
+
+function setLanguage(lang) {
+  currentLang = (lang === 'en') ? 'en' : 'zh';
+  localStorage.setItem('aurora_lang', currentLang);
+
+  // 更新切换按钮文案
+  const toggleBtnText = document.getElementById('langToggleText');
+  if (toggleBtnText) {
+    toggleBtnText.textContent = (currentLang === 'zh') ? 'English' : '中文';
+  }
+
+  // 批量替换具有 data-i18n 的元素内容
+  const dict = I18N_DICT[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) {
+      el.textContent = dict[key];
+    }
+  });
+
+  // 重新渲染当前八字细盘与六爻卦象，保证表格标签与数据完全同步
+  if (typeof computeBaziMaster === 'function') {
+    computeBaziMaster();
+  }
+  if (typeof renderLiuyaoMatrix === 'function') {
+    renderLiuyaoMatrix();
+  }
+  if (typeof renderCodexGrids === 'function') {
+    renderCodexGrids();
+  }
+}
+
+// 绑定语言切换按钮
+document.getElementById('btnLangToggle').addEventListener('click', () => {
+  setLanguage(currentLang === 'zh' ? 'en' : 'zh');
+});
+
 // ==================== Tab 切换 ====================
 document.querySelectorAll('.nav-tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1554,22 +1903,31 @@ function computeBaziMaster() {
 
   const isMale = (gender === 'male');
   const dayMaster = dG;
+  const isEn = (currentLang === 'en');
 
-  document.getElementById('baziSummaryHeader').textContent = 
-    `农历：${lunar.getYearInGanZhi()}年 (${lunar.getYearShengXiao()}) ${lunar.getMonthInChinese()}月${lunar.getDayInChinese()} ${eightChar.getTimeZhi()}时 · ${isMale?'乾造 (男命)':'坤造 (女命)'} · 胎元：${eightChar.getTaiYuan()} · 命宫：${eightChar.getMingGong()}`;
+  // 顶部概要
+  if (isEn) {
+    document.getElementById('baziSummaryHeader').textContent = 
+      `Lunar: ${lunar.getYearInGanZhi()} Year (${lunar.getYearShengXiao()}) Month ${lunar.getMonth()} Day ${lunar.getDay()} · ${isMale?'Male (Yang Forward)':'Female (Yin Forward)'} · Tai Yuan: ${eightChar.getTaiYuan()} · Ming Gong: ${eightChar.getMingGong()}`;
+  } else {
+    document.getElementById('baziSummaryHeader').textContent = 
+      `农历：${lunar.getYearInGanZhi()}年 (${lunar.getYearShengXiao()}) ${lunar.getMonthInChinese()}月${lunar.getDayInChinese()} ${eightChar.getTimeZhi()}时 · ${isMale?'乾造 (男命)':'坤造 (女命)'} · 胎元：${eightChar.getTaiYuan()} · 命宫：${eightChar.getMingGong()}`;
+  }
 
   // 问真八字 经典顺序: 年柱 (Year) | 月柱 (Month) | 日柱 (Day) | 时柱 (Hour) 从左至右
   const pillars = [
-    { name: '年柱', g: yG, z: yZ, ny: eightChar.getYearNaYin(), xun: eightChar.getYearXunKong(), isDay: false },
-    { name: '月柱', g: mG, z: mZ, ny: eightChar.getMonthNaYin(), xun: eightChar.getMonthXunKong(), isDay: false },
-    { name: '日柱', g: dG, z: dZ, ny: eightChar.getDayNaYin(), xun: eightChar.getDayXunKong(), isDay: true },
-    { name: '时柱', g: tG, z: tZ, ny: eightChar.getTimeNaYin(), xun: eightChar.getTimeXunKong(), isDay: false }
+    { name: isEn?'Year':'年柱', g: yG, z: yZ, ny: eightChar.getYearNaYin(), xun: eightChar.getYearXunKong(), isDay: false },
+    { name: isEn?'Month':'月柱', g: mG, z: mZ, ny: eightChar.getMonthNaYin(), xun: eightChar.getMonthXunKong(), isDay: false },
+    { name: isEn?'Day':'日柱', g: dG, z: dZ, ny: eightChar.getDayNaYin(), xun: eightChar.getDayXunKong(), isDay: true },
+    { name: isEn?'Hour':'时柱', g: tG, z: tZ, ny: eightChar.getTimeNaYin(), xun: eightChar.getTimeXunKong(), isDay: false }
   ];
 
   // 1. 主星
   const zhuxingRow = pillars.map(p => {
-    if(p.isDay) return `<span class="wz-shishen-yuan">${isMale?'元男':'元女'}</span>`;
-    return `<span class="wz-shishen-zhuxing">${getShiShen(dayMaster, p.g)}</span>`;
+    if(p.isDay) return `<span class="wz-shishen-yuan">${isEn ? (isMale?'Day Master (M)':'Day Master (F)') : (isMale?'元男':'元女')}</span>`;
+    const ssZh = getShiShen(dayMaster, p.g);
+    const ssText = isEn ? (SHISHEN_EN_MAP[ssZh] || ssZh) : ssZh;
+    return `<span class="wz-shishen-zhuxing">${ssText}</span>`;
   });
 
   // 2. 天干
@@ -1594,20 +1952,23 @@ function computeBaziMaster() {
   // 5. 副星
   const fuxingRow = pillars.map(p => {
     const list = CANGGAN_TABLE[p.z] || [];
-    const html = list.map(c => `<span>${getShiShen(dayMaster, c.g)}</span>`).join('');
+    const html = list.map(c => {
+      const ssZh = getShiShen(dayMaster, c.g);
+      return `<span>${isEn ? (SHISHEN_EN_MAP[ssZh] || ssZh) : ssZh}</span>`;
+    }).join('');
     return `<div class="fuxing-stack">${html}</div>`;
   });
 
   // 6. 星运
   const xingyunRow = pillars.map(p => {
     const cs = (CHANGSHENG_TABLE[dayMaster] || {})[p.z] || '胎';
-    return `<span style="font-weight:700; color:#FFFFFF;">${cs}</span>`;
+    return `<span style="font-weight:700; color:#FFFFFF;">${isEn ? (CHANGSHENG_EN_MAP[cs] || cs) : cs}</span>`;
   });
 
   // 7. 自坐
   const zizuoRow = pillars.map(p => {
     const cs = (CHANGSHENG_TABLE[p.g] || {})[p.z] || '胎';
-    return `<span style="color:var(--text-sub); font-size:12px;">${cs}</span>`;
+    return `<span style="color:var(--text-sub); font-size:12px;">${isEn ? (CHANGSHENG_EN_MAP[cs] || cs) : cs}</span>`;
   });
 
   // 8. 空亡
@@ -1627,24 +1988,25 @@ function computeBaziMaster() {
   });
 
   // 渲染表格 (年柱 | 月柱 | 日柱 | 时柱)
+  const dict = I18N_DICT[currentLang];
   document.getElementById('wenzhenTableBody').innerHTML = `
-    <tr><td class="row-label-col">主星 · MAIN</td>${zhuxingRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">天干 · STEM</td>${tianganRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">地支 · BRANCH</td>${dizhiRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">藏干 · HIDDEN</td>${cangganRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">副星 · SUB</td>${fuxingRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">星运 · STAGE</td>${xingyunRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">自坐 · SIT</td>${zizuoRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">空亡 · VOID</td>${kongwangRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col">纳音 · SOUND</td>${nayinRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
-    <tr><td class="row-label-col" style="vertical-align:top; padding-top:14px;">神煞 · STARS</td>${shenshaRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}" style="vertical-align:top;">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">${dict.rowZhuxing}</td>${zhuxingRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">${dict.rowTiangan}</td>${tianganRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">${dict.rowDizhi}</td>${dizhiRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">${dict.rowCanggan}</td>${cangganRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">${dict.rowFuxing}</td>${fuxingRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">${dict.rowXingyun}</td>${xingyunRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">${dict.rowZizuo}</td>${zizuoRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">${dict.rowKongwang}</td>${kongwangRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col">${dict.rowNayin}</td>${nayinRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
+    <tr><td class="row-label-col" style="vertical-align:top; padding-top:14px;">${dict.rowShensha}</td>${shenshaRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}" style="vertical-align:top;">${td}</td>`).join('')}</tr>
   `;
 
   // 原局干支冲合诊断
   const clashDiag = analyzeClashes([yG, mG, dG, tG], [yZ, mZ, dZ, tZ]);
-  document.getElementById('diagTiangan').textContent = clashDiag.tg;
-  document.getElementById('diagDizhi').textContent = clashDiag.dz;
-  document.getElementById('diagZhengzhu').textContent = clashDiag.zz;
+  document.getElementById('diagTiangan').textContent = clashDiag.tg === '无' ? dict.diagNoneTg : clashDiag.tg;
+  document.getElementById('diagDizhi').textContent = clashDiag.dz === '地支纯和无破' ? dict.diagNoneDz : clashDiag.dz;
+  document.getElementById('diagZhengzhu').textContent = clashDiag.zz === '无' ? dict.diagNoneZz : clashDiag.zz;
 
   // 五行面积雷达图 (72度纯正正五边形)
   const elemScores = { '木': 0, '火': 0, '土': 0, '金': 0, '水': 0 };
@@ -1663,9 +2025,10 @@ function computeBaziMaster() {
   ['木', '火', '土', '金', '水'].forEach(el => {
     const sc = elemScores[el];
     const pct = Math.round((sc / totalScore) * 100);
+    const label = isEn ? `${elemEn[el]}` : `${el} ${elemEn[el]}`;
     barsHtml += `
       <div class="bar-elem-item">
-        <span class="bar-elem-label" style="color:${elemColors[el]};">${el} ${elemEn[el]}</span>
+        <span class="bar-elem-label" style="color:${elemColors[el]};">${label}</span>
         <div class="bar-elem-track">
           <div class="bar-elem-fill" style="width:${pct}%; background:${elemColors[el]}; color:${elemColors[el]};"></div>
         </div>
@@ -1709,7 +2072,8 @@ function computeBaziMaster() {
     const labelR = maxRadius + 18;
     const lx = cx + labelR * Math.cos(angles[idx]);
     const ly = cy + labelR * Math.sin(angles[idx]) + 4;
-    vertexSvg += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" fill="${color}" font-size="10.5" font-weight="900" font-family="var(--font-sans)" text-anchor="middle">${p.el} ${p.pct}%</text>`;
+    const pointLabel = isEn ? `${elemEn[p.el]} ${p.pct}%` : `${p.el} ${p.pct}%`;
+    vertexSvg += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" fill="${color}" font-size="10.5" font-weight="900" font-family="var(--font-sans)" text-anchor="middle">${pointLabel}</text>`;
   });
 
   document.getElementById('radarSvgCanvas').innerHTML = `
@@ -1733,10 +2097,17 @@ function computeBaziMaster() {
   const dmElem = GAN_PROPS[dayMaster][0];
   const sameElemScore = elemScores[dmElem] + (dmElem==='木'?elemScores['水']:dmElem==='火'?elemScores['木']:dmElem==='土'?elemScores['火']:dmElem==='金'?elemScores['土']:elemScores['金']);
   const isStrong = (sameElemScore / totalScore) >= 0.45;
-  document.getElementById('baziXiyongVerdict').innerHTML = `
-    <div>【日主格局 / Pattern】：<span style="color:#FFF; font-weight:800;">${dayMaster}${dmElem} (${isStrong?'身旺得令 / Strong':'身弱喜帮 / Weak'})</span></div>
-    <div style="margin-top:4px;">【五行喜忌 / Element Affinity】：<span style="color:var(--cyan); font-weight:700;">${isStrong?'宜泄秀克制 · 喜食伤、财星、官杀 (Favor Output & Wealth)':'宜生扶帮身 · 喜印星、比劫 (Favor Resource & Peer)'}</span></div>
-  `;
+  if (isEn) {
+    document.getElementById('baziXiyongVerdict').innerHTML = `
+      <div>【Day Master Pattern】：<span style="color:#FFF; font-weight:800;">${dayMaster} ${elemEn[dmElem]} (${isStrong?'Strong / Season Supported':'Weak / Needs Resource & Support'})</span></div>
+      <div style="margin-top:4px;">【Favorable Elements】：<span style="color:var(--cyan); font-weight:700;">${isStrong?'Favor Output, Wealth, Officer (Wood/Fire/Metal drainage)':'Favor Resource, Peer (Water/Wood replenishment)'}</span></div>
+    `;
+  } else {
+    document.getElementById('baziXiyongVerdict').innerHTML = `
+      <div>【日主格局】：<span style="color:#FFF; font-weight:800;">${dayMaster}${dmElem} (${isStrong?'身旺得令':'身弱喜帮'})</span></div>
+      <div style="margin-top:4px;">【五行喜忌】：<span style="color:var(--cyan); font-weight:700;">${isStrong?'宜泄秀克制 · 喜食伤、财星、官杀':'宜生扶帮身 · 喜印星、比劫'}</span></div>
+    `;
+  }
 
   // 大运时空走势
   const yun = eightChar.getYun(isMale?1:0);
@@ -1747,20 +2118,21 @@ function computeBaziMaster() {
   for(let i=1; i<=10 && i<daYunList.length; i++){
     const dy = daYunList[i];
     const dyG = dy.getGanZhi().substring(0,1);
-    const ss = getShiShen(dayMaster, dyG);
+    const ssZh = getShiShen(dayMaster, dyG);
+    const ssText = isEn ? (SHISHEN_EN_MAP[ssZh] || ssZh) : ssZh;
     const yVal = 30 + Math.sin(i * 0.85) * 28 + (i % 2 === 0 ? 12 : -8);
     wavePoints.push({ x: (i-1) * 105 + 25, y: yVal });
     
     dyNodes += `
       <div class="timeline-card-node">
-        <div style="font-size:9px; color:var(--cyan); font-weight:800; font-family:var(--font-mono);">${dy.getStartAge()}-${dy.getEndAge()} 岁</div>
+        <div style="font-size:9px; color:var(--cyan); font-weight:800; font-family:var(--font-mono);">${dy.getStartAge()}-${dy.getEndAge()} ${dict.ageSuffix}</div>
         <div style="font-size:16px; font-weight:900; font-family:var(--font-serif); margin:2px 0; color:#FFF;">${dy.getGanZhi()}</div>
-        <div style="font-size:9px; color:var(--text-sub);">${ss} · ${dy.getStartYear()}年</div>
+        <div style="font-size:9px; color:var(--text-sub);">${ssText} · ${dy.getStartYear()}${dict.yearSuffix}</div>
       </div>
     `;
   }
   document.getElementById('dayunTimelineRow').innerHTML = dyNodes;
-  document.getElementById('dayunStartAgeLabel').textContent = `起运：${yun.getStartYear()}岁 (${yun.getStartSolar().toYmd()})`;
+  document.getElementById('dayunStartAgeLabel').textContent = `${dict.dayunStartPrefix}${yun.getStartYear()}${dict.ageSuffix} (${yun.getStartSolar().toYmd()})`;
 
   let pathD = `M ${wavePoints[0].x},${wavePoints[0].y}`;
   for(let i=1; i<wavePoints.length; i++){
@@ -1792,24 +2164,23 @@ function computeBaziMaster() {
 
   // 1. 《穷通宝鉴》
   const qtTxt = (qtDB[dayMaster]||{})[mZ] || `【穷通宝鉴】：${dayMaster}生于${mZ}月，调候以通关、水火调和、生克流通为上。`;
-  document.getElementById('qtTitle').textContent = `📘《穷通宝鉴》：${dayMaster}日元生于【${mZ}月】调候原著秘旨`;
+  document.getElementById('qtTitle').textContent = isEn ? `📘 Qiong Tong Bao Jian: Day Master ${dayMaster} born in ${mZ} Month Climate Tuning` : `📘《穷通宝鉴》：${dayMaster}日元生于【${mZ}月】调候原著秘旨`;
   document.getElementById('qtQuote').textContent = qtTxt;
-  document.getElementById('qtCommentary').textContent = `【理法精要】：穷通宝鉴以月令四时气候为先。冬月重在暖局解冻，夏月重在滋润调候，春秋重在生扶克制得宜。`;
+  document.getElementById('qtCommentary').textContent = isEn ? `[Canonical Insight]: Qiong Tong Bao Jian prioritizes seasonal balance. Winter months require fire warmth; summer months require water coolness; spring and autumn require balance between wood and metal.` : `【理法精要】：穷通宝鉴以月令四时气候为先。冬月重在暖局解冻，夏月重在滋润调候，春秋重在生扶克制得宜。`;
 
   // 2. 《滴天髓》
   const dtTxt = dtDB[dayMaster] || `《滴天髓》：能知衰旺之真机，其于三命之奥，思过半矣。`;
-  document.getElementById('dtTitle').textContent = `📕《滴天髓阐微》：论【${dayMaster}${GAN_PROPS[dayMaster][0]}】日主性情与全局机要`;
+  document.getElementById('dtTitle').textContent = isEn ? `📕 Di Tian Sui: Heavenly Stem ${dayMaster} Essence & Systemic Polarity` : `📕《滴天髓阐微》：论【${dayMaster}${GAN_PROPS[dayMaster][0]}】日主性情与全局机要`;
   document.getElementById('dtQuote').textContent = dtTxt;
-  document.getElementById('dtCommentary').textContent = `【理法精要】：滴天髓主张「中和为贵，旺则宜泄宜伤，衰则喜帮喜助」，精与神兼顾，顺气势之自然。`;
+  document.getElementById('dtCommentary').textContent = isEn ? `[Canonical Insight]: Di Tian Sui emphasizes natural harmony. When excessively strong, drain or conquer; when weak, assist and nourish.` : `【理法精要】：滴天髓主张「中和为贵，旺则宜泄宜伤，衰则喜帮喜助」，精与神兼顾，顺气势之自然。`;
 
   // 3. 《子平真诠》
-  // 获取月令主格
   const monthMainGan = (CANGGAN_TABLE[mZ] && CANGGAN_TABLE[mZ][0]) ? CANGGAN_TABLE[mZ][0].g : '癸';
   const mainPattern = getShiShen(dayMaster, monthMainGan);
   const zpTxt = zpDB[mainPattern] || `《子平真诠·论格局》：“八字用神，专求月令。以日干配月令地支，而生克不同，格局乃分。财官印食，此用神之善而顺用之者也；煞伤劫刃，此用神之不善而逆用之者也。”`;
-  document.getElementById('zpTitle').textContent = `📗《子平真诠》：沈孝瞻论月令【${mainPattern}格】与相神护卫`;
+  document.getElementById('zpTitle').textContent = isEn ? `📗 Zi Ping Zhen Quan: Pattern [${SHISHEN_EN_MAP[mainPattern] || mainPattern}] & Auxiliary Deities` : `📗《子平真诠》：沈孝瞻论月令【${mainPattern}格】与相神护卫`;
   document.getElementById('zpQuote').textContent = zpTxt;
-  document.getElementById('zpCommentary').textContent = `【理法精要】：沈孝瞻论命以月令格局为体，相神为用。善用神顺用（财宜生、官宜护、印宜清、食宜旺），不善用神逆用（七杀宜制化、伤官宜佩印生财、阳刃宜驾杀）。`;
+  document.getElementById('zpCommentary').textContent = isEn ? `[Canonical Insight]: Master Shen Xiaozhan bases fate on monthly decree patterns. Auspicious deities are cultivated; inauspicious deities are controlled and transformed.` : `【理法精要】：沈孝瞻论命以月令格局为体，相神为用。善用神顺用（财宜生、官宜护、印宜清、食宜旺），不善用神逆用（七杀宜制化、伤官宜佩印生财、阳刃宜驾杀）。`;
 
   // 4. 《三命通会》
   const uniqueShensha = [...new Set(allFoundShenshaNames)];
@@ -1820,28 +2191,28 @@ function computeBaziMaster() {
       smQuotesHtml += `<div style="margin-bottom:12px; cursor:pointer;" onclick="openShenshaModal('${sName}')"><strong>【${sName}】</strong>：${sDetail}</div>`;
     }
   });
-  document.getElementById('smTitle').textContent = `📙《三命通会》：明·万民英论本命所带神煞（${uniqueShensha.length} 尊）`;
-  document.getElementById('smQuote').innerHTML = smQuotesHtml || '《三命通会》：神煞吉凶，须参合四柱生克制化、格局喜忌而定，不可执一而论。';
-  document.getElementById('smCommentary').textContent = `【理法精要】：万民英云：“贵人互换得位，遇难呈祥；吉神得令，福力倍增；凶煞有制，反主威权。”（点击任意神煞可查看全息典籍考证）`;
+  document.getElementById('smTitle').textContent = isEn ? `📙 San Ming Tong Hui: Symbolic Stars in Natal Chart (${uniqueShensha.length} Stars)` : `📙《三命通会》：明·万民英论本命所带神煞（${uniqueShensha.length} 尊）`;
+  document.getElementById('smQuote').innerHTML = smQuotesHtml || (isEn ? 'San Ming Tong Hui: Symbolic stars must be evaluated together with stem and branch interactions.' : '《三命通会》：神煞吉凶，须参合四柱生克制化、格局喜忌而定，不可执一而论。');
+  document.getElementById('smCommentary').textContent = isEn ? `[Canonical Insight]: Click any star card above or in the table to inspect imperial source texts.` : `【理法精要】：万民英云：“贵人互换得位，遇难呈祥；吉神得令，福力倍增；凶煞有制，反主威权。”（点击任意神煞可查看全息典籍考证）`;
 
   // 5. 《渊海子平》
   const yhTxt = `${yhDB.jishen || ''}\n\n${yhDB.xiji || ''}` || `《渊海子平》：“人禀天地，命属阴阳。欲知贵贱，先观日主；欲辨吉凶，全审提纲。”`;
-  document.getElementById('yhTitle').textContent = `📜《渊海子平》：宋·徐子平《继善篇》《喜忌篇》古赋指要`;
+  document.getElementById('yhTitle').textContent = isEn ? `📜 Yuan Hai Zi Ping: Classical Poems & Aphorisms` : `📜《渊海子平》：宋·徐子平《继善篇》《喜忌篇》古赋指要`;
   document.getElementById('yhQuote').textContent = yhTxt;
-  document.getElementById('yhCommentary').textContent = `【理法精要】：渊海子平为子平命理奠基之作，以五行生克、干支会合为纲，融汇十神、格局与古赋精义。`;
+  document.getElementById('yhCommentary').textContent = isEn ? `[Canonical Insight]: Foundational text of ZiPing astrology formulating stem and branch combinations.` : `【理法精要】：渊海子平为子平命理奠基之作，以五行生克、干支会合为纲，融汇十神、格局与古赋精义。`;
 
   // 6. 《神峰通考》
   const sfTxt = `${sfDB.bingyao || ''}\n\n${sfDB.dongjing || ''}` || `《神峰通考·病药说》：“格格寻病，格格寻药。有病方为贵，无伤不是奇。格中如去病，财禄两相随。”`;
-  document.getElementById('sfTitle').textContent = `⚔️《神峰通考》：明·张楠《病药说》原局辩证剖析`;
+  document.getElementById('sfTitle').textContent = isEn ? `⚔️ Shen Feng Tong Kao: Disease & Remedy Doctrine` : `⚔️《神峰通考》：明·张楠《病药说》原局辩证剖析`;
   document.getElementById('sfQuote').textContent = sfTxt;
-  document.getElementById('sfCommentary').textContent = `【理法精要】：张楠主张八字辩证施治，以原局最旺、最衰或偏枯之处为“病”，以能克抑旺神、生扶衰神、调候解冻之五行为“药”。`;
+  document.getElementById('sfCommentary').textContent = isEn ? `[Canonical Insight]: Zhang Nan dialectically identifies chart deficiencies as "diseases" and balancing elements as "remedies".` : `【理法精要】：张楠主张八字辩证施治，以原局最旺、最衰或偏枯之处为“病”，以能克抑旺神、生扶衰神、调候解冻之五行为“药”。`;
 
   // 7. 《八字提要》
   const tyKey = `${dayMaster}_${mZ}_${tG}${tZ}`;
   const tyTxt = tyDB[tyKey] || tyDB[`${dayMaster}_${mZ}_${tZ}`] || `【八字提要 · 徐乐吾】：${dayMaster}日元生于${mZ}月${tZ}时，官印相停，日元通根得气，时干透出，格局纯清。`;
-  document.getElementById('tyTitle').textContent = `🏛️《八字提要》：徐乐吾详论【${dayMaster}日元 · ${mZ}月 · ${tG}${tZ}时】`;
+  document.getElementById('tyTitle').textContent = isEn ? `🏛️ Ba Zi Ti Yao: Hourly Analysis for [${dayMaster} in ${mZ} Month at ${tG}${tZ} Hour]` : `🏛️《八字提要》：徐乐吾详论【${dayMaster}日元 · ${mZ}月 · ${tG}${tZ}时】`;
   document.getElementById('tyQuote').textContent = tyTxt;
-  document.getElementById('tyCommentary').textContent = `【理法精要】：八字提要将日元结合月令提纲与生时十二时辰，详尽剖析干支生克、旺衰消长之细微玄机。`;
+  document.getElementById('tyCommentary').textContent = isEn ? `[Canonical Insight]: Xu Lewu meticulously analyzes stem and branch hour combinations with monthly orders.` : `【理法精要】：八字提要将日元结合月令提纲与生时十二时辰，详尽剖析干支生克、旺衰消长之细微玄机。`;
 }
 
 // 快速切换神煞古典引证面板
@@ -1894,13 +2265,19 @@ function renderLiuyaoMatrix() {
   const lunar = solar.getLunar();
   const dGan = lunar.getDayGan();
   
-  const SIX_GODS = ["青龙", "朱雀", "勾陈", "螣蛇", "白虎", "玄武"];
+  const isEn = (currentLang === 'en');
+  const SIX_GODS_ZH = ["青龙", "朱雀", "勾陈", "螣蛇", "白虎", "玄武"];
+  const SIX_GODS_EN = ["Azure Dragon", "Vermilion Bird", "Hook Snake", "Flying Serpent", "White Tiger", "Black Tortoise"];
   const START_MAP = { '甲':0, '乙':0, '丙':1, '丁':1, '戊':2, '己':3, '庚':4, '辛':4, '壬':5, '癸':5 };
   const sIdx = START_MAP[dGan] || 0;
   const gods = [];
-  for(let i=0; i<6; i++) gods.push(SIX_GODS[(sIdx + i) % 6]);
+  for(let i=0; i<6; i++) {
+    gods.push(isEn ? SIX_GODS_EN[(sIdx + i) % 6] : SIX_GODS_ZH[(sIdx + i) % 6]);
+  }
   
-  const YAO_LABELS = ['初爻', '二爻', '三爻', '四爻', '五爻', '上爻'];
+  const YAO_LABELS = isEn 
+    ? ['Line 1 (Base)', 'Line 2', 'Line 3', 'Line 4', 'Line 5 (Ruler)', 'Line 6 (Top)']
+    : ['初爻', '二爻', '三爻', '四爻', '五爻', '上爻'];
   let stackHtml = '';
   
   tossHistory.forEach((v, idx) => {
@@ -1908,12 +2285,17 @@ function renderLiuyaoMatrix() {
     const isYang = (v === 7 || v === 9);
     const sym = isYang ? '━━━━━━━' : '━━━   ━━━';
     const symClass = isYang ? 'bar-yang' : 'bar-yin';
-    const dongDesc = v === 9 ? '○ (动阳变阴)' : (v === 6 ? '× (动阴变阳)' : '静爻');
+    let dongDesc = '';
+    if (isEn) {
+      dongDesc = v === 9 ? '○ (Active Yang → Yin)' : (v === 6 ? '× (Active Yin → Yang)' : 'Static');
+    } else {
+      dongDesc = v === 9 ? '○ (动阳变阴)' : (v === 6 ? '× (动阴变阳)' : '静爻');
+    }
     
     stackHtml += `
       <div class="hex-bar-row ${isDong?'active-change':''}">
-        <span style="font-weight:800; color:var(--cyan); width:45px;">${gods[idx]}</span>
-        <span style="color:var(--text-sub); width:35px; font-family:var(--font-mono); font-size:10px;">${YAO_LABELS[idx]}</span>
+        <span style="font-weight:800; color:var(--cyan); width:${isEn?'100px':'45px'}; font-size:11px;">${gods[idx]}</span>
+        <span style="color:var(--text-sub); width:${isEn?'85px':'35px'}; font-family:var(--font-mono); font-size:10px;">${YAO_LABELS[idx]}</span>
         <span class="luminous-yao-bar ${symClass}">${sym}</span>
         <span style="font-size:10px; color:${isDong?'#00F2FE':'var(--text-faint)'};">${dongDesc}</span>
       </div>
@@ -1923,7 +2305,7 @@ function renderLiuyaoMatrix() {
   document.getElementById('luminousLinesStack').innerHTML = stackHtml;
 
   const topic = document.getElementById('liuyaoQuerySelect').value;
-  const verdictDict = {
+  const verdictDictZH = {
     'wealth': '【商业求财】：以妻财爻为核心用神，子孙爻为财源。财爻得月建日辰生助、动而化进神者，财源亨通大吉；兄弟发动克财主破耗，宜稳妥防守。',
     'career': '【职位升迁】：以官鬼爻为功名，妻财为官之原神。官鬼旺相持世或动而生世必得晋升显贵；子孙发动克官主阻隔退步。',
     'health': '【身体病情】：世爻为自身元气，官鬼为病灶，子孙为良医药物。子孙爻旺相克鬼者，药到病除逢凶化吉。',
@@ -1933,12 +2315,25 @@ function renderLiuyaoMatrix() {
     'exam': '【学业功名】：以父母爻为文书证书，官鬼爻为功名主考。父母官鬼两旺必登金榜。'
   };
 
+  const verdictDictEN = {
+    'wealth': '[Commercial Wealth & Profit]: Wealth line (Qi Cai) is the key focus; Offspring line (Zi Sun) is the profit source. When Wealth receives monthly and daily cosmic support, abundant financial flow follows; when Peer/Sibling lines move aggressively, protect assets with disciplined restraint.',
+    'career': '[Career Promotion & Status]: Officer line (Guan Gui) governs reputation; Wealth fuels power. When Officer resides prominently on the Subject line or transforms auspiciously, high leadership advancement is assured.',
+    'health': '[Vitality & Recovery]: Subject line represents vitality; Officer represents affliction; Offspring represents medicine and healers. When Offspring overcomes Officer, recovery is smooth and complete.',
+    'marriage_m': '[Love & Marriage · Male Querent]: Wealth line represents partner. Harmonious combination between Wealth and Subject lines promises dedicated companionship.',
+    'marriage_f': '[Love & Marriage · Female Querent]: Officer line represents partner. Auspicious Officer line brings noble and enduring partnership.',
+    'travel': '[Travel & Journey]: Subject represents traveler; Object represents destination. When devoid of void clashes, journeys proceed smoothly and safely.',
+    'exam': '[Academics & Credentials]: Parent line (Fu Mu) represents certificates and examinations. Both Parent and Officer thriving guarantees academic triumph.'
+  };
+
+  const verdictText = isEn ? verdictDictEN[topic] : verdictDictZH[topic];
+  const verdictHeader = isEn ? '🎯 Master Yehe 《Zeng Shan Bu Yi》 Canonical Judgment' : '🎯 野鹤老人《增删卜易》理法透视断语';
+
   document.getElementById('liuyaoVerdictPanel').innerHTML = `
     <div style="background:rgba(0, 242, 254, 0.08); border:1px solid rgba(0, 242, 254, 0.35); border-radius:14px; padding:16px; box-shadow:0 0 20px rgba(0,242,254,0.15); margin-top:14px;">
       <div style="font-weight:800; color:#00F2FE; font-size:13px; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
-        <span>🎯</span> <span>野鹤老人《增删卜易》理法透视断语</span>
+        <span>${verdictHeader}</span>
       </div>
-      <div style="font-size:13px; color:#FFFFFF; line-height:1.6;">${verdictDict[topic]}</div>
+      <div style="font-size:13px; color:#FFFFFF; line-height:1.6;">${verdictText}</div>
     </div>
   `;
 }
@@ -1962,63 +2357,35 @@ const NAYIN_NAMES = [
   "大溪水","大溪水","沙中土","沙中土","天上火","天上火","石榴木","石榴木","大海水","大海水"
 ];
 
-document.getElementById('ganzhiBentoGrid').innerHTML = GANZHI_ITEMS.map((gz, idx) => `
-  <div class="codex-item-bento" style="cursor:pointer;" onclick="openGanzhiModal('${gz}')">
-    <div style="font-family:var(--font-serif); font-size:18px; font-weight:900; color:#FFF; margin-bottom:4px;">${gz}</div>
-    <div style="font-size:11px; color:var(--cyan); font-family:var(--font-mono);">${NAYIN_NAMES[idx]}</div>
-    <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">点击查阅古籍 ➔</div>
-  </div>
-`).join('');
+function renderCodexGrids() {
+  const isEn = (currentLang === 'en');
+  const dict = I18N_DICT[currentLang];
 
-const HEX_NAMES = [
-  "乾为天", "天风姤", "天山遁", "天地否", "风地观", "山地剥", "火地晋", "火天大有",
-  "坎为水", "水泽节", "水雷屯", "水火既济", "泽火革", "雷火丰", "地火明夷", "地水师",
-  "艮为山", "山火贲", "山天大畜", "山泽损", "火泽睽", "天泽履", "风泽中孚", "风山渐",
-  "震为雷", "雷地豫", "雷水解", "雷风恒", "地风升", "水风井", "泽风大过", "泽雷随",
-  "巽为风", "风天小畜", "风火家人", "风雷益", "天雷无妄", "火雷噬嗑", "山雷颐", "山风蛊",
-  "离为火", "火山旅", "火风鼎", "火水未济", "山水蒙", "风水涣", "天水讼", "天火同人",
-  "坤为地", "地雷复", "地泽临", "地天泰", "雷天大壮", "泽天夬", "水天需", "水地比",
-  "兑为泽", "泽水困", "泽地萃", "泽山咸", "水山蹇", "地山谦", "雷山小过", "雷泽归妹"
-];
+  document.getElementById('ganzhiBentoGrid').innerHTML = GANZHI_ITEMS.map((gz, idx) => `
+    <div class="codex-item-bento" style="cursor:pointer;" onclick="openGanzhiModal('${gz}')">
+      <div style="font-family:var(--font-serif); font-size:18px; font-weight:900; color:#FFF; margin-bottom:4px;">${gz}</div>
+      <div style="font-size:11px; color:var(--cyan); font-family:var(--font-mono);">${NAYIN_NAMES[idx]}</div>
+      <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">${dict.clickReadClassic}</div>
+    </div>
+  `).join('');
 
-document.getElementById('hex64BentoGrid').innerHTML = HEX_NAMES.map((name, idx) => `
-  <div class="codex-item-bento" style="cursor:pointer;" onclick="openHexModal('${name}')">
-    <div style="font-family:var(--font-serif); font-size:16px; font-weight:900; color:#FFF; margin-bottom:4px;">${name}</div>
-    <div style="font-size:11px; color:var(--purple); font-family:var(--font-mono);">第 ${idx+1} 卦</div>
-    <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">《周易》经义 ➔</div>
-  </div>
-`).join('');
+  document.getElementById('hex64BentoGrid').innerHTML = HEX_NAMES.map((name, idx) => `
+    <div class="codex-item-bento" style="cursor:pointer;" onclick="openHexModal('${name}')">
+      <div style="font-family:var(--font-serif); font-size:16px; font-weight:900; color:#FFF; margin-bottom:4px;">${name}</div>
+      <div style="font-size:11px; color:var(--purple); font-family:var(--font-mono);">${isEn ? `Hexagram #${idx+1}` : `第 ${idx+1} 卦`}</div>
+      <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">${dict.clickHexDetail}</div>
+    </div>
+  `).join('');
 
-const SHENSHA_ITEMS = [
-  { name: '天乙贵人', desc: '万神之首 · 逢凶化吉' },
-  { name: '天德月德', desc: '日月德秀 · 福寿康宁' },
-  { name: '德秀贵人', desc: '阴阳德秀 · 聪慧纯粹' },
-  { name: '天厨贵人', desc: '食禄丰盈 · 享天赐福' },
-  { name: '福星贵人', desc: '福禄康宁 · 平安无忧' },
-  { name: '文昌贵人', desc: '才思敏捷 · 考学功名' },
-  { name: '国印贵人', desc: '掌印执柄 · 威严诚实' },
-  { name: '禄神', desc: '食禄丰厚 · 强健通达' },
-  { name: '金舆', desc: '享荫庇福 · 良配资助' },
-  { name: '红艳煞', desc: '容貌姝丽 · 异性缘佳' },
-  { name: '羊刃', desc: '刚烈司刑 · 身弱喜帮' },
-  { name: '飞刃', desc: '机敏决断 · 逢吉化煞' },
-  { name: '将星', desc: '领导统御 · 武职显贵' },
-  { name: '华盖', desc: '孤高才智 · 喜哲学玄学' },
-  { name: '驿马', desc: '奔波迁居 · 升迁远行' },
-  { name: '咸池桃花', desc: '风流多情 · 艺术容貌' },
-  { name: '词馆学堂', desc: '文章锦绣 · 学术造诣' },
-  { name: '披麻吊客', desc: '孝服关煞 · 行事谨慎' },
-  { name: '魁罡贵人', desc: '果决威严 · 发福百端' },
-  { name: '劫煞亡神', desc: '敏锐勇决 · 喜吉神化' }
-];
-
-document.getElementById('shenshaBentoGrid').innerHTML = SHENSHA_ITEMS.map(s => `
-  <div class="codex-item-bento" style="cursor:pointer;" onclick="openShenshaModal('${s.name}')">
-    <div style="font-family:var(--font-serif); font-size:16px; font-weight:900; color:var(--cyan); margin-bottom:4px;">${s.name}</div>
-    <div style="font-size:11px; color:var(--text-sub);">${s.desc}</div>
-    <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">《三命通会》详论 ➔</div>
-  </div>
-`).join('');
+  document.getElementById('shenshaBentoGrid').innerHTML = SHENSHA_ITEMS.map(s => `
+    <div class="codex-item-bento" style="cursor:pointer;" onclick="openShenshaModal('${s.name}')">
+      <div style="font-family:var(--font-serif); font-size:16px; font-weight:900; color:var(--cyan); margin-bottom:4px;">${s.name}</div>
+      <div style="font-size:11px; color:var(--text-sub);">${s.desc}</div>
+      <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">${dict.clickShenshaDetail}</div>
+    </div>
+  `).join('');
+}
+renderCodexGrids();
 
 // ==================== 全息古籍秘典弹窗控制函数 ====================
 function openGanzhiModal(gz) {
@@ -2149,6 +2516,9 @@ document.addEventListener('keydown', (e) => {
     closeClassicModal();
   }
 });
+
+// 页面初始加载应用语言
+setLanguage(currentLang);
 </script>
 </body>
 </html>
