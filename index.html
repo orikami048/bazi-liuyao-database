@@ -876,6 +876,157 @@ footer {
   font-family: var(--font-mono);
   letter-spacing: 0.5px;
 }
+
+/* ==================== 现代通俗人话解读卡片 (Plain-Language Overview) ==================== */
+.plain-summary-card {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%), var(--glass-bg);
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(0, 242, 254, 0.05);
+  margin-bottom: 20px;
+}
+.plain-grid-deck {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+@media (max-width: 900px) {
+  .plain-grid-deck { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 550px) {
+  .plain-grid-deck { grid-template-columns: 1fr; }
+}
+.plain-item-box {
+  background: rgba(3, 7, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.25s ease;
+}
+.plain-item-box:hover {
+  border-color: var(--cyan);
+  background: rgba(8, 16, 32, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 242, 254, 0.15);
+}
+.plain-item-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--cyan);
+}
+.plain-item-badge {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(0, 242, 254, 0.15);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  color: var(--cyan);
+}
+.plain-item-desc {
+  font-size: 12px;
+  color: #E2E8F0;
+  line-height: 1.6;
+}
+
+/* 西方心理原型副标 (Western Archetype Subtitle) */
+.wz-archetype-tag {
+  display: block;
+  font-size: 10px;
+  color: var(--cyan);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  margin-top: 2px;
+  opacity: 0.9;
+}
+
+/* 六爻明晰吉凶大字徽章 */
+.liuyao-verdict-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: rgba(0, 242, 254, 0.12);
+  border: 1px solid rgba(0, 242, 254, 0.4);
+}
+.liuyao-badge-auspicious {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 900;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: #FFFFFF;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.5);
+}
+.liuyao-badge-caution {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 900;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: #FFFFFF;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.5);
+}
+.liuyao-badge-inauspicious {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 900;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+  color: #FFFFFF;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.5);
+}
+
+/* 古籍现代白话映射 */
+.classic-modern-mapping {
+  margin-top: 10px;
+  background: rgba(0, 242, 254, 0.05);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #F1F5F9;
+  line-height: 1.6;
+}
+.classic-modern-mapping strong {
+  color: var(--cyan);
+}
+
+/* 响应式表格防溢出与移动端触控优化 */
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding-bottom: 4px;
+}
+@media (max-width: 768px) {
+  .dashboard-root { padding: 12px 14px 60px; }
+  .top-nav { padding: 12px 16px; gap: 12px; }
+  .nav-switcher { width: 100%; overflow-x: auto; scrollbar-width: none; }
+  .nav-tab-btn { padding: 6px 12px; font-size: 12px; white-space: nowrap; }
+  .wz-shensha-pill { padding: 5px 8px; font-size: 11px; margin: 2px 0; }
+  .wz-gan-char, .wz-zhi-char { font-size: 26px; }
+  .form-input-deck { grid-template-columns: 1fr; }
+  .tree-node-title { font-size: 14px; }
+}
 </style>
 </head>
 <body>
@@ -932,7 +1083,25 @@ footer {
         </div>
         <div class="form-field-unit">
           <label data-i18n="labelBirthTime">出生时间</label>
-          <input type="time" id="baziTime" class="glass-input-ctrl" value="00:00">
+          <div style="display:flex; gap:6px;">
+            <input type="time" id="baziTime" class="glass-input-ctrl" value="00:00" style="flex:1;">
+            <select id="baziShichenSelect" class="glass-input-ctrl" style="width:130px; font-size:12px;" title="十二时辰速选">
+              <option value="" data-i18n="optShichenManual">⏱️ 时辰速选</option>
+              <option value="23:30">子时 (23-01点)</option>
+              <option value="02:00">丑时 (01-03点)</option>
+              <option value="04:00">寅时 (03-05点)</option>
+              <option value="06:00">卯时 (05-07点)</option>
+              <option value="08:00">辰时 (07-09点)</option>
+              <option value="10:00">巳时 (09-11点)</option>
+              <option value="12:00">午时 (11-13点)</option>
+              <option value="14:00">未时 (13-15点)</option>
+              <option value="16:00">申时 (15-17点)</option>
+              <option value="18:00">酉时 (17-19点)</option>
+              <option value="20:00">戌时 (19-21点)</option>
+              <option value="22:00">亥时 (21-23点)</option>
+              <option value="unknown" data-i18n="optShichenUnknown">时辰未知 (看前三柱)</option>
+            </select>
+          </div>
         </div>
         <div class="form-field-unit">
           <label data-i18n="labelGender">命造性别</label>
@@ -963,6 +1132,20 @@ footer {
       </div>
     </div>
 
+    <!-- ✨ 现代通俗通篇人话总评卡片 (普通人一眼看懂的核心指引) -->
+    <div class="bento-card plain-summary-card" id="plainSummaryCard">
+      <div class="plain-summary-header">
+        <div class="plain-summary-title" id="plainSummaryTitle">✨ 命局全息现代通俗人话总评 · Life Archetype & Core Strategy</div>
+        <div class="plain-archetype-badge" id="plainArchetypeBadge">荣格心理原型：领航开拓者</div>
+      </div>
+      <div class="plain-summary-desc" id="plainSummaryIntro">
+        告别晦涩难懂的古籍文言文，以下为您通过现代心理学与生活决策视角提炼的四大人生核心面向透视：
+      </div>
+      <div class="plain-grid-deck" id="plainSummaryDeck">
+        <!-- JS 动态注入性格特质、事业财富、感情婚恋、健康养生卡片 -->
+      </div>
+    </div>
+
     <!-- 核心两列布局: 左侧问真专业细盘表格，右侧五行面积雷达与诊断 -->
     <div class="bazi-layout-grid">
       
@@ -978,21 +1161,23 @@ footer {
             <div class="card-watermark-tag" data-i18n="watermarkWenzhen">问真八字</div>
           </div>
 
-          <!-- 问真八字 经典专业细盘表格 (年柱 | 月柱 | 日柱 | 时柱 从左到右) -->
-          <table class="wenzhen-paipan-table">
-            <thead>
-              <tr>
-                <th class="row-label-col" data-i18n="thPillars">四柱</th>
-                <th class="col-header-pillar" data-i18n="thYear">年柱</th>
-                <th class="col-header-pillar" data-i18n="thMonth">月柱</th>
-                <th class="col-header-pillar day-pillar-highlight" data-i18n="thDay">日柱</th>
-                <th class="col-header-pillar" data-i18n="thHour">时柱</th>
-              </tr>
-            </thead>
-            <tbody id="wenzhenTableBody">
-              <!-- JS 动态渲染主星、天干、地支、藏干、副星、星运、自坐、空亡、纳音、每柱专属神煞 -->
-            </tbody>
-          </table>
+          <!-- 问真八字 经典专业细盘表格 (包含外层响应式滚动容器防移动端溢出) -->
+          <div class="table-responsive-wrapper">
+            <table class="wenzhen-paipan-table">
+              <thead>
+                <tr>
+                  <th class="row-label-col" data-i18n="thPillars">四柱</th>
+                  <th class="col-header-pillar" data-i18n="thYear">年柱</th>
+                  <th class="col-header-pillar" data-i18n="thMonth">月柱</th>
+                  <th class="col-header-pillar day-pillar-highlight" data-i18n="thDay">日柱</th>
+                  <th class="col-header-pillar" data-i18n="thHour">时柱</th>
+                </tr>
+              </thead>
+              <tbody id="wenzhenTableBody">
+                <!-- JS 动态渲染主星、天干、地支、藏干、副星、星运、自坐、空亡、纳音、每柱专属神煞 -->
+              </tbody>
+            </table>
+          </div>
 
           <!-- 原局刑冲克害合诊断卡片 -->
           <div class="clash-diagnosis-box">
@@ -1080,6 +1265,9 @@ footer {
         <div class="classic-quote-title" id="qtTitle">📘《穷通宝鉴》月令调候秘奥 · Climate Tuning</div>
         <div class="classic-quote-body" id="qtQuote">载入中...</div>
         <div class="classic-commentary" id="qtCommentary">载入中...</div>
+        <div class="classic-modern-mapping" id="qtModern">
+          <strong>💡 现代生活人话解读：</strong><span id="qtModernText">气候调候相当于人生的环境适宜度与舒适圈。水旺需火暖，犹如寒冬需暖炉，指引我们在事业上多借用热情、开朗的团队力量补齐短板。</span>
+        </div>
       </div>
 
       <!-- 2. 滴天髓 -->
@@ -1087,6 +1275,9 @@ footer {
         <div class="classic-quote-title" id="dtTitle">📕《滴天髓阐微》天道衰旺真机 · Heavenly Stems Essence</div>
         <div class="classic-quote-body" id="dtQuote">载入中...</div>
         <div class="classic-commentary" id="dtCommentary">载入中...</div>
+        <div class="classic-modern-mapping" id="dtModern">
+          <strong>💡 现代生活人话解读：</strong><span id="dtModernText">日主秉性即你的天生底层性格驱动力。顺应天性发展才能事半功倍，过刚则需学习包容与妥协，过柔则需强化意志与执行力。</span>
+        </div>
       </div>
 
       <!-- 3. 子平真诠 -->
@@ -1094,6 +1285,9 @@ footer {
         <div class="classic-quote-title" id="zpTitle">📗《子平真诠》沈孝瞻论月令用神与相神护卫 · Pattern & Auxiliary Deity</div>
         <div class="classic-quote-body" id="zpQuote">载入中...</div>
         <div class="classic-commentary" id="zpCommentary">载入中...</div>
+        <div class="classic-modern-mapping" id="zpModern">
+          <strong>💡 现代生活人话解读：</strong><span id="zpModernText">格局相当于你的社会职业定位与价值创造模式。吉格重在持之以恒积累优势壁垒，凶格反转则代表具备在逆境与高压下破局开创的独到能力。</span>
+        </div>
       </div>
 
       <!-- 4. 三命通会 -->
@@ -1101,6 +1295,9 @@ footer {
         <div class="classic-quote-title" id="smTitle">📙《三命通会》明·万民英论四柱神煞与命局吉凶 · Star Matrix Origin</div>
         <div class="classic-quote-body" id="smQuote">载入中...</div>
         <div class="classic-commentary" id="smCommentary">载入中...</div>
+        <div class="classic-modern-mapping" id="smModern">
+          <strong>💡 现代生活人话解读：</strong><span id="smModernText">神煞是人生的特殊光环与情境触发器。如天乙贵人主逢凶化吉、关键时刻有贵人相助；文昌词馆主学习理解能力强、适合文案与学术深耕。</span>
+        </div>
       </div>
 
       <!-- 5. 渊海子平 -->
@@ -1108,6 +1305,9 @@ footer {
         <div class="classic-quote-title" id="yhTitle">📜《渊海子平》宋·徐子平《继善篇》《喜忌篇》古赋直指 · Classical Canon Aphorisms</div>
         <div class="classic-quote-body" id="yhQuote">载入中...</div>
         <div class="classic-commentary" id="yhCommentary">载入中...</div>
+        <div class="classic-modern-mapping" id="yhModern">
+          <strong>💡 现代生活人话解读：</strong><span id="yhModernText">古赋提炼的是传统人生的处世智慧，教导我们在优势大运时积极出击拓展，在流年受克时守正沉淀、避免高风险冒进。</span>
+        </div>
       </div>
 
       <!-- 6. 神峰通考 -->
@@ -1115,6 +1315,9 @@ footer {
         <div class="classic-quote-title" id="sfTitle">⚔️《神峰通考》明·张楠《病药说》原局辩证剖析 · Disease & Remedy Doctrine</div>
         <div class="classic-quote-body" id="sfQuote">载入中...</div>
         <div class="classic-commentary" id="sfCommentary">载入中...</div>
+        <div class="classic-modern-mapping" id="sfModern">
+          <strong>💡 现代生活人话解读：</strong><span id="sfModernText">人生有痛点（病）才有突破与超越（药）。找到命局的解药元素并将其投射到现实生活（如运动、学习特定技能、结交互补型伙伴），即可化阻力为动力。</span>
+        </div>
       </div>
 
       <!-- 7. 八字提要 -->
@@ -1122,6 +1325,9 @@ footer {
         <div class="classic-quote-title" id="tyTitle">🏛️《八字提要》徐乐吾日元干支时盘详论 · Hourly Combination Analysis</div>
         <div class="classic-quote-body" id="tyQuote">载入中...</div>
         <div class="classic-commentary" id="tyCommentary">载入中...</div>
+        <div class="classic-modern-mapping" id="tyModern">
+          <strong>💡 现代生活人话解读：</strong><span id="tyModernText">出生时辰代表晚年运景、归宿以及个人内心私密世界与子女缘分。时辰生助日主代表越到后半生越有福报与积累。</span>
+        </div>
       </div>
 
     </div>
@@ -1374,6 +1580,15 @@ const I18N_DICT = {
     descBenGua: "本卦（当前体局）",
     descBianGua: "变卦（事态演化）",
 
+    optShichenManual: "⏱️ 时辰速选",
+    optShichenUnknown: "时辰未知 (看前三柱)",
+    plainSummaryTitleText: "✨ 命局全息现代通俗人话总评 · Life Archetype & Core Strategy",
+    plainSummaryIntroText: "告别晦涩难懂的古籍文言文，以下为您通过现代心理学与生活决策视角提炼的四大人生核心面向透视：",
+    cardTitlePersonality: "🧬 核心底层性格与心理画像",
+    cardTitleCareer: "💼 事业发展与财富创造密码",
+    cardTitleRelationship: "❤️ 情感婚恋与人际交互之道",
+    cardTitleWellness: "🌿 能量平衡与身心调养建议",
+
     // 其它字典
     ganzhiCardTitle: "六十甲子纳音全息图谱",
     ganzhiCardSub: "六十花甲纳音五行与四库典籍详注",
@@ -1410,6 +1625,14 @@ const I18N_DICT = {
     // Inputs
     labelSolarDate: "Solar Birth Date",
     labelBirthTime: "Birth Time",
+    optShichenManual: "⏱️ Shichen Quick Pick",
+    optShichenUnknown: "Unknown Hour (First 3 Pillars)",
+    plainSummaryTitleText: "✨ Life Archetype & Actionable Plain Summary",
+    plainSummaryIntroText: "Clear, practical insights translated into modern psychology, career moves, relationships, and wellness:",
+    cardTitlePersonality: "🧬 Psychological Archetype & Personality",
+    cardTitleCareer: "💼 Career Strategy & Wealth Engine",
+    cardTitleRelationship: "❤️ Relational Dynamics & Partnership",
+    cardTitleWellness: "🌿 Energy Harmony & Vitality Care",
     labelGender: "Gender",
     genderMale: "Male (Yang Forward Luck)",
     genderFemale: "Female (Yin Forward Luck)",
@@ -1532,6 +1755,164 @@ const SHISHEN_EN_MAP = {
   '正印': 'Direct Resource (Zheng Yin)'
 };
 
+// 荣格西方心理学原型映射 (Ten Gods Psychological Archetypes)
+const ARCHETYPE_MAP = {
+  '比肩': { zh: '平等共建者', en: 'The Peer / Authentic Equal' },
+  '劫财': { zh: '破局开拓者', en: 'The Competitor / Visionary Driver' },
+  '食神': { zh: '才华造物家', en: 'The Creator / Artistic Soul' },
+  '伤官': { zh: '革新破阵官', en: 'The Maverick / Game Changer' },
+  '偏财': { zh: '敏锐风投家', en: 'The Strategist / Venture Rainmaker' },
+  '正财': { zh: '价值守拙者', en: 'The Builder / Reliable Steward' },
+  '七杀': { zh: '魄力统帅官', en: 'The Commander / High-Stakes Warrior' },
+  '正官': { zh: '秩序守护者', en: 'The Executive / Ethical Guardian' },
+  '偏印': { zh: '哲思洞察家', en: 'The Sage / Unconventional Mystic' },
+  '正印': { zh: '厚德赋能导师', en: 'The Mentor / Nurturing Anchor' }
+};
+
+// 十天干日主底层性格与四大面向知识库 (Day Master Modern Profiles)
+const DAYMASTER_PROFILES = {
+  '甲': {
+    titleZh: '甲木 · 参天古木 · 栋梁先锋型',
+    titleEn: 'Jia Wood · The Towering Redwood · Pioneer Leader',
+    archetypeZh: '栋梁先锋型 · 坚韧正直领航者',
+    archetypeEn: 'The Pioneer Leader · Resilient Visionary',
+    personalityZh: '性格仁慈正直，具有极强向上突破与担当精神，不愿居于人下，遇事有大局观与原则底线；缺点是偶尔过于执拗固执，不喜轻易变通。',
+    personalityEn: 'Naturally noble, honest, and growth-oriented. Possesses inherent leadership and high ethical standards. Can be stubborn and resistant to sudden compromises.',
+    careerZh: '适合统筹规划、创业领军、科技基建、法律公正、大局把控类角色；善于从零到一构建体系，财富源于长期稳健积累与领航影响力。',
+    careerEn: 'Thrives in visionary leadership, architecture, green tech, venture building, and high-integrity governance. Wealth grows through long-term structural compound.',
+    relationshipZh: '在亲密关系中富有保护欲和责任感，愿意为伴侣遮风挡雨；需学会放下面子多倾听，多用温和言语沟通，避免大男子/大女子包办倾向。',
+    relationshipEn: 'Deeply protective and loyal. Acts as an emotional rock for partners. Needs to balance authoritative tendencies with active listening and tenderness.',
+    wellnessZh: '五行对应肝胆与筋骨。平时宜多舒展筋骨、避免熬夜与长期焦虑生闷气，饮食多清淡甘润，常去森林自然环境徒步以疏泄木气。',
+    wellnessEn: 'Governs liver and musculoskeletal system. Prioritize posture, somatic stretching, and outdoor walks in nature. Avoid late-night stress.'
+  },
+  '乙': {
+    titleZh: '乙木 · 绕指柔藤 · 灵动智者型',
+    titleEn: 'Yi Wood · The Climbing Ivy · Adaptive Strategist',
+    archetypeZh: '灵动智者型 · 借力柔韧进取者',
+    archetypeEn: 'The Adaptive Strategist · Resilient Diplomat',
+    personalityZh: '温和细腻，善于审时度势与借力成长，适应力极强，人际协调如行云流水；内心情感丰富，韧性极高，但遇重大冲突时容易犹豫纠结。',
+    personalityEn: 'Gentle, diplomatic, emotionally agile, and highly adaptable. Masters the art of soft power and strategic alliances. May overthink when faced with high conflict.',
+    careerZh: '极佳的公关顾问、内容创意、商业谈判、跨文化传播人才；懂得借力打力，财富来自资源撮合、柔性沟通与精细化运营。',
+    careerEn: 'Excels in partnerships, creative content, strategic diplomacy, and media. Creates wealth through network synergy and intuitive timing.',
+    relationshipZh: '极度体贴且懂伴侣情绪，重视精神共鸣与日常陪伴；建议建立清晰的个人情感边界，遇到分歧主动直言，避免冷战或自我内耗。',
+    relationshipEn: 'Empathetic and romantic. Deeply cherishes spiritual harmony and emotional companionship. Advised to express clear personal boundaries directly.',
+    wellnessZh: '对应肝经末梢与颈椎神经系统。宜防思虑过度导致睡眠浅、偏头痛或颈椎酸痛，适合瑜伽、太极、冥想与花草茶疗愈调养。',
+    wellnessEn: 'Governs nervous system, neck, and ligaments. Cultivate relaxation habits like restorative yoga, herbal tea infusions, and boundary-setting.'
+  },
+  '丙': {
+    titleZh: '丙火 · 普照烈阳 · 魅力领航型',
+    titleEn: 'Bing Fire · The Radiant Sun · Charismatic Champion',
+    archetypeZh: '魅力领航型 · 热情坦荡赋能者',
+    archetypeEn: 'The Charismatic Champion · Warm Radiant Power',
+    personalityZh: '热情奔放，光明磊落，乐于助人并自带高维感染力，做事雷厉风行；偶尔性情急躁、情绪来得快去得快，容易对枯燥繁杂细节失去耐心。',
+    personalityEn: 'Warm, generous, open-hearted, and charismatic. Inspires others effortlessly with radiant optimism. Watch out for impatience and burnout on repetitive details.',
+    careerZh: '天生的演说家、高管、品牌代言人与战略导师；适合媒体娱乐、高科技能源、聚光灯前的事业，名声与声誉是驱动财富的最强杠杆。',
+    careerEn: 'Natural stage commander, PR executive, marketing visionary, or founder. Wealth follows social recognition, brand authority, and inspiring leadership.',
+    relationshipZh: '爱得轰轰烈烈、直率大方，愿倾其所有温暖对方；需多给伴侣独立思考的空间，避免单向过度付出或要求对方时刻与自己同频。',
+    relationshipEn: 'Passionate and wholehearted. Shower partner with warmth. Remember to give partners personal solitude and avoid imposing one-sided expectations.',
+    wellnessZh: '对应心血管系统、小肠及眼目。需注意平稳心率、避免暴饮暴食或长时间熬夜用眼，适量进行有氧运动排汗，保持心态安详平和。',
+    wellnessEn: 'Governs cardiovascular health, blood pressure, and eyesight. Engage in moderate aerobic training, limit excessive screen time, and maintain sleep rhythm.'
+  },
+  '丁': {
+    titleZh: '丁火 · 案头明灯 · 匠心洞见型',
+    titleEn: 'Ding Fire · The Guiding Candlelight · Intuitive Healer',
+    archetypeZh: '匠心洞见型 · 精神灯塔引领者',
+    archetypeEn: 'The Intuitive Healer · Mindful Illuminator',
+    personalityZh: '外柔内刚，直觉敏锐，心思细腻缜密，极具人文同理心与精神探索欲；凡事追求极致细节，但有时容易陷入多愁善感或精神洁癖。',
+    personalityEn: 'Gentle exterior with steely inner resolve. Highly perceptive, philosophical, and discerning. May occasionally struggle with overthinking or emotional perfectionism.',
+    careerZh: '适于科研深耕、心理咨询、精密技术、艺术创作、高端教培与咨询；财富来自小众稀缺的专业壁垒与无法被替代的个人深度认知。',
+    careerEn: 'Perfect for deep research, psychotherapy, high-precision crafts, and specialized advisory. Wealth is generated through specialized intellectual capital.',
+    relationshipZh: '深情专一，对爱情要求高度灵魂共鸣；容易在小细节上默默较真，建议多以轻松幽默化解小矛盾，相互给予无条件的包容与肯定。',
+    relationshipEn: 'Deeply devoted and loyal. Seeks soulmate-level alignment. Practice humor and let go of micro-expectations for peaceful harmony.',
+    wellnessZh: '对应心脏神经官能与血液循环。宜防思虑过多导致心血虚耗、失眠多梦，宜温养气血，少饮过量浓咖啡或冰镇冷饮。',
+    wellnessEn: 'Governs circulation, emotional micro-tension, and sleep depth. Keep blood sugar steady, reduce excess stimulants, and engage in warm grounding baths.'
+  },
+  '戊': {
+    titleZh: '戊土 · 巍峨重山 · 沉稳磐石型',
+    titleEn: 'Wu Earth · The Mighty Mountain · Grounded Pillar',
+    archetypeZh: '沉稳磐石型 · 诚信担当定海神针',
+    archetypeEn: 'The Grounded Pillar · Reliable Anchor',
+    personalityZh: '厚重宽仁，极讲信誉，具有极强包容力与承载力，遇事沉着冷静波澜不惊；缺点是行动反应稍慢，不喜轻浮变动，偶尔显得固执保守。',
+    personalityEn: 'Solid, steadfast, trustworthy, and magnanimous. A sanctuary of calm in chaotic storms. Can be slow to embrace rapid disruptive pivots.',
+    careerZh: '适合大型实体产业、房地产、仓储供应链、金融风控与基建项目；守城有余，以诚信口碑立足市场，财富走的是厚积薄发稳健增值路线。',
+    careerEn: 'Exceptional in infrastructure, institutional management, supply chains, and risk management. Accumulates wealth via proven stability and trust.',
+    relationshipZh: '踏实专一，是家庭最具安全感的靠山；建议多制造生活小浪漫与言语情调，不要把爱意藏在心里，学会多用行动与言语同步表达。',
+    relationshipEn: 'Provides rock-solid security and steady devotion. Encouraged to verbally articulate appreciation and sprinkle daily life with spontaneous romantic gestures.',
+    wellnessZh: '对应脾胃消化系统与腹部肌肉。切忌饮食不规律或暴饮暴食，多吃温热易消化的五谷杂粮，饭后适度散步以助脾土运化生香。',
+    wellnessEn: 'Governs gastrointestinal and metabolic stability. Maintain structured meal schedules, favor warm nutritious foods, and take post-meal brisk walks.'
+  },
+  '己': {
+    titleZh: '己土 · 润泽沃土 · 滋养统合型',
+    titleEn: 'Ji Earth · The Fertile Garden · Nurturing Alchemist',
+    archetypeZh: '滋养统合型 · 务实包容整合者',
+    archetypeEn: 'The Nurturing Alchemist · Pragmatic Harmonizer',
+    personalityZh: '温良和顺，包容万物，善于协调各方利益并赋能他人，具极强学习吸收能力；但有时缺乏主见与魄力，容易因顾全大局而委屈自身感受。',
+    personalityEn: 'Adaptable, humble, nurturing, and multifaceted. High capacity to absorb skills and foster team unity. Must practice decisive assertiveness.',
+    careerZh: '擅长人力资源、多面统筹、教育培训、农业生态与财务管家；善于把零散资源整合成价值生态，财富在细水长流中默默丰厚。',
+    careerEn: 'Excels in operations management, HR, organizational psychology, education, and finance. Flourishes as the glue connecting talented people.',
+    relationshipZh: '极具母性/包容性光辉，甘愿默默付出；请谨记爱人先爱己，在关系中设立平等的付出期待，与懂你珍惜你的伴侣携手同行。',
+    relationshipEn: 'Generous caregiver who supports partner selflessly. Remember that self-love is the foundation; establish mutual reciprocity and healthy expectations.',
+    wellnessZh: '对应腹部、胰腺与肠胃吸收。宜少食生冷寒凉之品，平时多做腹部温热艾灸或热敷，保持心情舒畅以防肝木克脾胃。',
+    wellnessEn: 'Governs digestive absorption and spleen meridian. Avoid iced or ultra-processed meals. Incorporate thermal heat therapy and calm dining atmospheres.'
+  },
+  '庚': {
+    titleZh: '庚金 · 烈火淬剑 · 魄力重拳型',
+    titleEn: 'Geng Metal · The Tempered Steel · Breakthrough Executor',
+    archetypeZh: '魄力重拳型 · 刚毅决断破壁者',
+    archetypeEn: 'The Breakthrough Executor · Indomitable Trailblazer',
+    personalityZh: '刚毅果决，讲义气重信义，行动力与战斗力拉满，遇强则强不畏艰难挫折；偶尔言语犀利锋芒过露，不经意间容易得罪敏感之人。',
+    personalityEn: 'Resolute, decisive, fiercely loyal, and courageous under fire. Thrives in high-stakes competition. Needs to soften verbal delivery to prevent unintended frictions.',
+    careerZh: '天生的突击队员与开拓者，适合法务维权、军警安防、重工制造、金融操盘与危机公关；敢打硬仗，财富来自突破瓶颈与敢为人先的魄力。',
+    careerEn: 'Stands out in litigation, frontier investments, turnaround leadership, and engineering. Wealth is generated through bold, high-stakes value capture.',
+    relationshipZh: '爱憎分明，对感情真诚坦荡绝不拖泥带水；在亲密交往中多一点温柔软语，切忌把工作中的争辩胜负心带入家庭港湾。',
+    relationshipEn: 'Direct, loyal, and candid. Leaves no ambiguity. Guard against competitiveness in romantic disputes; embrace vulnerability as true strength.',
+    wellnessZh: '对应大肠与肺部呼吸系统。少抽烟少去空气污浊场所，适宜慢跑、深呼吸扩胸运动，平时多食用白萝卜、百合、银耳等润肺清肺佳品。',
+    wellnessEn: 'Governs lungs, respiratory pathway, and large intestine. Optimize indoor air purity, engage in deep diaphragmatic breathing, and hydrate regularly.'
+  },
+  '辛': {
+    titleZh: '辛金 · 熠熠珍珠 · 灵秀完美型',
+    titleEn: 'Xin Metal · The Refined Diamond · Discerning Creator',
+    archetypeZh: '灵秀完美型 · 典雅极致雕琢者',
+    archetypeEn: 'The Discerning Creator · Elegant Precisionist',
+    personalityZh: '气质温润高贵，审美格调极高，自尊心强且追求精益求精；极度自律且善解人意，但对挫折批评较为敏感，容易自我较真内耗。',
+    personalityEn: 'Sophisticated, aesthetic, detail-oriented, and dignified. Holds exceptionally high standards. Needs resilience against casual criticism.',
+    careerZh: '适合奢侈品牌、高端设计、精算金融、珠宝首饰、高端法务与精致工艺；品味溢价与专业稀缺度是打造个人金字招牌的根本依托。',
+    careerEn: 'Flourishes in luxury, precision analytics, high aesthetics, and boutique consulting. Wealth is driven by premium positioning and peerless craft.',
+    relationshipZh: '渴望体面而浪漫的爱情，对伴侣的精神修养与生活仪式感要求高；建议多欣赏伴侣的粗线条优点，少挑剔生活小瑕疵。',
+    relationshipEn: 'Values elegance, emotional etiquette, and aesthetic rituals. Encouraged to celebrate partner’s authentic humanness rather than seeking flawless perfection.',
+    wellnessZh: '对应呼吸道黏膜、咽喉及皮肤屏障。宜注意防风防燥防尘，季节交替时保护喉部与皮肤补水，适度补充维生素与水分滋养。',
+    wellnessEn: 'Governs respiratory mucosa, skin barrier, and throat. Protect skin hydration and vocal cords; incorporate gentle hydration routines.'
+  },
+  '壬': {
+    titleZh: '壬水 · 奔涌江海 · 智慧通达型',
+    titleEn: 'Ren Water · The Ocean Surge · Visionary Dynamo',
+    archetypeZh: '智慧通达型 · 奔腾澎湃弄潮儿',
+    archetypeEn: 'The Visionary Dynamo · Global Innovator',
+    personalityZh: '聪明绝顶，足智多谋，胸怀宽广且适应力极强，极具商机嗅觉与全球视野；但若水势无节制则易任性随心、定力不足或朝秦暮楚。',
+    personalityEn: 'Ingenious, boundless, forward-looking, and adaptable. Sees macro patterns ahead of the crowd. Requires strong discipline and grounding to avoid scattered focus.',
+    careerZh: '天生的全球跨国贸易、互联网科技、远洋物流、资本风控与宏观战略家；善于跨界整合，财富在奔涌流转与庞大网络中顺势而生。',
+    careerEn: 'Dominates international trade, web ventures, cross-border operations, and macro strategy. Wealth flows from liquidity and scalable distribution networks.',
+    relationshipZh: '风趣幽默，富有探索新鲜事物的吸引力；需在感情中给予伴侣足够的专一笃定感与踏实安全感，平淡中见真情才能细水长流。',
+    relationshipEn: 'Fun-loving, witty, and adventurous companion. Cultivate emotional rootedness so partners feel grounded amidst your dynamic life momentum.',
+    wellnessZh: '对应肾脏、泌尿生殖系统及骨髓。切忌长期熬夜或频繁消耗过度元精，宜节制声色，睡前温水泡脚，多食黑芝麻、黑豆补肾益精。',
+    wellnessEn: 'Governs kidneys, urinary-reproductive system, and bone density. Avoid nocturnal exhaustion; prioritize regenerative rest and adrenal replenishments.'
+  },
+  '癸': {
+    titleZh: '癸水 · 晨曦甘霖 · 灵性润泽型',
+    titleEn: 'Gui Water · The Morning Dew · Mystic Empath',
+    archetypeZh: '灵性润泽型 · 润物无声智多星',
+    archetypeEn: 'The Mystic Empath · Gentle Intuitive Guide',
+    personalityZh: '至柔至灵，善解人意，具有超凡的艺术通灵感悟力与包容力，润物细无声；但性格略显内向敏感，偶尔多愁善感、易受外界负能量干扰。',
+    personalityEn: 'Intuitive, imaginative, deeply empathic, and subtle. Possesses profound emotional intelligence. Guard against absorbing negative environments.',
+    careerZh: '极佳的哲学家、艺术家、战略参谋、心理导师、文创策划；适合在幕后做核心决策赋能，以四两拨千斤的无形智慧换取丰裕回报。',
+    careerEn: 'Masterful in creative writing, brand storytelling, depth psychology, and discreet strategic consulting. Manifests prosperity via subtle influence.',
+    relationshipZh: '极度温柔解意，懂得在精神深处滋养伴侣；需要伴侣给予充分的安全感与言语肯定，勇敢表达自身渴望与底线，爱得更有力量。',
+    relationshipEn: 'Incredibly compassionate and supportive. You deserve equal clarity and affirmation from your partner; articulate your emotional needs boldly.',
+    wellnessZh: '对应肾阴、内分泌系统及体液平衡。宜防寒湿入侵，避免受凉与生闷气，保持情绪向阳开朗，适量温阳散寒运动以促进水液正常代谢。',
+    wellnessEn: 'Governs endocrines, lymphatic flow, and vital fluids. Protect warmth, avoid cold damp exposure, and stay engaged in uplifting social communities.'
+  }
+};
+
 const CHANGSHENG_EN_MAP = {
   '长生': 'Birth',
   '沐浴': 'Bath',
@@ -1546,6 +1927,20 @@ const CHANGSHENG_EN_MAP = {
   '胎': 'Embryo',
   '养': 'Nourish'
 };
+
+// 绑定时辰下拉选择快捷填入时间
+const shichenSelectEl = document.getElementById('baziShichenSelect');
+if (shichenSelectEl) {
+  shichenSelectEl.addEventListener('change', (e) => {
+    const val = e.target.value;
+    if (val && val !== 'unknown') {
+      document.getElementById('baziTime').value = val;
+    } else if (val === 'unknown') {
+      document.getElementById('baziTime').value = '12:00'; // 中午午时代表未知折中
+    }
+    computeBaziMaster();
+  });
+}
 
 function setLanguage(lang) {
   currentLang = (lang === 'en') ? 'en' : 'zh';
@@ -1922,13 +2317,56 @@ function computeBaziMaster() {
     { name: isEn?'Hour':'时柱', g: tG, z: tZ, ny: eightChar.getTimeNaYin(), xun: eightChar.getTimeXunKong(), isDay: false }
   ];
 
-  // 1. 主星
+  // 1. 主星 (附带西方荣格心理学原型副标题)
   const zhuxingRow = pillars.map(p => {
-    if(p.isDay) return `<span class="wz-shishen-yuan">${isEn ? (isMale?'Day Master (M)':'Day Master (F)') : (isMale?'元男':'元女')}</span>`;
+    if(p.isDay) {
+      const dmProf = DAYMASTER_PROFILES[dayMaster] || DAYMASTER_PROFILES['甲'];
+      const archName = isEn ? dmProf.archetypeEn : dmProf.archetypeZh;
+      return `
+        <span class="wz-shishen-yuan">${isEn ? (isMale?'Day Master (M)':'Day Master (F)') : (isMale?'元男':'元女')}</span>
+        <div class="wz-archetype-tag">${archName}</div>
+      `;
+    }
     const ssZh = getShiShen(dayMaster, p.g);
     const ssText = isEn ? (SHISHEN_EN_MAP[ssZh] || ssZh) : ssZh;
-    return `<span class="wz-shishen-zhuxing">${ssText}</span>`;
+    const archInfo = ARCHETYPE_MAP[ssZh] || { zh: ssZh, en: ssText };
+    const archLabel = isEn ? archInfo.en : archInfo.zh;
+    return `
+      <span class="wz-shishen-zhuxing">${ssText}</span>
+      <div class="wz-archetype-tag">${archLabel}</div>
+    `;
   });
+
+  // ✨ 动态渲染【命局全息现代通俗人话总评】四大面向卡片
+  const dmProfile = DAYMASTER_PROFILES[dayMaster] || DAYMASTER_PROFILES['甲'];
+  const pCardTitle = document.getElementById('plainSummaryTitle');
+  if (pCardTitle) pCardTitle.textContent = dict.plainSummaryTitleText;
+  const pCardIntro = document.getElementById('plainSummaryIntro');
+  if (pCardIntro) pCardIntro.textContent = dict.plainSummaryIntroText;
+  const pArchBadge = document.getElementById('plainArchetypeBadge');
+  if (pArchBadge) pArchBadge.textContent = isEn ? `Jungian Archetype: ${dmProfile.archetypeEn}` : `荣格心理原型：${dmProfile.archetypeZh}`;
+
+  const plainDeckEl = document.getElementById('plainSummaryDeck');
+  if (plainDeckEl) {
+    plainDeckEl.innerHTML = `
+      <div class="plain-summary-item">
+        <div class="plain-item-title">${dict.cardTitlePersonality}</div>
+        <div class="plain-item-body">${isEn ? dmProfile.personalityEn : dmProfile.personalityZh}</div>
+      </div>
+      <div class="plain-summary-item">
+        <div class="plain-item-title">${dict.cardTitleCareer}</div>
+        <div class="plain-item-body">${isEn ? dmProfile.careerEn : dmProfile.careerZh}</div>
+      </div>
+      <div class="plain-summary-item">
+        <div class="plain-item-title">${dict.cardTitleRelationship}</div>
+        <div class="plain-item-body">${isEn ? dmProfile.relationshipEn : dmProfile.relationshipZh}</div>
+      </div>
+      <div class="plain-summary-item">
+        <div class="plain-item-title">${dict.cardTitleWellness}</div>
+        <div class="plain-item-body">${isEn ? dmProfile.wellnessEn : dmProfile.wellnessZh}</div>
+      </div>
+    `;
+  }
 
   // 2. 天干
   const tianganRow = pillars.map(p => {
@@ -2213,6 +2651,24 @@ function computeBaziMaster() {
   document.getElementById('tyTitle').textContent = isEn ? `🏛️ Ba Zi Ti Yao: Hourly Analysis for [${dayMaster} in ${mZ} Month at ${tG}${tZ} Hour]` : `🏛️《八字提要》：徐乐吾详论【${dayMaster}日元 · ${mZ}月 · ${tG}${tZ}时】`;
   document.getElementById('tyQuote').textContent = tyTxt;
   document.getElementById('tyCommentary').textContent = isEn ? `[Canonical Insight]: Xu Lewu meticulously analyzes stem and branch hour combinations with monthly orders.` : `【理法精要】：八字提要将日元结合月令提纲与生时十二时辰，详尽剖析干支生克、旺衰消长之细微玄机。`;
+
+  // 现代白话翻译多语言同步
+  const modernTexts = {
+    qt: isEn ? "Seasonal climate tuning acts as your optimal environment and comfort zone. Excess water needs fire warmth, just as cold winter demands fire; leverage warm, proactive team energy to complement your skills." : "气候调候相当于人生的环境适宜度与舒适圈。水旺需火暖，犹如寒冬需暖炉，指引我们在事业上多借用热情、开朗的团队力量补齐短板。",
+    dt: isEn ? "Your Day Master represents inherent psychological drives. Harmonize with your natural archetype: soften rigid stubbornness with strategic empathy, and elevate soft adaptability with decisive execution." : "日主秉性即你的天生底层性格驱动力。顺应天性发展才能事半功倍，过刚则需学习包容与妥协，过柔则需强化意志与执行力。",
+    zp: isEn ? "Social career positioning and value creation model. Auspicious patterns thrive on compound consistency; transformed intense patterns excel at pioneering breakthroughs under adversity." : "格局相当于你的社会职业定位与价值创造模式。吉格重在持之以恒积累优势壁垒，凶格反转则代表具备在逆境与高压下破局开创的独到能力。",
+    sm: isEn ? "Symbolic Stars serve as personal situational catalysts and situational blessings. For example, Nobleman stars signify mentorship in crises; Academic stars foster rapid cognitive learning and domain mastery." : "神煞是人生的特殊光环与情境触发器。如天乙贵人主逢凶化吉、关键时刻有贵人相助；文昌词馆主学习理解能力强、适合文案与学术深耕。",
+    yh: isEn ? "Classical aphorisms encapsulate practical life navigation rules: proactively expand during favorable cosmic cycles, and anchor disciplined boundaries to mitigate downside risks when challenged." : "古赋提炼的是传统人生的处世智慧，教导我们在优势大运时积极出击拓展，在流年受克时守正沉淀、避免高风险冒进。",
+    sf: isEn ? "Life challenges (the 'disease') reveal our highest growth breakthroughs (the 'remedy'). Channel balancing elements into daily lifestyle, somatic habits, and symbiotic partnerships." : "人生有痛点（病）才有突破与超越（药）。找到命局的解药元素并将其投射到现实生活（如运动、学习特定技能、结交互补型伙伴），即可化阻力为动力。",
+    ty: isEn ? "Birth hour reflects long-term compounding, later life fulfillment, and private inner purpose. Supporting elements in the hour pillar foster sustainable blessings across the second half of life." : "出生时辰代表晚年运景、归宿以及个人内心私密世界与子女缘分。时辰生助日主代表越到后半生越有福报与积累。"
+  };
+  if(document.getElementById('qtModernText')) document.getElementById('qtModernText').textContent = modernTexts.qt;
+  if(document.getElementById('dtModernText')) document.getElementById('dtModernText').textContent = modernTexts.dt;
+  if(document.getElementById('zpModernText')) document.getElementById('zpModernText').textContent = modernTexts.zp;
+  if(document.getElementById('smModernText')) document.getElementById('smModernText').textContent = modernTexts.sm;
+  if(document.getElementById('yhModernText')) document.getElementById('yhModernText').textContent = modernTexts.yh;
+  if(document.getElementById('sfModernText')) document.getElementById('sfModernText').textContent = modernTexts.sf;
+  if(document.getElementById('tyModernText')) document.getElementById('tyModernText').textContent = modernTexts.ty;
 }
 
 // 快速切换神煞古典引证面板
@@ -2305,6 +2761,33 @@ function renderLiuyaoMatrix() {
   document.getElementById('luminousLinesStack').innerHTML = stackHtml;
 
   const topic = document.getElementById('liuyaoQuerySelect').value;
+
+  // 根据当前卦变动情况与主题计算明确吉凶倾向与行动建议
+  const hasDong = tossHistory.some(v => v === 6 || v === 9);
+  const activeYaoCount = tossHistory.filter(v => v === 6 || v === 9).length;
+
+  let verdictType = 'auspicious'; // 'auspicious' | 'caution' | 'neutral'
+  let bannerTitle = '';
+  let actionAdvice = '';
+
+  if (activeYaoCount === 0) {
+    verdictType = 'neutral';
+    bannerTitle = isEn ? '⚖️ Balanced & Stable: Hold Steady Pace' : '⚖️ 蓄势持平 · 事态稳定宜守常';
+    actionAdvice = isEn ? 'Recommendation: Maintain current momentum without abrupt changes. Core foundations are secure.' : '实务建议：当前格局静止无冲，局势平稳。适宜守正按部就班推进，不宜盲目冒进扩张。';
+  } else if (activeYaoCount >= 3) {
+    verdictType = 'caution';
+    bannerTitle = isEn ? '⚠️ High Volatility: Exercise Prudence & Risk Control' : '⚠️ 多爻变动 · 局势剧变谨慎防守';
+    actionAdvice = isEn ? 'Recommendation: High situational uncertainty. Secure capital liquidity, manage downside risks, and defer major binding contracts.' : '实务建议：局势变数较多，信息尚未完全对称。建议优先做好风控防守，保全现金流，暂缓重大激进决断。';
+  } else {
+    verdictType = 'auspicious';
+    bannerTitle = isEn ? '🌟 Highly Auspicious: Actionable Window Open' : '🌟 吉利亨通 · 顺应时机主动出击';
+    actionAdvice = isEn ? 'Recommendation: Favorable cosmic window. Execute strategic moves with discipline and seize upcoming opportunities.' : '实务建议：动爻生合有情，时机正盛。建议把握核心窗口期，积极推进洽谈、合作与落地推进。';
+  }
+
+  const badgeClass = verdictType === 'auspicious' 
+    ? 'liuyao-badge-auspicious' 
+    : (verdictType === 'caution' ? 'liuyao-badge-inauspicious' : 'liuyao-badge-caution');
+
   const verdictDictZH = {
     'wealth': '【商业求财】：以妻财爻为核心用神，子孙爻为财源。财爻得月建日辰生助、动而化进神者，财源亨通大吉；兄弟发动克财主破耗，宜稳妥防守。',
     'career': '【职位升迁】：以官鬼爻为功名，妻财为官之原神。官鬼旺相持世或动而生世必得晋升显贵；子孙发动克官主阻隔退步。',
@@ -2329,6 +2812,16 @@ function renderLiuyaoMatrix() {
   const verdictHeader = isEn ? '🎯 Master Yehe 《Zeng Shan Bu Yi》 Canonical Judgment' : '🎯 野鹤老人《增删卜易》理法透视断语';
 
   document.getElementById('liuyaoVerdictPanel').innerHTML = `
+    <!-- 明确吉凶定性与行动指导横幅 -->
+    <div class="liuyao-verdict-banner">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <span class="${badgeClass}">${bannerTitle}</span>
+        <span style="font-size:11px; color:var(--text-sub);">${isEn ? 'Cast Lines: 6/6 Complete' : '六爻装配：已成卦'}</span>
+      </div>
+      <div class="liuyao-verdict-text">${actionAdvice}</div>
+    </div>
+
+    <!-- 古籍原本断语 -->
     <div style="background:rgba(0, 242, 254, 0.08); border:1px solid rgba(0, 242, 254, 0.35); border-radius:14px; padding:16px; box-shadow:0 0 20px rgba(0,242,254,0.15); margin-top:14px;">
       <div style="font-weight:800; color:#00F2FE; font-size:13px; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
         <span>${verdictHeader}</span>
