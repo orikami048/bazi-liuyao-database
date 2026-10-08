@@ -517,6 +517,106 @@ body {
   box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
 }
 
+/* ==================== 首页专注输入区与解算结果动画 ==================== */
+.bazi-input-hero {
+  padding: 30px 32px;
+  margin-bottom: 24px;
+  background: linear-gradient(180deg, rgba(14, 26, 52, 0.65) 0%, rgba(8, 16, 32, 0.5) 100%), var(--glass-bg);
+  border: 1px solid rgba(0, 242, 254, 0.28);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+}
+.bazi-hero-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.bazi-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 242, 254, 0.12);
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  color: var(--cyan);
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+.bazi-hero-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #FFFFFF 30%, #A5F3FC 70%, #00F2FE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bazi-hero-subtitle {
+  font-size: 13px;
+  color: var(--text-sub);
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.bazi-preset-tags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.bazi-preset-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-sub);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-sans);
+}
+.bazi-preset-btn:hover {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: var(--cyan);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+.bazi-action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.bazi-result-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  border-radius: 12px;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  font-size: 12.5px;
+  color: var(--cyan);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* 五行五边形面积雷达图 */
 .radar-box {
   display: flex;
@@ -1074,8 +1174,22 @@ footer {
   <!-- ==================== 1. 八字基本排盘主页 ==================== -->
   <div id="tab-bazi" class="tab-pane-view active">
     
-    <!-- 输入参数控制栏 -->
-    <div class="bento-card" style="margin-bottom: 20px; padding: 18px 22px;">
+    <!-- 首页专注输入工作台 (首屏仅展示输入，点击解算后动态呈现排盘结果) -->
+    <div class="bento-card bazi-input-hero" id="baziInputCard">
+      <div class="bazi-hero-header">
+        <div class="bazi-hero-badge" data-i18n="heroBadgeText">☯️ 权威问真四柱八字排盘算法 · 四库易学古籍全息引证</div>
+        <h2 class="bazi-hero-title" data-i18n="heroTitleText">四柱八字专业细盘录入</h2>
+        <p class="bazi-hero-subtitle" data-i18n="heroSubtitleText">
+          输入公历出生年月日时与性别，系统结合真太阳时经度校准，即时解算四柱八字、天干地支藏干、神煞矩阵、大运时空能量走势、72°五行雷达与现代全息命局总评。
+        </p>
+        <div class="bazi-preset-tags">
+          <span style="font-size:11px; color:var(--text-faint); display:inline-flex; align-items:center;">⚡ 快速填入示例：</span>
+          <button type="button" class="bazi-preset-btn" onclick="applyBaziSample('1990-01-01', '00:00', 'male', '120.0')">示例1: 庚午男命 (1990子时)</button>
+          <button type="button" class="bazi-preset-btn" onclick="applyBaziSample('1995-10-24', '08:30', 'female', '120.0')">示例2: 乙亥女命 (1995辰时)</button>
+          <button type="button" class="bazi-preset-btn" onclick="applyBaziSample('2000-06-18', '14:00', 'male', '121.47')">示例3: 庚辰男命 (2000未时)</button>
+        </div>
+      </div>
+
       <div class="form-input-deck">
         <div class="form-field-unit">
           <label data-i18n="labelSolarDate">公历生日</label>
@@ -1122,18 +1236,33 @@ footer {
           </select>
         </div>
       </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-        <div style="font-size:12px; color:var(--text-sub);" id="baziSummaryHeader">
-          农历：己巳年 腊月初五 子时 · 乾造 · 胎元：丁卯 · 命宫：丙寅
+
+      <div class="bazi-action-row">
+        <div style="font-size:12.5px; color:var(--text-sub); display:flex; align-items:center; gap:6px;" id="baziSummaryHeader">
+          <!-- 实时农历预览 -->
         </div>
-        <button type="button" class="btn-quantum-run" id="btnRunBazi">
+        <button type="button" class="btn-quantum-run" id="btnRunBazi" style="padding: 12px 28px; font-size: 13.5px;">
           <span data-i18n="btnRunText">⚡ 运行四柱专业细盘解算</span>
         </button>
       </div>
     </div>
 
-    <!-- 核心两列布局: 左侧问真专业细盘表格，右侧五行面积雷达与诊断 (排盘主体) -->
-    <div class="bazi-layout-grid">
+    <!-- ==================== 解算结果呈现区 (点击解算后动态展现) ==================== -->
+    <div id="baziResultSection" style="display: none; animation: fadeInSlide 0.45s cubic-bezier(0.16, 1, 0.3, 1);">
+      
+      <!-- 排盘完成快速导航/提示条 -->
+      <div class="bazi-result-status-bar">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:16px;">✨</span>
+          <strong id="resultStatusBrief">四柱八字细盘解算完成</strong>
+        </div>
+        <button type="button" onclick="scrollToBaziInput()" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#FFF; padding:4px 12px; border-radius:6px; font-size:11.5px; cursor:pointer; transition:all 0.2s;">
+          ⬆ 修改生辰参数
+        </button>
+      </div>
+
+      <!-- 核心两列布局: 左侧问真专业细盘表格，右侧五行面积雷达与诊断 (排盘主体) -->
+      <div class="bazi-layout-grid">
       
       <!-- 左列: 问真八字专业细盘表格 + 原局刑冲透视 -->
       <div style="display: flex; flex-direction: column; gap: 20px;">
@@ -1330,6 +1459,8 @@ footer {
 
     </div>
 
+    </div> <!-- /baziResultSection -->
+
   </div>
 
   <!-- ==================== 2. 六爻纳甲装卦 (独立选项卡) ==================== -->
@@ -1489,6 +1620,11 @@ const I18N_DICT = {
     statusPill: "计算引擎就绪",
     langBtnText: "English",
 
+    // 首页输入英雄区
+    heroBadgeText: "☯️ 权威问真四柱八字排盘算法 · 四库易学古籍全息引证",
+    heroTitleText: "四柱八字专业细盘录入",
+    heroSubtitleText: "输入公历出生年月日时与性别，系统结合真太阳时经度校准，即时解算四柱八字、天干地支藏干、神煞矩阵、大运时空能量走势、72°五行雷达与现代全息命局总评。",
+
     // 输入栏
     labelSolarDate: "公历生日",
     labelBirthTime: "出生时间",
@@ -1619,6 +1755,11 @@ const I18N_DICT = {
     navShensha: "🌟 ShenSha Stars",
     statusPill: "Engine Ready",
     langBtnText: "中文",
+
+    // Hero Input Section
+    heroBadgeText: "☯️ Canonical BaZi Natal Matrix & Classical Canon Engine",
+    heroTitleText: "Four Pillars Natal Chart Entry",
+    heroSubtitleText: "Enter your solar birth date, time, and gender with true solar time calibration. The system immediately calculates stem & branch matrix, symbolic stars, 10-year luck timeline, 72° five-element radar, and holistic psychological archetypes.",
 
     // Inputs
     labelSolarDate: "Solar Birth Date",
@@ -1926,6 +2067,8 @@ const CHANGSHENG_EN_MAP = {
   '养': 'Nourish'
 };
 
+let baziCalculated = false;
+
 // 绑定时辰下拉选择快捷填入时间
 const shichenSelectEl = document.getElementById('baziShichenSelect');
 if (shichenSelectEl) {
@@ -1936,7 +2079,10 @@ if (shichenSelectEl) {
     } else if (val === 'unknown') {
       document.getElementById('baziTime').value = '12:00'; // 中午午时代表未知折中
     }
-    computeBaziMaster();
+    updateBaziLunarPreview();
+    if (baziCalculated) {
+      computeBaziMaster();
+    }
   });
 }
 
@@ -1960,8 +2106,10 @@ function setLanguage(lang) {
   });
 
   // 重新渲染当前八字细盘与六爻卦象，保证表格标签与数据完全同步
-  if (typeof computeBaziMaster === 'function') {
+  if (baziCalculated && typeof computeBaziMaster === 'function') {
     computeBaziMaster();
+  } else {
+    updateBaziLunarPreview();
   }
   if (typeof renderLiuyaoMatrix === 'function') {
     renderLiuyaoMatrix();
@@ -2688,6 +2836,68 @@ function showClassicShenshaDetail(name) {
   openShenshaModal(name);
 }
 
+window.scrollToBaziInput = function() {
+  const card = document.getElementById('baziInputCard');
+  if (card) {
+    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const dInput = document.getElementById('baziDate');
+    if (dInput) dInput.focus();
+  }
+};
+
+window.applyBaziSample = function(dateStr, timeStr, gender, lng) {
+  document.getElementById('baziDate').value = dateStr;
+  document.getElementById('baziTime').value = timeStr;
+  document.getElementById('baziGender').value = gender;
+  document.getElementById('baziLng').value = lng;
+  updateBaziLunarPreview();
+  // 自动触发解算
+  document.getElementById('btnRunBazi').click();
+};
+
+function updateBaziLunarPreview() {
+  const dVal = document.getElementById('baziDate').value;
+  const tVal = document.getElementById('baziTime').value;
+  const gender = document.getElementById('baziGender').value;
+  if (!dVal || !tVal || typeof Solar === 'undefined') return;
+
+  try {
+    const [y, m, d] = dVal.split('-').map(Number);
+    const [h, mi] = tVal.split(':').map(Number);
+    const solar = Solar.fromYmdHms(y, m, d, h, mi, 0);
+    const lunar = solar.getLunar();
+    const eightChar = lunar.getEightChar();
+    const isMale = (gender === 'male');
+    const isEn = (currentLang === 'en');
+
+    const summaryText = isEn
+      ? `Lunar: ${lunar.getYearInGanZhi()} Year (${lunar.getYearShengXiao()}) Month ${lunar.getMonth()} Day ${lunar.getDay()} · ${isMale?'Male (Yang Forward)':'Female (Yin Forward)'} · Tai Yuan: ${eightChar.getTaiYuan()} · Ming Gong: ${eightChar.getMingGong()}`
+      : `农历：${lunar.getYearInGanZhi()}年 (${lunar.getYearShengXiao()}) ${lunar.getMonthInChinese()}月${lunar.getDayInChinese()} ${eightChar.getTimeZhi()}时 · ${isMale?'乾造 (男命)':'坤造 (女命)'} · 胎元：${eightChar.getTaiYuan()} · 命宫：${eightChar.getMingGong()}`;
+
+    const headerEl = document.getElementById('baziSummaryHeader');
+    if (headerEl) headerEl.textContent = summaryText;
+
+    const briefEl = document.getElementById('resultStatusBrief');
+    if (briefEl) briefEl.textContent = isEn ? `Calculation Complete: ${summaryText}` : `四柱八字细盘解算完成 · ${summaryText}`;
+  } catch(e) {
+    console.warn('Lunar preview calculation error:', e);
+  }
+}
+
+// 监听生辰参数实时变更
+['baziDate', 'baziTime', 'baziGender', 'baziLng'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('change', () => {
+      updateBaziLunarPreview();
+      if (baziCalculated) {
+        computeBaziMaster();
+      }
+    });
+  }
+});
+
+// 点击“运行四柱专业细盘解算”
 document.getElementById('btnRunBazi').addEventListener('click', () => {
   const btn = document.getElementById('btnRunBazi');
   if (btn) {
@@ -2698,9 +2908,26 @@ document.getElementById('btnRunBazi').addEventListener('click', () => {
       btn.style.filter = '';
     }, 150);
   }
+
+  // 展开解算结果区
+  const resSection = document.getElementById('baziResultSection');
+  if (resSection) {
+    resSection.style.display = 'block';
+  }
+  baziCalculated = true;
   computeBaziMaster();
+  updateBaziLunarPreview();
+
+  // 优雅平滑滚动至排盘结果区
+  if (resSection) {
+    setTimeout(() => {
+      resSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
 });
-computeBaziMaster();
+
+// 首屏纯粹展示输入区，仅初始化实时农历预览，解算结果保持隐藏
+updateBaziLunarPreview();
 
 // ==================== 六爻独立模块 ====================
 let tossStep = 0;
