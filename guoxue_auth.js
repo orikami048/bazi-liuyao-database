@@ -808,6 +808,12 @@
     triggerGoogleLogin,
     logout,
     activateMember: activateModuleVip,
+    setUser: (u) => {
+      currentUser = u;
+      renderWidget();
+      renderMemberModalBody();
+      updateSsoLinks();
+    },
     refresh: fetchCurrentUser
   };
 
