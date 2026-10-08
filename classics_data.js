@@ -854,6 +854,123 @@ const SHENSHA_BAIHUA_MAP = {
   "天医星": "【现代生活人话定位】：强大的身心自愈力与济世医者仁心。对医药健康、身心疗愈天赋异禀，不仅自身生命力旺盛，更能疗愈他人。\n【现代应对指南】：适宜从事医疗制药、大健康产业、心理咨询或养生保健；以仁爱之心造福众生，福报无量。"
 };
 
+// ==================== 7. 各经典经义分段白话翻译解析引擎 ====================
+const HEX_CUSTOM_TRANS = {
+  "山地剥": {
+    guaciTrans: "卦辞本义：剥落侵害、阴盛阳衰之象。山附于地，风雨侵蚀，代表根基受损、小人蚕食进逼。此时大势不利盲动，顺应客观规律退守方能保全元气。",
+    tuanTrans: "彖传阐释天道大势：阴柔势力逐步侵蚀阳刚正气，顺应天道消长而止步静守。洞察大局起伏规律，不盲动、不硬拼，静待冬去春来、一阳来复。",
+    xiangTrans: "象传大象启示：高山依附于厚土，基石受损则山崩。管理者应厚待基层与团队根基，稳健固本，切忌自毁长城。",
+    zengshanTrans: "野鹤实战秘解：六爻占断提示事态正遇暗耗与阻滞。当前大环境不利主动出击，宜稳守核心资产、韬光养晦；切勿盲目投资或卷入无谓内耗。"
+  },
+  "乾为天": {
+    guaciTrans: "卦辞本义：纯阳至健，如日中天，具备通达、亨顺、吉祥、正固四大天德，万物始发欣欣向荣。",
+    tuanTrans: "彖传阐释天道大势：乾元之气浩瀚无涯，统领天道法则；如云行雨施化育万物，乘六龙以御天，保合太和之元气。",
+    xiangTrans: "象传大象启示：天体运行刚健不息，君子应当自立自强、奋发有为；按部就班历练，戒骄戒躁、防范过犹不及（亢龙有悔）。",
+    zengshanTrans: "野鹤实战秘解：占问功名事业大吉，但纯阳卦主动作迅猛激烈。动爻得生助则登峰造极，动而化泄变衰宜防急躁招尤。"
+  },
+  "坤为地": {
+    guaciTrans: "卦辞本义：纯阴柔顺，如厚实大地承载万物。后发制人，追随正道可获吉庆，多利协作共赢、厚积薄发。",
+    tuanTrans: "彖传阐释天道大势：至大坤元，包容万物，顺应天道。柔顺温和而德合无疆，品物由此生生不息。",
+    xiangTrans: "象传大象启示：地势厚重温和，君子当以厚德载物；行事宽厚包容、涵养气度，以静制动、防范履霜坚冰之微隐变化。",
+    zengshanTrans: "野鹤实战秘解：占事宜静不宜动，利于承接、守成、辅助与积蓄实力。不宜盲目出风头或冒险开拓，安居守正大吉。"
+  },
+  "水雷屯": {
+    guaciTrans: "卦辞本义：幼苗初破冻土，万事开头难，充满初期阻力与稚嫩瓶颈；利于建功立业，但不宜轻率盲动。",
+    tuanTrans: "彖传阐释天道大势：刚柔初次交错而艰难丛生；在险阻中行动，虽混沌初开，然蕴含无限生机。",
+    xiangTrans: "象传大象启示：云雷翻涌如事物草创，君子当以经纶济世；耐心梳理架构，打磨核心能力，待机而发。",
+    zengshanTrans: "野鹤实战秘解：占问谋事初期虽遇波折，但后劲绵长。切莫因开局不利而气馁，宜耐心布局、静候东风。"
+  },
+  "山水蒙": {
+    guaciTrans: "卦辞本义：山下涌泉、迷雾未散，象征蒙昧待启。求学者当怀谦逊之心主动求教，利于持守正道以启智慧。",
+    tuanTrans: "彖传阐释天道大势：山下有险阻而知止步；以正道教化启蒙，是成就圣贤功业之根本。",
+    xiangTrans: "象传大象启示：山下出甘泉，象征蒙童受教；君子当果敢行动以培育崇高品德，求真务实。",
+    zengshanTrans: "野鹤实战秘解：问学业考学大吉，问经商求财则有认知盲区与迷惘之兆；宜请教高人导师，切忌盲目拍板。"
+  },
+  "水火既济": {
+    guaciTrans: "卦辞本义：水火交融相济，阶段性大目标圆满达成；初时顺遂吉祥，盛极之后终须严防松懈动荡。",
+    tuanTrans: "彖传阐释天道大势：水在火上，六爻皆当其位，阴阳平衡达到巅峰；然平衡稍纵即逝，必须慎终如始。",
+    xiangTrans: "象传大象启示：水在火上，既济之象；君子在此巅峰阶段当居安思危，提前洞察并预防潜在漏洞。",
+    zengshanTrans: "野鹤实战秘解：占事大吉，谋划已然落地；实战提醒重点从开拓转向守成维护与合规风控，防微杜渐。"
+  },
+  "火水未济": {
+    guaciTrans: "卦辞本义：火在水上，尚未完成交融，蕴藏崭新转机与无限可能；如小狐渡河，需谨慎防范功亏一篑。",
+    tuanTrans: "彖传阐释天道大势：虽当下各爻未各得其正，但刚柔互相应和，生机勃发，预示新一轮循环的开启。",
+    xiangTrans: "象传大象启示：火在水上，物各未定；君子当审慎辨识事物本质与发展规律，妥善归类布局。",
+    zengshanTrans: "野鹤实战秘解：占事虽暂未定局，但前途光明、发展空间广阔；保持韧性与专注，蓄力以待破局。"
+  }
+};
+
+function parseHexBaihua(name, data) {
+  if (HEX_CUSTOM_TRANS[name]) {
+    return HEX_CUSTOM_TRANS[name];
+  }
+  const raw = (window.HEX_BAIHUA_MAP && window.HEX_BAIHUA_MAP[name]) || (data && data.baihua) || '';
+  let yi = '';
+  let zhinan = '';
+  if (raw.includes('【白话卦义】：')) {
+    const parts = raw.split('【现代生活与决策指南】：');
+    yi = parts[0].replace('【白话卦义】：', '').trim();
+    zhinan = parts[1] ? parts[1].trim() : '';
+  } else {
+    yi = raw.trim();
+  }
+
+  const guaciTrans = yi
+    ? `卦辞本义：${yi} 卦辞提示当前宜顺应天道规律，坚守中正，辨明吉凶转折以趋吉避凶。`
+    : `卦辞直译：【${name}】卦揭示事态演进之关键转化节点，守正自安，因时而动。`;
+
+  const tuanTrans = `彖传阐析阴阳刚柔进退之机：天地万物各得其位，顺应时势消长变化，当进则进、当止则止，方能保合太和、亨通致远。`;
+
+  const xiangTrans = `象传大象启示君子立身处世之道：效法天地物象，自昭明德、厚德立品。在现实中注重品德涵养与团队根基，稳健行远。`;
+
+  const zengshanTrans = zhinan
+    ? `野鹤六爻实战断法：${zhinan} 占验提示明察世应用神生克动静，谋定后动，防患于未然。`
+    : `野鹤六爻实战断法：先察世应用神之衰旺动静。得生助则所求如愿，逢克破则宜慎重防守，顺势而为。`;
+
+  return { guaciTrans, tuanTrans, xiangTrans, zengshanTrans };
+}
+
+function parseShenshaBaihua(name, data) {
+  let raw = (window.SHENSHA_BAIHUA_MAP && window.SHENSHA_BAIHUA_MAP[name]) || '';
+  if (!raw && window.SHENSHA_BAIHUA_MAP) {
+    for (const k of Object.keys(window.SHENSHA_BAIHUA_MAP)) {
+      if (k.includes(name) || name.includes(k) || (name.includes('德') && k.includes('德'))) {
+        raw = window.SHENSHA_BAIHUA_MAP[k];
+        break;
+      }
+    }
+  }
+  let pos = '';
+  let strat = '';
+  if (raw.includes('【现代生活人话定位】：')) {
+    const parts = raw.split(/【现实应对指南】：|【现实应对策略】：/);
+    pos = parts[0].replace('【现代生活人话定位】：', '').trim();
+    strat = parts[1] ? parts[1].trim() : '';
+  } else {
+    pos = raw.trim();
+  }
+
+  const sanmingTrans = pos
+    ? `万民英论源流本旨：【${name}】在现代生活中相当于${pos}`
+    : `万民英论源流本旨：【${name}】为命局关键神煞，遇吉神护佑逢凶化吉，化煞为权。`;
+
+  const yuanhaiTrans = `古法断诀歌提要：此星生旺得位且不受刑冲破害时福泽深厚；若临刑冲克害则需视全局日元衰旺与十神喜忌权衡调理。`;
+
+  const jiexiTrans = strat
+    ? `实务断法与现实策略：${strat}`
+    : `实务断法与现实策略：顺境借助神煞优势乘胜追击，面临关煞时修心稳步前行，知命而善用命。`;
+
+  return { sanmingTrans, yuanhaiTrans, jiexiTrans };
+}
+
+function parseGanzhiBaihua(gz, data) {
+  const nayin = (data && data.nayin) || '';
+  const sanmingTrans = `《三命通会》白话阐述：【${gz}】日柱纳音属【${nayin}】，秉承天地纯和之气。生逢得力时令、得五行生克调济者，主富贵荣显、家业丰盈。`;
+  const yuanhaiTrans = `《渊海子平》白话阐述：以日干为主体，审察坐支藏干与生克衰旺。干支相生相辅者性情端庄温厚，逢全局喜用神者发福绵长。`;
+  const tiyaoTrans = `徐乐吾八字提要白话：论命重在审察月令气候与生时干支寒暖燥湿。有病得药、调候得宜，自成上等格局。`;
+  return { sanmingTrans, yuanhaiTrans, tiyaoTrans };
+}
+
 // 挂载到全局变量
 window.GANZHI_EXPANDED_DB = GANZHI_EXPANDED_DB;
 window.HEX_EXPANDED_DB = HEX_EXPANDED_DB;
@@ -864,4 +981,8 @@ window.ALL_64_HEX_NAMES = ALL_64_HEX_NAMES;
 window.HEX_NAMES = ALL_64_HEX_NAMES;
 window.HEX_BAIHUA_MAP = HEX_BAIHUA_MAP;
 window.SHENSHA_BAIHUA_MAP = SHENSHA_BAIHUA_MAP;
+window.parseHexBaihua = parseHexBaihua;
+window.parseShenshaBaihua = parseShenshaBaihua;
+window.parseGanzhiBaihua = parseGanzhiBaihua;
+
 

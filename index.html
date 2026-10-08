@@ -894,6 +894,22 @@ body {
   color: #E2E8F0;
   white-space: pre-line;
 }
+.modal-trans-box {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: rgba(0, 242, 254, 0.05);
+  border-left: 3px solid var(--cyan);
+  border-radius: 6px;
+  font-size: 12.5px;
+  line-height: 1.68;
+  color: #F1F5F9;
+  text-align: justify;
+}
+.modal-trans-box .trans-label {
+  color: var(--cyan);
+  font-weight: 700;
+  margin-right: 2px;
+}
 
 /* ==================== 六爻量子演卦独立选项卡 ==================== */
 .hex-tree-graph {
@@ -3232,6 +3248,14 @@ function openGanzhiModal(gz) {
     tiyao: `徐乐吾注：“${gz}日元，配合四时气候，相生相化。”`
   };
 
+  const trans = (typeof window.parseGanzhiBaihua === 'function')
+    ? window.parseGanzhiBaihua(gz, data)
+    : {
+        sanmingTrans: `《三命通会》阐述：纳音气象醇和厚重，得五行调济者衣禄丰厚。`,
+        yuanhaiTrans: `《渊海子平》阐述：干支为用，配合月令喜忌调和发福。`,
+        tiyaoTrans: `徐乐吾八字提要阐述：参配四时寒暖燥湿，调候得宜自成佳构。`
+      };
+
   document.getElementById('modalBadge').textContent = '六十甲子秘典';
   document.getElementById('modalTitle').textContent = `【${gz}】${data.nayin} · 古籍全息引证`;
   document.getElementById('modalSubtitle').textContent = `GANZHI CODEX · ${data.nature} · ${data.canggan}`;
@@ -3240,14 +3264,17 @@ function openGanzhiModal(gz) {
     <div class="modal-quote-card">
       <div class="modal-quote-head">📙《三命通会》万民英论【${gz}】纳音象义与格局源流</div>
       <div class="modal-quote-text">${data.sanming}</div>
+      <div class="modal-trans-box"><span class="trans-label">💡【白话翻译】：</span>${trans.sanmingTrans}</div>
     </div>
     <div class="modal-quote-card">
       <div class="modal-quote-head">📜《渊海子平》十干坐支论【${gz}】日元性情与行运喜忌</div>
       <div class="modal-quote-text">${data.yuanhai}</div>
+      <div class="modal-trans-box"><span class="trans-label">💡【白话翻译】：</span>${trans.yuanhaiTrans}</div>
     </div>
     <div class="modal-quote-card">
       <div class="modal-quote-head">🏛️《八字提要》民国·徐乐吾干支时盘详论</div>
       <div class="modal-quote-text">${data.tiyao}</div>
+      <div class="modal-trans-box"><span class="trans-label">💡【白话翻译】：</span>${trans.tiyaoTrans}</div>
     </div>
   `;
 
@@ -3275,13 +3302,17 @@ function openNayinModal(gz, nayin) {
     <div class="modal-quote-card">
       <div class="modal-quote-head">🏛️《三命通会》【${gz}】干支格局与坐支精要</div>
       <div class="modal-quote-text">${gzData.sanming}</div>
+      <div class="modal-trans-box"><span class="trans-label">💡【白话翻译】：</span>万民英论此日柱：干支得纳音相生相辅，坐支内蕴生机，行运配合全局喜忌则名利双全。</div>
     </div>
   ` : '';
+
+  const nayinPureXiangyi = nyData.xiangyi ? nyData.xiangyi.replace(/【纳音象义】：/, '') : '象征个人深层气质与潜在能量禀赋。';
 
   document.getElementById('modalBody').innerHTML = `
     <div class="modal-quote-card">
       <div class="modal-quote-head">📙《三命通会·论六十甲子纳音》【${nayin}】源流与本象论</div>
       <div class="modal-quote-text">${nyData.sanming}</div>
+      <div class="modal-trans-box"><span class="trans-label">💡【白话翻译】：</span>万民英考证源流指出：【${nayin}】为天地五行凝聚之特殊气象。${nayinPureXiangyi}</div>
     </div>
     <div class="modal-quote-card">
       <div class="modal-quote-head">🌊【${nayin}】命理象义、性格气场与现代启示</div>
@@ -3309,39 +3340,40 @@ function openHexModal(name) {
     xiangshu: `卦德意蕴：天地之数，阴阳交泰。`
   };
 
-  const baihuaText = (window.HEX_BAIHUA_MAP && window.HEX_BAIHUA_MAP[name])
-    || data.baihua
-    || `【白话卦义】：此卦象征事态发展的特定阶段与能量转换节点。阴阳交泰，动静皆有其道。\n【现代生活与决策指南】：当前形势宜顺天应时，认清大局走向。切忌盲目冒进或消极等待，做好核心功课与基本盘筹备。`;
+  const trans = (typeof window.parseHexBaihua === 'function')
+    ? window.parseHexBaihua(name, data)
+    : {
+        guaciTrans: `卦辞本义：揭示事物特定转化节点，守正趋吉避凶。`,
+        tuanTrans: `彖传阐释天道刚柔相推之理，顺应时势以成其功。`,
+        xiangTrans: `大象启迪君子修德立身，自昭明德，厚重致远。`,
+        zengshanTrans: `野鹤实占秘解：审察用神衰旺动静，谋定而后动。`
+      };
 
   document.getElementById('modalBadge').textContent = '周易与六爻秘典';
   document.getElementById('modalTitle').textContent = `【第 ${data.num} 卦 · ${name}】${data.palace}`;
   document.getElementById('modalSubtitle').textContent = `HEXAGRAM CANON · ${data.xiangshu}`;
 
   document.getElementById('modalBody').innerHTML = `
-    <!-- 💡 现代白话文通俗精解卡片 (置顶高亮) -->
-    <div class="modal-quote-card" style="background: rgba(0, 242, 254, 0.08); border: 1px solid rgba(0, 242, 254, 0.38); box-shadow: 0 0 16px rgba(0, 242, 254, 0.12);">
-      <div class="modal-quote-head" style="color: var(--cyan); font-weight: 800; display: flex; align-items: center; gap: 6px;">
-        <span>💡 现代白话通俗精解与生活决策指南</span>
-      </div>
-      <div class="modal-quote-text" style="color: #FFFFFF; line-height: 1.75; font-size: 13px; white-space: pre-line;">${baihuaText}</div>
-    </div>
-
-    <!-- 古籍原本引证 -->
+    <!-- 古籍原本引证及对应白话翻译 -->
     <div class="modal-quote-card">
       <div class="modal-quote-head">📜《周易》经文本义 · 卦辞</div>
       <div class="modal-quote-text">${data.guaci}</div>
+      <div class="modal-trans-box"><span class="trans-label">💡【白话翻译】：</span>${trans.guaciTrans}</div>
     </div>
     <div class="modal-quote-card">
       <div class="modal-quote-head">☯️《易经·彖传》夫子释卦义</div>
       <div class="modal-quote-text">${data.tuan}</div>
+      <div class="modal-trans-box"><span class="trans-label">💡【白话翻译】：</span>${trans.tuanTrans}</div>
     </div>
     <div class="modal-quote-card">
       <div class="modal-quote-head">🌿《易经·象传》大象释德行</div>
       <div class="modal-quote-text">${data.xiang}</div>
+      <div class="modal-trans-box"><span class="trans-label">💡【白话翻译】：</span>${trans.xiangTrans}</div>
     </div>
     <div class="modal-quote-card">
       <div class="modal-quote-head">🔮 清·野鹤老人《增删卜易》六爻实占秘解</div>
       <div class="modal-quote-text">${data.zengshan}</div>
+      <div class="modal-trans-box"><span class="trans-label">💡【白话翻译】：</span>${trans.zengshanTrans}</div>
     </div>
   `;
 
@@ -3372,46 +3404,34 @@ function openShenshaModal(name) {
   };
 
   const finalData = data || fallbackData;
-
-  // 匹配现代白话文解读
-  let baihuaText = (window.SHENSHA_BAIHUA_MAP && window.SHENSHA_BAIHUA_MAP[name]);
-  if (!baihuaText && window.SHENSHA_BAIHUA_MAP) {
-    for (const k of Object.keys(window.SHENSHA_BAIHUA_MAP)) {
-      if (k.includes(name) || name.includes(k) || (name.includes('德') && k.includes('德'))) {
-        baihuaText = window.SHENSHA_BAIHUA_MAP[k];
-        break;
-      }
-    }
-  }
-  if (!baihuaText) {
-    baihuaText = finalData.baihua || `【现代生活人话定位】：【${name}】是命局中的特殊催化剂与情境开关。吉神增强个人气场与际遇护航，凶煞在经受磨炼后往往能转化为独当一面的强大杀伐决断力。\n【现实应对策略】：知命而不宿命。在顺境时借助神煞优势乘胜追击，在面临关煞时修心自省、防患于未然。`;
-  }
+  const trans = (typeof window.parseShenshaBaihua === 'function')
+    ? window.parseShenshaBaihua(name, finalData)
+    : {
+        sanmingTrans: `万民英考证源流指出：【${name}】为命局关键神煞，遇吉神护佑逢凶化吉。`,
+        yuanhaiTrans: `古法断诀歌提要：此星生旺得位且不受刑冲破害时福泽深厚。`,
+        jiexiTrans: `实务对策：顺境乘胜追击，面临关煞时修心稳进，知命而善用命。`
+      };
 
   document.getElementById('modalBadge').textContent = `${finalData.type || '星曜神煞'} · 神煞秘典`;
   document.getElementById('modalTitle').textContent = `【${name}】万民英《三命通会》原著考证`;
   document.getElementById('modalSubtitle').textContent = `SHENSHA CANON · 起例歌诀：${finalData.qili || '干支推演'}`;
 
   document.getElementById('modalBody').innerHTML = `
-    <!-- 💡 现代白话人话解读卡片 (置顶高亮) -->
-    <div class="modal-quote-card" style="background: rgba(0, 242, 254, 0.08); border: 1px solid rgba(0, 242, 254, 0.38); box-shadow: 0 0 16px rgba(0, 242, 254, 0.12);">
-      <div class="modal-quote-head" style="color: var(--cyan); font-weight: 800; display: flex; align-items: center; gap: 6px;">
-        <span>💡 现代生活人话解读与实务应对指南</span>
-      </div>
-      <div class="modal-quote-text" style="color: #FFFFFF; line-height: 1.75; font-size: 13px; white-space: pre-line;">${baihuaText}</div>
-    </div>
-
-    <!-- 古籍原本引证 -->
+    <!-- 古籍原本引证及对应白话翻译 -->
     <div class="modal-quote-card">
       <div class="modal-quote-head">📙《三命通会》明·万民英论【${name}】神煞源流考与吉凶真机</div>
       <div class="modal-quote-text">${finalData.sanming || sanmingFallback}</div>
+      <div class="modal-trans-box"><span class="trans-label">💡【白话翻译】：</span>${trans.sanmingTrans}</div>
     </div>
     <div class="modal-quote-card">
       <div class="modal-quote-head">📜《渊海子平》《星平会海》吉凶断诀歌</div>
       <div class="modal-quote-text">${finalData.yuanhai || '吉神护身，逢凶化吉。'}</div>
+      <div class="modal-trans-box"><span class="trans-label">💡【白话翻译】：</span>${trans.yuanhaiTrans}</div>
     </div>
     <div class="modal-quote-card">
       <div class="modal-quote-head">🏛️ 传统命理实务生克制化精义</div>
       <div class="modal-quote-text">${finalData.jiexi || '审察四柱喜忌，顺应运势转化。'}</div>
+      <div class="modal-trans-box"><span class="trans-label">💡【白话翻译】：</span>${trans.jiexiTrans}</div>
     </div>
   `;
 
