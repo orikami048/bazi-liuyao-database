@@ -1132,21 +1132,7 @@ footer {
       </div>
     </div>
 
-    <!-- ✨ 现代通俗通篇人话总评卡片 (普通人一眼看懂的核心指引) -->
-    <div class="bento-card plain-summary-card" id="plainSummaryCard">
-      <div class="plain-summary-header">
-        <div class="plain-summary-title" id="plainSummaryTitle">✨ 命局全息现代通俗人话总评 · Life Archetype & Core Strategy</div>
-        <div class="plain-archetype-badge" id="plainArchetypeBadge">荣格心理原型：领航开拓者</div>
-      </div>
-      <div class="plain-summary-desc" id="plainSummaryIntro">
-        告别晦涩难懂的古籍文言文，以下为您通过现代心理学与生活决策视角提炼的四大人生核心面向透视：
-      </div>
-      <div class="plain-grid-deck" id="plainSummaryDeck">
-        <!-- JS 动态注入性格特质、事业财富、感情婚恋、健康养生卡片 -->
-      </div>
-    </div>
-
-    <!-- 核心两列布局: 左侧问真专业细盘表格，右侧五行面积雷达与诊断 -->
+    <!-- 核心两列布局: 左侧问真专业细盘表格，右侧五行面积雷达与诊断 (排盘主体) -->
     <div class="bazi-layout-grid">
       
       <!-- 左列: 问真八字专业细盘表格 + 原局刑冲透视 -->
@@ -1236,8 +1222,20 @@ footer {
           </div>
         </div>
 
-      </div>
+    </div>
 
+    <!-- ✨ 现代通俗通篇人话总评卡片 (排盘后呈现: 荣格心理原型与四大人生维度透视) -->
+    <div class="bento-card plain-summary-card" id="plainSummaryCard">
+      <div class="plain-summary-header">
+        <div class="plain-summary-title" id="plainSummaryTitle">✨ 命局全息现代通俗人话总评 · Life Archetype & Core Strategy</div>
+        <div class="plain-archetype-badge" id="plainArchetypeBadge">荣格心理原型分析中...</div>
+      </div>
+      <div class="plain-summary-desc" id="plainSummaryIntro">
+        告别晦涩难懂的古籍文言文，以下为您通过现代心理学与生活决策视角提炼的四大人生核心面向透视：
+      </div>
+      <div class="plain-grid-deck" id="plainSummaryDeck">
+        <!-- JS 动态注入性格特质、事业财富、感情婚恋、健康养生卡片 -->
+      </div>
     </div>
 
     <!-- ==================== 四库易学经典引证与古籍秘典 (穷通宝鉴·滴天髓·三命通会·八字提要) ==================== -->
@@ -2299,6 +2297,7 @@ function computeBaziMaster() {
   const isMale = (gender === 'male');
   const dayMaster = dG;
   const isEn = (currentLang === 'en');
+  const dict = I18N_DICT[currentLang] || I18N_DICT['zh'];
 
   // 顶部概要
   if (isEn) {
@@ -2337,8 +2336,10 @@ function computeBaziMaster() {
     `;
   });
 
-  // ✨ 动态渲染【命局全息现代通俗人话总评】四大面向卡片
+  // ✨ 动态渲染【命局全息现代通俗人话总评】四大面向卡片 (排盘后完整呈现)
   const dmProfile = DAYMASTER_PROFILES[dayMaster] || DAYMASTER_PROFILES['甲'];
+  const pCard = document.getElementById('plainSummaryCard');
+  if (pCard) pCard.style.display = 'block';
   const pCardTitle = document.getElementById('plainSummaryTitle');
   if (pCardTitle) pCardTitle.textContent = dict.plainSummaryTitleText;
   const pCardIntro = document.getElementById('plainSummaryIntro');
@@ -2349,21 +2350,33 @@ function computeBaziMaster() {
   const plainDeckEl = document.getElementById('plainSummaryDeck');
   if (plainDeckEl) {
     plainDeckEl.innerHTML = `
-      <div class="plain-summary-item">
-        <div class="plain-item-title">${dict.cardTitlePersonality}</div>
-        <div class="plain-item-body">${isEn ? dmProfile.personalityEn : dmProfile.personalityZh}</div>
+      <div class="plain-item-box">
+        <div class="plain-item-head">
+          <span>🧠</span>
+          <span>${dict.cardTitlePersonality}</span>
+        </div>
+        <div class="plain-item-desc">${isEn ? dmProfile.personalityEn : dmProfile.personalityZh}</div>
       </div>
-      <div class="plain-summary-item">
-        <div class="plain-item-title">${dict.cardTitleCareer}</div>
-        <div class="plain-item-body">${isEn ? dmProfile.careerEn : dmProfile.careerZh}</div>
+      <div class="plain-item-box">
+        <div class="plain-item-head">
+          <span>💼</span>
+          <span>${dict.cardTitleCareer}</span>
+        </div>
+        <div class="plain-item-desc">${isEn ? dmProfile.careerEn : dmProfile.careerZh}</div>
       </div>
-      <div class="plain-summary-item">
-        <div class="plain-item-title">${dict.cardTitleRelationship}</div>
-        <div class="plain-item-body">${isEn ? dmProfile.relationshipEn : dmProfile.relationshipZh}</div>
+      <div class="plain-item-box">
+        <div class="plain-item-head">
+          <span>❤️</span>
+          <span>${dict.cardTitleRelationship}</span>
+        </div>
+        <div class="plain-item-desc">${isEn ? dmProfile.relationshipEn : dmProfile.relationshipZh}</div>
       </div>
-      <div class="plain-summary-item">
-        <div class="plain-item-title">${dict.cardTitleWellness}</div>
-        <div class="plain-item-body">${isEn ? dmProfile.wellnessEn : dmProfile.wellnessZh}</div>
+      <div class="plain-item-box">
+        <div class="plain-item-head">
+          <span>🌿</span>
+          <span>${dict.cardTitleWellness}</span>
+        </div>
+        <div class="plain-item-desc">${isEn ? dmProfile.wellnessEn : dmProfile.wellnessZh}</div>
       </div>
     `;
   }
@@ -2426,7 +2439,6 @@ function computeBaziMaster() {
   });
 
   // 渲染表格 (年柱 | 月柱 | 日柱 | 时柱)
-  const dict = I18N_DICT[currentLang];
   document.getElementById('wenzhenTableBody').innerHTML = `
     <tr><td class="row-label-col">${dict.rowZhuxing}</td>${zhuxingRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
     <tr><td class="row-label-col">${dict.rowTiangan}</td>${tianganRow.map((td, i)=>`<td class="${i===2?'day-pillar-highlight':''}">${td}</td>`).join('')}</tr>
@@ -2676,7 +2688,18 @@ function showClassicShenshaDetail(name) {
   openShenshaModal(name);
 }
 
-document.getElementById('btnRunBazi').addEventListener('click', computeBaziMaster);
+document.getElementById('btnRunBazi').addEventListener('click', () => {
+  const btn = document.getElementById('btnRunBazi');
+  if (btn) {
+    btn.style.transform = 'scale(0.96)';
+    btn.style.filter = 'brightness(1.2)';
+    setTimeout(() => {
+      btn.style.transform = '';
+      btn.style.filter = '';
+    }, 150);
+  }
+  computeBaziMaster();
+});
 computeBaziMaster();
 
 // ==================== 六爻独立模块 ====================
