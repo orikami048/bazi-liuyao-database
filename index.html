@@ -1217,6 +1217,9 @@ footer {
     </nav>
 
     <div style="display:flex; align-items:center; gap:12px;">
+      <!-- 统一国学多模块账户认证与会员中心挂载点 -->
+      <div id="guoxue-auth-mount"></div>
+
       <button type="button" class="lang-toggle-btn" id="btnLangToggle" title="切换语言 / Switch Language">
         🌐 <span id="langToggleText">English</span>
       </button>
@@ -3471,5 +3474,7 @@ document.addEventListener('keydown', (e) => {
 // 页面初始加载应用语言
 setLanguage(currentLang);
 </script>
+<!-- 统一国学多模块账户认证与会员系统 SDK -->
+<script src="guoxue_auth.js"></script>
 </body>
 </html>
