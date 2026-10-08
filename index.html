@@ -430,6 +430,40 @@ body {
   background: rgba(248, 113, 113, 0.08);
 }
 
+.wz-nayin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(0, 242, 254, 0.07);
+  border: 1px solid rgba(0, 242, 254, 0.22);
+  color: var(--cyan);
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  font-family: inherit;
+}
+.wz-nayin-btn:hover {
+  background: rgba(0, 242, 254, 0.18);
+  border-color: var(--cyan);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+}
+.wz-nayin-icon {
+  font-size: 9px;
+  opacity: 0.75;
+  transition: transform 0.2s;
+}
+.wz-nayin-btn:hover .wz-nayin-icon {
+  transform: scale(1.15);
+  opacity: 1;
+}
+
 .clash-diagnosis-box {
   background: rgba(3, 7, 18, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.09);
@@ -1118,14 +1152,21 @@ footer {
   padding-bottom: 4px;
 }
 @media (max-width: 768px) {
-  .dashboard-root { padding: 12px 14px 60px; }
-  .top-nav { padding: 12px 16px; gap: 12px; }
-  .nav-switcher { width: 100%; overflow-x: auto; scrollbar-width: none; }
-  .nav-tab-btn { padding: 6px 12px; font-size: 12px; white-space: nowrap; }
-  .wz-shensha-pill { padding: 5px 8px; font-size: 11px; margin: 2px 0; }
-  .wz-gan-char, .wz-zhi-char { font-size: 26px; }
+  .dashboard-root { padding: 10px 10px 60px; }
+  .top-nav { padding: 10px 12px; gap: 10px; flex-wrap: wrap; }
+  .nav-switcher { width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
+  .nav-tab-btn { padding: 6px 12px; font-size: 12px; white-space: nowrap; flex-shrink: 0; }
+  .wz-shensha-pill { padding: 4px 6px; font-size: 10px; margin: 2px 0; }
+  .wz-nayin-btn { padding: 3px 6px; font-size: 10.5px; }
+  .wz-gan-char, .wz-zhi-char { font-size: 24px; }
   .form-input-deck { grid-template-columns: 1fr; }
   .tree-node-title { font-size: 14px; }
+  .codex-grid-bento { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+  .codex-item-bento { padding: 10px 6px; }
+  .classic-modal-box { width: 94%; max-height: 88vh; }
+  .classic-modal-header { padding: 14px 16px 8px; }
+  .classic-modal-title { font-size: 16px; }
+  .classic-modal-body { padding: 14px 16px; gap: 12px; }
 }
 </style>
 </head>
@@ -1182,12 +1223,6 @@ footer {
         <p class="bazi-hero-subtitle" data-i18n="heroSubtitleText">
           输入公历出生年月日时与性别，系统结合真太阳时经度校准，即时解算四柱八字、天干地支藏干、神煞矩阵、大运时空能量走势、72°五行雷达与现代全息命局总评。
         </p>
-        <div class="bazi-preset-tags">
-          <span style="font-size:11px; color:var(--text-faint); display:inline-flex; align-items:center;">⚡ 快速填入示例：</span>
-          <button type="button" class="bazi-preset-btn" onclick="applyBaziSample('1990-01-01', '00:00', 'male', '120.0')">示例1: 庚午男命 (1990子时)</button>
-          <button type="button" class="bazi-preset-btn" onclick="applyBaziSample('1995-10-24', '08:30', 'female', '120.0')">示例2: 乙亥女命 (1995辰时)</button>
-          <button type="button" class="bazi-preset-btn" onclick="applyBaziSample('2000-06-18', '14:00', 'male', '121.47')">示例3: 庚辰男命 (2000未时)</button>
-        </div>
       </div>
 
       <div class="form-input-deck">
@@ -1350,8 +1385,8 @@ footer {
             <!-- 喜用神与日主强弱评语 -->
           </div>
         </div>
-
-    </div>
+      </div>
+    </div> <!-- /bazi-layout-grid -->
 
     <!-- ✨ 现代通俗通篇人话总评卡片 (排盘后呈现: 荣格心理原型与四大人生维度透视) -->
     <div class="bento-card plain-summary-card" id="plainSummaryCard">
@@ -2573,8 +2608,13 @@ function computeBaziMaster() {
   // 8. 空亡
   const kongwangRow = pillars.map(p => `<span style="color:var(--cyan); font-family:var(--font-mono); font-size:11px;">${p.xun}</span>`);
 
-  // 9. 纳音
-  const nayinRow = pillars.map(p => `<span style="color:var(--text-sub); font-size:11px;">${p.ny}</span>`);
+  // 9. 纳音 (支持点击查阅全息古籍纳音详论)
+  const nayinRow = pillars.map(p => `
+    <button type="button" class="wz-nayin-btn" onclick="openNayinModal('${p.g}${p.z}', '${p.ny}')" title="${isEn ? `Click for NaYin [${p.ny}] Details` : `点击查阅【${p.g}${p.z} · ${p.ny}】纳音五行与古籍详论`}">
+      <span>${p.ny}</span>
+      <span class="wz-nayin-icon">🔍</span>
+    </button>
+  `);
 
   // 10. 柱位专属神煞 (全流程精准匹配)
   const allFoundShenshaNames = [];
@@ -3100,33 +3140,84 @@ const NAYIN_NAMES = [
   "大溪水","大溪水","沙中土","沙中土","天上火","天上火","石榴木","石榴木","大海水","大海水"
 ];
 
+const HEX_NAMES = (typeof ALL_64_HEX_NAMES !== 'undefined' && ALL_64_HEX_NAMES.length === 64)
+  ? ALL_64_HEX_NAMES
+  : ((window.ALL_64_HEX_NAMES && window.ALL_64_HEX_NAMES.length === 64)
+      ? window.ALL_64_HEX_NAMES
+      : [
+  "乾为天", "天风姤", "天山遁", "天地否", "风地观", "山地剥", "火地晋", "火天大有",
+  "坎为水", "水泽节", "水雷屯", "水火既济", "泽火革", "雷火丰", "地火明夷", "地水师",
+  "艮为山", "山火贲", "山天大畜", "山泽损", "火泽睽", "天泽履", "风泽中孚", "风山渐",
+  "震为雷", "雷地豫", "雷水解", "雷风恒", "地风升", "水风井", "泽风大过", "泽雷随",
+  "巽为风", "风天小畜", "风火家人", "风雷益", "天雷无妄", "火雷噬嗑", "山雷颐", "山风蛊",
+  "离为火", "火山旅", "火风鼎", "火水未济", "山水蒙", "风水涣", "天水讼", "天火同人",
+  "坤为地", "地雷复", "地泽临", "地天泰", "雷天大壮", "泽天夬", "水天需", "水地比",
+  "兑为泽", "泽水困", "泽地萃", "泽山咸", "水山蹇", "地山谦", "雷山小过", "雷泽归妹"
+]);
+
+const SHENSHA_ITEMS = [
+  { name: "天乙贵人", desc: "吉神尊首 · 百煞潜藏" },
+  { name: "天德月德", desc: "福寿吉神 · 逢凶化吉" },
+  { name: "德秀贵人", desc: "聪明才智 · 文采斐然" },
+  { name: "天厨贵人", desc: "食禄丰盈 · 衣食无忧" },
+  { name: "福星贵人", desc: "安康福寿 · 润物无声" },
+  { name: "文昌贵人", desc: "学业功名 · 才思敏捷" },
+  { name: "国印贵人", desc: "权柄信誉 · 执掌印绶" },
+  { name: "禄神",     desc: "爵禄天成 · 食禄万钟" },
+  { name: "金舆",     desc: "华车荫庇 · 贤配富足" },
+  { name: "将星",     desc: "统帅领导 · 大将之风" },
+  { name: "华盖",     desc: "哲思高蹈 · 孤高卓绝" },
+  { name: "驿马",     desc: "奔走跃迁 · 迁徙高升" },
+  { name: "咸池桃花", desc: "风流艺术 · 姿容出众" },
+  { name: "红艳煞",   desc: "容貌姝丽 · 异性缘盛" },
+  { name: "羊刃",     desc: "刚烈司刑 · 护身利刃" },
+  { name: "飞刃",     desc: "机敏威严 · 遇险生智" },
+  { name: "魁罡贵人", desc: "威权果决 · 智勇双全" },
+  { name: "词馆学堂", desc: "文章锦绣 · 才高八斗" },
+  { name: "劫煞亡神", desc: "敏锐勇决 · 深谋远虑" },
+  { name: "披麻吊客", desc: "警惕慎行 · 居安思危" },
+  { name: "太极贵人", desc: "玄学灵性 · 终始周全" },
+  { name: "天赦贵人", desc: "宽刑赦罪 · 绝处逢生" },
+  { name: "三奇贵人", desc: "襟怀博大 · 命世英才" },
+  { name: "天医星",   desc: "岐黄仁术 · 身心安泰" }
+];
+
 function renderCodexGrids() {
   const isEn = (currentLang === 'en');
-  const dict = I18N_DICT[currentLang];
+  const dict = I18N_DICT[currentLang] || I18N_DICT['zh'];
 
-  document.getElementById('ganzhiBentoGrid').innerHTML = GANZHI_ITEMS.map((gz, idx) => `
-    <div class="codex-item-bento" style="cursor:pointer;" onclick="openGanzhiModal('${gz}')">
-      <div style="font-family:var(--font-serif); font-size:18px; font-weight:900; color:#FFF; margin-bottom:4px;">${gz}</div>
-      <div style="font-size:11px; color:var(--cyan); font-family:var(--font-mono);">${NAYIN_NAMES[idx]}</div>
-      <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">${dict.clickReadClassic}</div>
-    </div>
-  `).join('');
+  const ganzhiEl = document.getElementById('ganzhiBentoGrid');
+  if (ganzhiEl && typeof GANZHI_ITEMS !== 'undefined') {
+    ganzhiEl.innerHTML = GANZHI_ITEMS.map((gz, idx) => `
+      <div class="codex-item-bento" style="cursor:pointer;" onclick="openGanzhiModal('${gz}')">
+        <div style="font-family:var(--font-serif); font-size:18px; font-weight:900; color:#FFF; margin-bottom:4px;">${gz}</div>
+        <div style="font-size:11px; color:var(--cyan); font-family:var(--font-mono);">${NAYIN_NAMES[idx] || ''}</div>
+        <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">${dict.clickReadClassic || '点击查阅古籍 ➔'}</div>
+      </div>
+    `).join('');
+  }
 
-  document.getElementById('hex64BentoGrid').innerHTML = HEX_NAMES.map((name, idx) => `
-    <div class="codex-item-bento" style="cursor:pointer;" onclick="openHexModal('${name}')">
-      <div style="font-family:var(--font-serif); font-size:16px; font-weight:900; color:#FFF; margin-bottom:4px;">${name}</div>
-      <div style="font-size:11px; color:var(--purple); font-family:var(--font-mono);">${isEn ? `Hexagram #${idx+1}` : `第 ${idx+1} 卦`}</div>
-      <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">${dict.clickHexDetail}</div>
-    </div>
-  `).join('');
+  const hexEl = document.getElementById('hex64BentoGrid');
+  if (hexEl && typeof HEX_NAMES !== 'undefined') {
+    hexEl.innerHTML = HEX_NAMES.map((name, idx) => `
+      <div class="codex-item-bento" style="cursor:pointer;" onclick="openHexModal('${name}')">
+        <div style="font-family:var(--font-serif); font-size:16px; font-weight:900; color:#FFF; margin-bottom:4px;">${name}</div>
+        <div style="font-size:11px; color:var(--purple); font-family:var(--font-mono);">${isEn ? `Hexagram #${idx+1}` : `第 ${idx+1} 卦`}</div>
+        <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">${dict.clickHexDetail || '《周易》经义 ➔'}</div>
+      </div>
+    `).join('');
+  }
 
-  document.getElementById('shenshaBentoGrid').innerHTML = SHENSHA_ITEMS.map(s => `
-    <div class="codex-item-bento" style="cursor:pointer;" onclick="openShenshaModal('${s.name}')">
-      <div style="font-family:var(--font-serif); font-size:16px; font-weight:900; color:var(--cyan); margin-bottom:4px;">${s.name}</div>
-      <div style="font-size:11px; color:var(--text-sub);">${s.desc}</div>
-      <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">${dict.clickShenshaDetail}</div>
-    </div>
-  `).join('');
+  const shenshaEl = document.getElementById('shenshaBentoGrid');
+  if (shenshaEl && typeof SHENSHA_ITEMS !== 'undefined') {
+    shenshaEl.innerHTML = SHENSHA_ITEMS.map(s => `
+      <div class="codex-item-bento" style="cursor:pointer;" onclick="openShenshaModal('${s.name}')">
+        <div style="font-family:var(--font-serif); font-size:16px; font-weight:900; color:var(--cyan); margin-bottom:4px;">${s.name}</div>
+        <div style="font-size:11px; color:var(--text-sub);">${s.desc}</div>
+        <div style="font-size:9.5px; color:var(--text-faint); margin-top:4px;">${dict.clickShenshaDetail || '《三命通会》详论 ➔'}</div>
+      </div>
+    `).join('');
+  }
 }
 renderCodexGrids();
 
@@ -3162,6 +3253,50 @@ function openGanzhiModal(gz) {
 
   document.getElementById('classicDetailModal').classList.add('open');
 }
+window.openGanzhiModal = openGanzhiModal;
+
+// 纳音专属全息古籍弹窗
+function openNayinModal(gz, nayin) {
+  const nyData = (window.NAYIN_EXPANDED_DB && window.NAYIN_EXPANDED_DB[nayin]) || {
+    wuxing: nayin ? nayin.slice(-1) : "五行",
+    ganzhi: gz,
+    sanming: `《三命通会·论六十甲子纳音》：“夫纳音者，始于黄钟之数，三十纳音各循五行律吕。${nayin}得天地造化之英华，禀阴阳聚散之正气。”`,
+    xiangyi: `【纳音象义】：${nayin}象征命局独特的生命气象与心智频率。才性内蓄清华，顺应四时生克变化，具极深发展底蕴。`,
+    xiji: `【五行生克与吉凶】：凡命中遇${nayin}，喜逢生旺之月令，逢生扶则格局清纯，逢克破则须详辨制化之机。`
+  };
+
+  const gzData = (window.GANZHI_EXPANDED_DB && window.GANZHI_EXPANDED_DB[gz]) || {};
+
+  document.getElementById('modalBadge').textContent = '纳音秘典 · 三命通会';
+  document.getElementById('modalTitle').textContent = `【${gz} · ${nayin}】纳音五行与古籍全息引证`;
+  document.getElementById('modalSubtitle').textContent = `NAYIN CODEX · 纳音属${nyData.wuxing || ''} · ${gz}柱位原局象义`;
+
+  let gzCard = gzData.sanming ? `
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">🏛️《三命通会》【${gz}】干支格局与坐支精要</div>
+      <div class="modal-quote-text">${gzData.sanming}</div>
+    </div>
+  ` : '';
+
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">📙《三命通会·论六十甲子纳音》【${nayin}】源流与本象论</div>
+      <div class="modal-quote-text">${nyData.sanming}</div>
+    </div>
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">🌊【${nayin}】命理象义、性格气场与现代启示</div>
+      <div class="modal-quote-text">${nyData.xiangyi}</div>
+    </div>
+    <div class="modal-quote-card">
+      <div class="modal-quote-head">⚖️【${nayin}】五行生克喜忌与用神权衡</div>
+      <div class="modal-quote-text">${nyData.xiji}</div>
+    </div>
+    ${gzCard}
+  `;
+
+  document.getElementById('classicDetailModal').classList.add('open');
+}
+window.openNayinModal = openNayinModal;
 
 function openHexModal(name) {
   const data = (window.HEX_EXPANDED_DB && window.HEX_EXPANDED_DB[name]) || {
@@ -3199,37 +3334,54 @@ function openHexModal(name) {
 
   document.getElementById('classicDetailModal').classList.add('open');
 }
+window.openHexModal = openHexModal;
 
 function openShenshaModal(name) {
-  const data = (window.SHENSHA_EXPANDED_DB && window.SHENSHA_EXPANDED_DB[name]) || {
+  let data = (window.SHENSHA_EXPANDED_DB && window.SHENSHA_EXPANDED_DB[name]);
+  if (!data && window.SHENSHA_EXPANDED_DB) {
+    for (const key of Object.keys(window.SHENSHA_EXPANDED_DB)) {
+      if (key.includes(name) || name.includes(key) || (name.includes('德') && key.includes('德'))) {
+        data = window.SHENSHA_EXPANDED_DB[key];
+        break;
+      }
+    }
+  }
+  const sanmingFallback = (typeof SANMING_DB !== 'undefined' && SANMING_DB[name])
+    ? SANMING_DB[name]
+    : `《三命通会·论${name}》：“凡命中遇${name}者，须参合四柱生克制化与格局喜忌而定。”`;
+
+  const fallbackData = {
     type: "星曜神煞",
     qili: "四柱干支多维推演起例",
-    sanming: `《三命通会·论${name}》：“凡命中遇${name}者，须参合四柱生克制化与格局喜忌而定。”`,
+    sanming: sanmingFallback,
     yuanhai: `《渊海子平》：“吉神得令福力倍增，凶煞有制反生威权。”`,
     jiexi: `【实务断法】：${name}在四柱中各具枢机，逢生扶则吉神更贵，逢制化则凶煞呈威。`
   };
 
-  document.getElementById('modalBadge').textContent = `${data.type} · 神煞秘典`;
+  const finalData = data || fallbackData;
+
+  document.getElementById('modalBadge').textContent = `${finalData.type || '星曜神煞'} · 神煞秘典`;
   document.getElementById('modalTitle').textContent = `【${name}】万民英《三命通会》原著考证`;
-  document.getElementById('modalSubtitle').textContent = `SHENSHA CANON · 起例歌诀：${data.qili}`;
+  document.getElementById('modalSubtitle').textContent = `SHENSHA CANON · 起例歌诀：${finalData.qili || '干支推演'}`;
 
   document.getElementById('modalBody').innerHTML = `
     <div class="modal-quote-card">
       <div class="modal-quote-head">📙《三命通会》明·万民英论【${name}】神煞源流考与吉凶真机</div>
-      <div class="modal-quote-text">${data.sanming}</div>
+      <div class="modal-quote-text">${finalData.sanming || sanmingFallback}</div>
     </div>
     <div class="modal-quote-card">
       <div class="modal-quote-head">📜《渊海子平》《星平会海》吉凶断诀歌</div>
-      <div class="modal-quote-text">${data.yuanhai}</div>
+      <div class="modal-quote-text">${finalData.yuanhai || '吉神护身，逢凶化吉。'}</div>
     </div>
     <div class="modal-quote-card">
       <div class="modal-quote-head">💡 现代实务命理心法与生克制化指要</div>
-      <div class="modal-quote-text">${data.jiexi}</div>
+      <div class="modal-quote-text">${finalData.jiexi || '审察四柱喜忌，顺应运势转化。'}</div>
     </div>
   `;
 
   document.getElementById('classicDetailModal').classList.add('open');
 }
+window.openShenshaModal = openShenshaModal;
 
 // 弹窗关闭与控制函数
 function closeClassicModal() {
