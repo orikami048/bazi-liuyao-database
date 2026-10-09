@@ -181,6 +181,25 @@
         </button>
       </div>
 
+      <!-- 📸 小红书/抖音顶级社交爆款: 3:4 黄金比例六十日柱灵魂能量壁纸海报入口 -->
+      <div class="day-pillar-poster-banner" style="margin-bottom: 20px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="font-size:26px;">🎴</div>
+          <div>
+            <div style="font-size:14.5px; font-weight:800; color:#FFF; display:flex; align-items:center; gap:8px;">
+              <span>六十日柱灵魂能量图腾 · 3:4 社交壁纸海报</span>
+              <span style="background:linear-gradient(135deg, #FF2442, #FF758C); color:#FFF; font-size:10px; padding:2px 8px; border-radius:10px; font-weight:700;">小红书/抖音爆款</span>
+            </div>
+            <div style="font-size:12px; color:var(--text-sub); margin-top:2px;">
+              生成你的专属天干图腾、高频性格标签与 2026 火运开运密码，一键下载超清壁纸
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn-generate-poster" onclick="generateDayPillarPoster()">
+          <span>📸 立即生成 3:4 专属壁纸海报</span>
+        </button>
+      </div>
+
       <!-- 🌟 今日流日天时气象与个人实时能量指南 (结合命主日元与当日干支十神) -->
       <div class="daily-transit-card" id="dailyTransitCard">
         <div class="daily-transit-head">
@@ -985,6 +1004,56 @@
   </div>
 </div>
 
+<!-- ==================== 小红书/抖音 3:4 六十日柱灵魂海报展示与导出模态框 ==================== -->
+<div id="dayPillarPosterContainer" class="poster-modal-overlay" style="display: none;">
+  <div class="poster-modal-content">
+    <div style="display:flex; justify-content:flex-end; width:100%; max-width:360px; margin-bottom:8px;">
+      <button type="button" onclick="closeDayPillarPoster()" class="poster-close-btn">✕ 关闭</button>
+    </div>
+    
+    <!-- 3:4 黄金画幅海报实体 -->
+    <div id="dayPillarPosterCard" class="day-pillar-poster-card">
+      <div class="poster-header">
+        <div class="poster-brand">极光易学 · SOUL ENERGY</div>
+        <div class="poster-stamp">天选印信</div>
+      </div>
+      
+      <div class="poster-center-visual">
+        <div class="poster-pillar-title" id="posterDayPillar">丙寅</div>
+        <div class="poster-totem-tag" id="posterTotem">☀️ 烈烈初阳 · 普照万方</div>
+      </div>
+
+      <div class="poster-archetype-box">
+        <div class="poster-arche-title" id="posterArche">魅力灯塔型 · 热情坦荡</div>
+        <div class="poster-trait-desc" id="posterTrait">能量饱满，光明磊落感染力极强，舞台聚光灯下的焦点</div>
+      </div>
+
+      <div class="poster-tags-deck" id="posterTagsDeck">
+        <!-- 标签 Pills -->
+      </div>
+
+      <div class="poster-power-quote" id="posterPowerWord">
+        “ 光芒万丈 · 照亮阴霾 ”
+      </div>
+
+      <div class="poster-footer">
+        <div>
+          <div style="font-size:10px; font-weight:700; color:#FFF;">2026 九紫离火运 · 灵魂图腾</div>
+          <div style="font-size:8.5px; color:#94A3B8;">扫码测算你的四柱八字与命盘图腾</div>
+        </div>
+        <div class="poster-mini-badge">AGY 2.0</div>
+      </div>
+    </div>
+
+    <!-- 底部操作按钮 -->
+    <div style="margin-top:14px; display:flex; gap:12px; width:100%; max-width:360px;">
+      <button type="button" id="btnDownloadPoster" class="btn-poster-action" onclick="downloadDayPillarPoster()">
+        📥 一键保存 3:4 高清壁纸海报
+      </button>
+    </div>
+  </div>
+</div>
+
 <script src="js/app.js"></script>
 <!-- 统一国学多模块账户认证与会员系统 SDK -->
 <script src="guoxue_auth.js"></script>
@@ -992,5 +1061,7 @@
 <script src="innovations.js"></script>
 <!-- 📱 易经数理 · 八星手机号码数字能量学测算引擎 -->
 <script src="js/phone_energy.js"></script>
+<!-- 🎴 小红书/抖音爆款：六十日柱灵魂能量图腾与 3:4 社交壁纸生成器 -->
+<script src="js/day_pillar_card.js"></script>
 </body>
 </html>
