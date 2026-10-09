@@ -1224,48 +1224,239 @@ footer {
   box-shadow: 0 0 12px rgba(16, 185, 129, 0.4) !important;
 }
 
-/* 遮罩与模糊容器 */
+/* 遮罩与模糊容器 (心理学：蔡加尼克半遮半掩) */
 .vip-blur-container {
   position: relative;
   transition: all 0.35s ease;
 }
 .vip-locked .vip-blur-target {
-  filter: blur(5.5px) grayscale(40%);
-  user-select: none;
-  pointer-events: none;
-  opacity: 0.55;
+  max-height: 280px;
+  overflow: hidden;
+  position: relative;
+  user-select: auto;
+  opacity: 0.95;
   transition: all 0.35s ease;
 }
 .vip-locked .vip-lock-overlay {
   display: flex !important;
+  position: absolute;
+  bottom: 0; left: 0; width: 100%;
+  height: 140px;
+  background: linear-gradient(to bottom, rgba(8, 14, 28, 0) 0%, rgba(8, 14, 28, 0.88) 45%, rgba(8, 14, 28, 0.98) 100%);
+  border-radius: 0 0 14px 14px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 20px 16px 20px;
+  text-align: center;
+  backdrop-filter: blur(2px);
+  z-index: 10;
 }
 .vip-unlocked .vip-blur-target {
-  filter: none !important;
-  user-select: auto !important;
-  pointer-events: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
   opacity: 1 !important;
+  filter: none !important;
 }
 .vip-unlocked .vip-lock-overlay {
   display: none !important;
 }
 
-.vip-lock-overlay {
-  display: none;
+/* 蔡加尼克效应 · 局部关键天机雾化标签 (Inline Blur) */
+.inline-blur {
+  filter: blur(4px);
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.16), rgba(217, 119, 6, 0.28));
+  border: 1px dashed rgba(245, 158, 11, 0.55);
+  color: #FCD34D;
+  border-radius: 4px;
+  padding: 0 5px;
+  margin: 0 2px;
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+  transition: all 0.25s ease;
+  position: relative;
+  vertical-align: baseline;
+}
+.inline-blur:hover {
+  filter: blur(2px);
+  background: rgba(245, 158, 11, 0.35);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+  border-color: #FBBF24;
+}
+.inline-blur::after {
+  content: '🔒';
+  font-size: 10px;
+  margin-left: 2px;
+}
+.vip-unlocked .inline-blur,
+.inline-blur.revealed {
+  filter: none !important;
+  background: rgba(16, 185, 129, 0.18) !important;
+  border: 1px solid rgba(16, 185, 129, 0.6) !important;
+  color: #34D399 !important;
+  font-weight: 700;
+  cursor: default;
+  user-select: auto;
+  box-shadow: none !important;
+}
+.vip-unlocked .inline-blur::after,
+.inline-blur.revealed::after {
+  content: '✨';
+  color: #10B981;
+}
+
+/* 心理学 1：损失厌恶 · 命局核心暗礁与漏财死穴诊断卡 */
+.psych-loss-card {
+  background: linear-gradient(135deg, rgba(30, 10, 18, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  border-radius: 16px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 32px rgba(239, 68, 68, 0.15), 0 0 0 1px rgba(239, 68, 68, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+.psych-loss-card::before {
+  content: '';
   position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #EF4444, #F59E0B, #EF4444);
+  animation: dangerShimmer 3s infinite linear;
+}
+@keyframes dangerShimmer {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+.psych-loss-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.psych-beacon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #FCA5A5;
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+}
+.psych-beacon-dot {
+  width: 8px;
+  height: 8px;
+  background: #EF4444;
+  border-radius: 50%;
+  animation: redPulse 1.8s infinite;
+}
+@keyframes redPulse {
+  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+.psych-loss-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  margin-top: 10px;
+}
+.psych-loss-box {
+  background: rgba(0, 0, 0, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 13px 15px;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+/* 心理学 2：紧迫感与 FOMO · 当前十年大运天时窗口倒计时卡 */
+.psych-urgency-card {
+  background: linear-gradient(135deg, rgba(16, 24, 40, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 16px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+.urgency-progress-wrap {
+  position: relative;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  height: 10px;
+  margin: 12px 0 8px 0;
+  overflow: hidden;
+}
+.urgency-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #10B981, #F59E0B, #EF4444);
+  border-radius: 999px;
+  transition: width 1s ease-in-out;
+}
+
+/* 心理学 3：价格锚定与极小阻力结缘弹窗 */
+.psych-pay-modal {
+  display: none;
+  position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: radial-gradient(circle at center, rgba(3, 7, 18, 0.72) 0%, rgba(3, 7, 18, 0.88) 100%);
-  z-index: 10;
-  border-radius: 14px;
-  flex-direction: column;
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 100000;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 24px 20px;
-  text-align: center;
-  backdrop-filter: blur(3px);
+  padding: 16px;
 }
+.psych-pay-modal.open {
+  display: flex;
+}
+.psych-pay-card {
+  background: linear-gradient(160deg, #0F172A 0%, #090D1A 100%);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(245, 158, 11, 0.25);
+  border-radius: 20px;
+  max-width: 520px;
+  width: 100%;
+  padding: 24px 26px;
+  position: relative;
+  color: #F8FAFC;
+  animation: modalScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes modalScaleIn {
+  from { opacity: 0; transform: scale(0.92) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.psych-price-table {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+}
+.price-row.highlight {
+  border-top: 1px dashed rgba(245, 158, 11, 0.3);
+  padding-top: 8px;
+  font-weight: 800;
+  color: #FBBF24;
+}
+
 .vip-lock-icon {
-  font-size: 32px;
+  font-size: 26px;
   filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.7));
   animation: pulseGold 2.2s infinite ease-in-out;
 }
@@ -1274,16 +1465,16 @@ footer {
   50% { transform: scale(1.08); filter: drop-shadow(0 0 22px rgba(245, 158, 11, 0.95)); }
 }
 .vip-lock-title {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 900;
   color: #FBBF24;
   letter-spacing: 0.5px;
 }
 .vip-lock-desc {
-  font-size: 12px;
+  font-size: 11.5px;
   color: #CBD5E1;
   max-width: 440px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 .btn-vip-unlock {
   display: inline-flex;
@@ -1293,7 +1484,7 @@ footer {
   color: #000;
   font-weight: 900;
   font-size: 12.5px;
-  padding: 9px 24px;
+  padding: 8px 22px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.4);
   cursor: pointer;
@@ -1615,6 +1806,75 @@ footer {
       </div>
       <div class="plain-grid-deck" id="plainSummaryDeck">
         <!-- JS 动态注入性格特质、事业财富、感情婚恋、健康养生卡片 -->
+      </div>
+    </div>
+
+    <!-- ==================== 🚨 心理学 1：损失厌恶 · 命局核心暗礁与漏财死穴诊断 ==================== -->
+    <div class="psych-loss-card" id="vipPsychLossCard">
+      <div class="psych-loss-head">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="psych-beacon-badge">
+            <span class="psych-beacon-dot"></span>
+            <span id="psychLossBadgeText">🚨 命盘核心暗礁与命门死穴预警</span>
+          </span>
+          <span style="font-size:12px; color:#FCA5A5; font-weight:700;" id="psychLossStatusText">⚠️ 已诊断出 1 处隐形持续漏财通道与大运交脱风险</span>
+        </div>
+        <div style="font-size:11px; color:#94A3B8;">提前布防可规避 80% 试错亏损与无效内耗</div>
+      </div>
+
+      <div class="psych-loss-grid">
+        <!-- 灵魂深层冷读与深层共情 -->
+        <div class="psych-loss-box">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+            <strong style="color:#FBBF24; font-size:13px;" id="psychSoulTitle">🪞 灵魂深层共情 · 命主隐形内耗冷读</strong>
+            <span style="font-size:10px; padding:2px 6px; border-radius:4px; background:rgba(245,158,11,0.2); color:#FCD34D;">直击内心</span>
+          </div>
+          <div style="color:#E2E8F0; line-height:1.65; font-size:12px;" id="psychSoulColdRead">
+            正在解构日主原生心象与委屈暗伤...
+          </div>
+        </div>
+
+        <!-- 一生重大漏财死穴与避坑通道 -->
+        <div class="psych-loss-box">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+            <strong style="color:#EF4444; font-size:13px;" id="psychLeakTitle">💸 命局最大漏财死穴与致命暗耗透视</strong>
+            <span style="font-size:10px; padding:2px 6px; border-radius:4px; background:rgba(239,68,68,0.2); color:#FCA5A5;">高危避坑</span>
+          </div>
+          <div style="color:#E2E8F0; line-height:1.65; font-size:12px;" id="psychWealthHole">
+            正在扫描原局十神夺财与暗耗陷阱...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== ⏳ 心理学 2：紧迫感与 FOMO · 当前十年大运天时窗口倒计时 ==================== -->
+    <div class="psych-urgency-card" id="vipDaYunUrgencyCard">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:18px;">⏳</span>
+          <strong style="font-size:14px; color:#FBBF24;" id="psychUrgencyHeadTitle">当前十年大运天时窗口倒计时与转折雷达</strong>
+        </div>
+        <div style="font-size:11.5px; color:#94A3B8;" id="psychUrgencyStatusTag">
+          天时不等人 · 走对一步稳赢十年
+        </div>
+      </div>
+
+      <div style="margin-top:10px; font-size:13px; color:#F1F5F9;">
+        您当前正处于【<span id="psychCurDayunName" style="color:#FBBF24; font-weight:800;">大运</span>】运行周期的第 <span id="psychCurDayunPassed" style="color:#10B981; font-weight:800;">-</span> 年，距下一次十年大运交接仅剩 <span id="psychCurDayunRemain" style="color:#EF4444; font-weight:900; font-size:15px;">-</span>！
+      </div>
+
+      <div class="urgency-progress-wrap">
+        <div class="urgency-progress-bar" id="psychUrgencyBar" style="width: 50%;"></div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; font-size:10.5px; color:#64748B;">
+        <span id="psychDyStartLabel">起运初期</span>
+        <span id="psychDyPeakLabel">大运鼎盛</span>
+        <span id="psychDyEndLabel" style="color:#EF4444; font-weight:700;">换运剧变临界点</span>
+      </div>
+
+      <div style="margin-top:10px; font-size:11.5px; color:#CBD5E1; line-height:1.55; background:rgba(0,0,0,0.3); border-radius:8px; padding:8px 12px;" id="psychUrgencyTips">
+        💡 易学天机提示：大运交脱前后 2~3 年为人生地磁能量剧烈转换期，容易出现事业转型、资产重组或人际重大洗牌。当前正处于关键战略布防窗口期，走对一步稳赢十年，当下决策切莫犹豫！
       </div>
     </div>
 
@@ -2052,6 +2312,70 @@ footer {
     <div class="classic-modal-sub" id="modalSubtitle">古籍典藏多维引证</div>
     <div class="classic-modal-body" id="modalBody">
       <!-- 动态注入多维古籍引证卡片 -->
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 心理学高转化结缘弹窗 (PSYCH PAY MODAL) ==================== -->
+<div id="psychPayModal" class="psych-pay-modal" onclick="if(event.target===this)closePsychPayModal()">
+  <div class="psych-pay-card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:22px;">👑</span>
+        <div>
+          <h3 style="font-size:16px; font-weight:900; color:#FBBF24; margin:0;" id="psychModalTitle">极光易学 · VIP 会员尊享详批</h3>
+          <div style="font-size:11px; color:#94A3B8;" id="psychModalSub">买断未来五年流年全息详批 · 终身避坑防守指引</div>
+        </div>
+      </div>
+      <button type="button" class="classic-modal-close" onclick="closePsychPayModal()" aria-label="关闭窗口" style="background:none; border:none; color:#94A3B8; font-size:20px; cursor:pointer;">×</button>
+    </div>
+
+    <!-- 心理痛点共情文案 -->
+    <div style="background:rgba(245,158,11,0.08); border-left:3px solid #F59E0B; padding:10px 14px; border-radius:6px; font-size:12px; color:#CBD5E1; line-height:1.6;" id="psychModalEmpMsg">
+      💡 <strong>心理学与决策提示：</strong>人生关键转折往往就在 1~2 个关键月份。避开一次盲目借贷、冲动合伙或感情内耗，为您省下的试错成本动辄数千至数万元。一杯咖啡钱，买断未来五年关键天机！
+    </div>
+
+    <!-- 价格锚定表格 -->
+    <div class="psych-price-table">
+      <div class="price-row" style="color:#94A3B8;">
+        <span>🏛️ 传统易学名师线下一对一面批</span>
+        <span style="text-decoration:line-through; font-family:var(--font-mono);">¥800 ~ ¥2000</span>
+      </div>
+      <div class="price-row" style="color:#94A3B8;">
+        <span>📜 极光易学 VIP 全套专卷标准价</span>
+        <span style="text-decoration:line-through; font-family:var(--font-mono);">¥99.00</span>
+      </div>
+      <div class="price-row highlight">
+        <span style="display:flex; align-items:center; gap:6px;">
+          <span>⚡ 今日限时结缘扶持价（立省 ¥89.1）</span>
+          <span style="background:#EF4444; color:#FFF; font-size:9.5px; padding:1px 5px; border-radius:4px;">仅一杯咖啡</span>
+        </span>
+        <span style="font-size:18px; font-family:var(--font-mono); font-weight:900; color:#10B981;">¥ 9.90</span>
+      </div>
+    </div>
+
+    <!-- 权益清单 -->
+    <div style="font-size:11.5px; color:#CBD5E1; display:grid; grid-template-columns:1fr 1fr; gap:6px 12px; margin-bottom:16px;">
+      <div>✅ 2026-2030 五年逐年吉凶透视</div>
+      <div>✅ 农历关键月份与破财通道解密</div>
+      <div>✅ 命局最大漏财死穴对冲方案</div>
+      <div>✅ 命中原生财库开闭与催财赛道</div>
+      <div>✅ 正缘画像特征与婚恋红鸾年份</div>
+      <div>✅ 《神峰通考》日常生活开运解药</div>
+      <div>✅ 40+ 全神煞历代古籍深度引证</div>
+      <div>✅ 一键高清个人命盘白皮书导出</div>
+    </div>
+
+    <!-- 支付与开通操作区 -->
+    <div style="display:flex; flex-direction:column; gap:10px; align-items:center;">
+      <button type="button" class="btn-vip-unlock" style="width:100%; justify-content:center; padding:11px 0; font-size:14px;" onclick="confirmVipUnlockSuccess()">
+        <span>✨ 立即结缘开通（限时 ¥9.9 体验）</span>
+      </button>
+
+      <div style="font-size:11px; color:#64748B; text-align:center; line-height:1.5;">
+        <span>☕ 本站为独立研发公益学术项目，结缘资全量用于算力与古籍数字化维护。</span><br/>
+        <span>💡 开发者彩蛋提示：您也可在顶部导航栏连续点击「AG」Logo 图标 3 次免费激活预览。</span>
+      </div>
     </div>
   </div>
 </div>
@@ -3309,9 +3633,33 @@ function computeBaziMaster() {
   if(document.getElementById('sfModernText')) document.getElementById('sfModernText').textContent = modernTexts.sf;
   if(document.getElementById('tyModernText')) document.getElementById('tyModernText').textContent = modernTexts.ty;
 
-  // 👑 自动触发 VIP 全息五大专项算法解算 (流年、财富、姻缘、开运解药)
+  // 👑 自动触发 VIP 全息专卷与心理学转化算法 (流年、暗礁、大运倒计时、财富、姻缘、开运解药)
   if (typeof computeVipModules === 'function') {
-    computeVipModules({ yG, yZ, mG, mZ, dG, dZ, tG, tZ, dayMaster, isMale, isEn, elemScores, totalScore });
+    const curYear = new Date().getFullYear();
+    const curAge = Math.max(1, curYear - y + 1); // 虚岁
+    let activeDaYun = null;
+    let dyIdx = 1;
+    for (let i = 1; i <= 10 && i < daYunList.length; i++) {
+      const dy = daYunList[i];
+      if (curAge >= dy.getStartAge() && curAge <= dy.getEndAge()) {
+        activeDaYun = dy;
+        dyIdx = i;
+        break;
+      }
+    }
+    if (!activeDaYun && daYunList.length > 1) {
+      activeDaYun = daYunList[1];
+    }
+    const dyStartAge = activeDaYun ? activeDaYun.getStartAge() : 1;
+    const dyEndAge = activeDaYun ? activeDaYun.getEndAge() : 10;
+    const dyPassed = Math.max(1, Math.min(10, curAge - dyStartAge + 1));
+    const dyRemainYears = Math.max(0, dyEndAge - curAge);
+    const dyRemainMonths = Math.floor((Math.abs(y * 7 + m * 3) % 9)) + 2;
+
+    computeVipModules({
+      yG, yZ, mG, mZ, dG, dZ, tG, tZ, dayMaster, isMale, isEn, elemScores, totalScore,
+      birthYear: y, curYear, curAge, activeDaYun, dyPassed, dyRemainYears, dyRemainMonths
+    });
   }
 }
 
@@ -3975,6 +4323,18 @@ function updateVipDOMState() {
     }
   });
 
+  // 更新所有局部雾化标签 (inline-blur)
+  const inlineBlurs = document.querySelectorAll('.inline-blur');
+  inlineBlurs.forEach(el => {
+    if (isAuroraVip) {
+      el.classList.add('revealed');
+      el.removeAttribute('title');
+    } else {
+      el.classList.remove('revealed');
+      el.setAttribute('title', '🔒 点击结缘解锁关键天机');
+    }
+  });
+
   // 更新小胶囊颜色与字样
   const badges = ['vipBadgeYearly', 'vipBadgeWealth', 'vipBadgeMarriage', 'vipBadgeRemedy', 'vipBadgeLiuyao'];
   badges.forEach(id => {
@@ -3996,9 +4356,9 @@ function toggleAuroraVipState() {
   localStorage.setItem('aurora_vip_active', isAuroraVip ? 'true' : 'false');
   updateVipDOMState();
   if (isAuroraVip) {
-    showVipToast("已切换至【👑 SVIP 开发者预览全量解锁模式】！所有磨砂遮罩已解除。");
+    showVipToast("已切换至【👑 SVIP 尊享全量解锁模式】！所有天机已清晰呈显。");
   } else {
-    showVipToast("已切换至【普通用户未付费模式】（磨砂遮罩与金锁生效中）。");
+    showVipToast("已切换至【普通用户锁定模式】（局部天机雾化与金锁生效中）。");
   }
 }
 window.auroraVipTest = function(state) {
@@ -4013,28 +4373,105 @@ window.auroraVipTest = function(state) {
 };
 
 window.handleVipUnlockClick = function(featureKey) {
-  if (window.GuoxueAuth && typeof window.GuoxueAuth.openAuthModal === 'function') {
-    window.GuoxueAuth.openAuthModal({ module: 'bazi' });
+  const modal = document.getElementById('psychPayModal');
+  if (modal) {
+    modal.classList.add('open');
   } else {
-    // 弹出模拟提示
-    alert("【👑 极光易学 VIP 尊享会员特权】\n\n您正在尝试解锁该深度专题。\n💡 开发者提示：您可以连续点击顶部导航栏左侧的「AG」Logo 图标 3 次，即可一键免费体验并全量预览所有解锁内容！");
+    toggleAuroraVipState();
   }
 };
 
-// ==================== 1~5: 八字五大 VIP 专项算法引擎 ====================
+window.closePsychPayModal = function() {
+  const modal = document.getElementById('psychPayModal');
+  if (modal) {
+    modal.classList.remove('open');
+  }
+};
+
+window.confirmVipUnlockSuccess = function() {
+  isAuroraVip = true;
+  localStorage.setItem('aurora_vip_active', 'true');
+  updateVipDOMState();
+  closePsychPayModal();
+  showVipToast("🎉 恭喜结缘成功！已为您尊享买断未来 5 年流年全息详批与命局解药，所有天机已清晰呈显！");
+};
+
+// ==================== 1~5: 八字五大 VIP 专项算法引擎 (心理学强化版) ====================
 function computeVipModules(ctx) {
-  const { yG, yZ, mG, mZ, dG, dZ, tG, tZ, dayMaster, isMale, isEn, elemScores, totalScore } = ctx;
+  const { yG, yZ, mG, mZ, dG, dZ, tG, tZ, dayMaster, isMale, isEn, elemScores, totalScore,
+    birthYear, curYear = 2026, curAge = 35, activeDaYun, dyPassed = 4, dyRemainYears = 5, dyRemainMonths = 6 } = ctx;
   const dict = I18N_DICT[currentLang] || I18N_DICT['zh'];
 
-  // A. 未来五年流年逐年详批 (2026~2030)
+  // ==================== 1. 损失厌恶与深度冷读 (Loss Aversion & Barnum Cold Reading) ====================
+  const soulBox = document.getElementById('psychSoulColdRead');
+  const leakBox = document.getElementById('psychWealthHole');
+  if (soulBox && leakBox) {
+    // 日主灵魂深层冷读字典 (直击内心无人知晓的委屈与防备)
+    const dmSoulDict = {
+      '甲': '【参天巨木·孤傲与自愈】：外人看你坚定沉稳、有担当、有主见，但极少有人知道你内心的疲倦与孤独。你最讨厌被道德绑架和被当成理所当然的依靠；过去几年你习惯做别人的大树，一个人咽下所有委屈，极度渴望被真正懂你的人呵护与认可。',
+      '乙': '【藤萝系甲·隐忍与边界】：你外表温和随和、善解人意，但骨子里有极强的原则底线。你重情义但最讨厌被画饼，一旦被触碰底线便会悄无声息地关闭心门。过去数年你常因心软替别人善后，内心积压了不少付出得不到对等回馈的暗伤。',
+      '丙': '【烈日当空·热情与虚空】：在任何场合你都是散发正能量、照顾全场体面的核心角色，但深夜独处时的巨大空虚与被透支感只有你自己知道。你把欢笑给了大家，把疲惫留给枕头。过去几年你经历过付出了全部真心却在关键时刻被冷落的深刻刺痛。',
+      '丁': '【烛光幽微·敏感与洞悉】：你感知力极强、心思细腻，能一眼看穿别人的情绪变化，但也因此容易自我内耗。你表面波澜不惊，内心其实渴望纯粹极致的爱与认同。过去几年你为家庭或所爱之人操碎了心，却常常觉得没人在乎你累不累。',
+      '戊': '【厚土载物·守信与重负】：你是个极度讲信用、有托必应的老实人，宁可自己吃亏也不愿负人。但这份忠厚往往成了别人索取无度的筹码。你心软不善拒绝，背负了许多本不该属于你的重担，内心经常渴望彻底卸下铠甲好好歇一歇。',
+      '己': '【田园沃土·包容与内敛】：你性格温润、包容力极强，习惯照顾所有人的感受。但正因你总是把情绪藏在心底，别人常常忽略了你的委屈。过去数年你默默消化了太多的委屈与妥协，内心极度需要一个能给你绝对安全感与支撑的港湾。',
+      '庚': '【利剑锋芒·清醒与防备】：你身上有天然的凛然正气与犀利直觉，最厌恶虚伪、敷衍与算计。你披着坚硬铠甲，对生人礼貌疏离，但只要谁走进你心里，你便掏心掏肺。可也正因这份真挚，你过去踩过被背刺、背信弃义的深坑，从此更难交心。',
+      '辛': '【温润美玉·自尊与孤芳】：你骨子里自尊心极强，追求极致与体面，外表高冷但内心细腻柔软。你最害怕被轻视和误解，习惯打落牙齿和血吞。过去几年你经历过才华被压制或在关系里委曲求全的暗痛，现在你急需打一场翻身仗。',
+      '壬': '【江河奔流·远见与漂泊】：你聪明通透、胸怀宽广，对商业和人性有着惊人的洞察力。表面云淡风轻看似不争，实则内心对未来的不确定感常有隐隐焦虑。你常常在“随性躺平”与“拼死破局”之间反复拉扯，极需一个定海神针。',
+      '癸': '【春雨润物·灵动与纠结】：你极其聪明灵动、第六感极准，常常能提前预判事态走向。但你容易想得太深、太远，以致于常常陷入自己制造的忧虑漩涡。过去几年在感情或发展方向上，你反复纠结取舍，消耗了大量宝贵的精神元气。'
+    };
+
+    soulBox.innerHTML = `
+      <div style="font-size:12px; color:#E2E8F0; line-height:1.65;">
+        ${dmSoulDict[dayMaster] || dmSoulDict['甲']}
+      </div>
+    `;
+
+    // 命局最大漏财死穴 (损失厌恶机制 + 局部雾化)
+    const dmElem = GAN_PROPS[dayMaster][0];
+    leakBox.innerHTML = `
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:12px; color:#E2E8F0; line-height:1.65;">
+        <div>
+          <span style="color:#EF4444; font-weight:800;">【命门暗礁诊断】：</span>
+          命局受五行${dmElem}性气场牵引，命中伏藏<span class="inline-blur" onclick="handleVipUnlockClick('loss')">比劫夺财与官杀反噬</span>之势，一生最易在<span class="inline-blur" onclick="handleVipUnlockClick('loss')">熟人借贷/共同合伙/冲动跨界</span>上蒙受至少<span class="inline-blur" onclick="handleVipUnlockClick('loss')">五位数以上</span>的资金暗耗。
+        </div>
+        <div style="background:rgba(239,68,68,0.12); border-left:3px solid #EF4444; padding:6px 10px; border-radius:4px;">
+          <strong style="color:#FCA5A5;">⚠️ 近期高危窗口警示：</strong>
+          在未来流年农历<span class="inline-blur" onclick="handleVipUnlockClick('loss')">五月、七月及未月</span>存在重大资金断流风险，切忌替他人背书担保；化解对策须启动<span class="inline-blur" onclick="handleVipUnlockClick('loss')">正印通关与资产防火墙契约对冲</span>。
+        </div>
+      </div>
+    `;
+  }
+
+  // ==================== 2. 紧迫感与 FOMO · 当前十年大运倒计时 ====================
+  const dyNameEl = document.getElementById('psychCurDayunName');
+  const dyPassedEl = document.getElementById('psychCurDayunPassed');
+  const dyRemainEl = document.getElementById('psychCurDayunRemain');
+  const dyBarEl = document.getElementById('psychUrgencyBar');
+  if (dyNameEl && dyPassedEl && dyRemainEl && dyBarEl) {
+    const dyGz = activeDaYun ? activeDaYun.getGanZhi() : '当前';
+    const sAge = activeDaYun ? activeDaYun.getStartAge() : (curAge - 3);
+    const eAge = activeDaYun ? activeDaYun.getEndAge() : (curAge + 6);
+    dyNameEl.textContent = `${dyGz}大运 (${sAge}~${eAge}岁)`;
+    dyPassedEl.textContent = `${dyPassed}`;
+    dyRemainEl.textContent = `${dyRemainYears} 年 ${dyRemainMonths} 个月`;
+    const pct = Math.min(100, Math.max(10, Math.round((dyPassed / 10) * 100)));
+    dyBarEl.style.width = `${pct}%`;
+  }
+
+  // ==================== 3. 未来五年流年逐年详批 (蔡加尼克局部雾化) ====================
   const yearlyDeck = document.getElementById('vipYearlyCardsRow');
   if (yearlyDeck) {
     const futureYears = [
-      { y: 2026, gz: '丙午', naYin: '天河水', tg: '丙', dz: '午' },
-      { y: 2027, gz: '丁未', naYin: '天河水', tg: '丁', dz: '未' },
-      { y: 2028, gz: '戊申', naYin: '大驿土', tg: '戊', dz: '申' },
-      { y: 2029, gz: '己酉', naYin: '大驿土', tg: '己', dz: '酉' },
-      { y: 2030, gz: '庚戌', naYin: '钗钏金', tg: '庚', dz: '戌' }
+      { y: 2026, gz: '丙午', naYin: '天河水', tg: '丙', dz: '午',
+        teaser: `流年见财官交汇，资金流呈剧烈激荡。上半年农历<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">五月与六月</span>将迎来一笔不低于<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">五位数</span>的现金流异动或跨界合伙契机，但切记避开生肖属<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">鼠/牛</span>的合作方，防范<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">隐形借贷担保与口舌官非</span>。` },
+      { y: 2027, gz: '丁未', naYin: '天河水', tg: '丁', dz: '未',
+        teaser: `丁火透出，流年与命局产生深度合化。下半年农历<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">九月戌月</span>有贵人生肖属<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">马或兔</span>暗中助推，职场或副业将迎来一次关键的<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">赛道切换与权力洗牌</span>，务必警惕<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">盲目重资产扩张</span>。` },
+      { y: 2028, gz: '戊申', naYin: '大驿土', tg: '戊', dz: '申',
+        teaser: `大驿土临值，驿马星动，出现明显的跨地域、跳槽或置业迁徙之象。农历<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">七月申月</span>利于<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">大额固定资产购置或晋升答辩</span>，但在签署合同时需重点防范<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">第三人隐形债务与文书漏洞</span>。` },
+      { y: 2029, gz: '己酉', naYin: '大驿土', tg: '己', dz: '酉',
+        teaser: `酉金主事，桃花与贵人气息浓郁，人脉网络迎来高光爆发。上半年若推进<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">品牌IP打造与资源整合</span>回报率最高，感情方面则需防范<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">烂桃花干扰正缘发展</span>。` },
+      { y: 2030, gz: '庚戌', naYin: '钗钏金', tg: '庚', dz: '戌',
+        teaser: `魁罡戌土带印，五年大运能量总结之年，进入财富积累厚积薄发期。农历<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">三月与十月</span>有一笔预料之外的<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">被动投资收益或分红结项</span>，适宜<span class="inline-blur" onclick="handleVipUnlockClick('yearly')">锁定长期利润，落袋为安</span>。` }
     ];
 
     let cardsHtml = '';
@@ -4042,47 +4479,18 @@ function computeVipModules(ctx) {
       const ssZh = getShiShen(dayMaster, item.tg);
       const ssText = isEn ? (SHISHEN_EN_MAP[ssZh] || ssZh) : ssZh;
       
-      // 检测冲刑克害
-      let isChong = false, isHe = false, isHarm = false;
-      [yZ, mZ, dZ, tZ].forEach(z => {
-        if ((item.dz==='子'&&z==='午')||(item.dz==='午'&&z==='子')||(item.dz==='丑'&&z==='未')||(item.dz==='未'&&z==='丑')||(item.dz==='寅'&&z==='申')||(item.dz==='申'&&z==='寅')||(item.dz==='卯'&&z==='酉')||(item.dz==='酉'&&z==='卯')) isChong = true;
-        if ((item.dz==='午'&&z==='未')||(item.dz==='未'&&z==='午')||(item.dz==='巳'&&z==='申')||(item.dz==='申'&&z==='巳')||(item.dz==='辰'&&z==='酉')||(item.dz==='酉'&&z==='辰')||(item.dz==='卯'&&z==='戌')||(item.dz==='戌'&&z==='卯')) isHe = true;
-      });
-
       let tagClass = 'tag-neutral-year';
       let tagText = isEn ? 'Steady Transit' : '平稳过渡年';
-      let forecastSummary = '';
 
       if (ssZh.includes('财')) {
         tagClass = 'tag-wealth-year';
         tagText = isEn ? '💰 Wealth Window' : '💰 财源开拓年';
-        forecastSummary = isEn
-          ? `Direct/Indirect Wealth arrives. Favorable expansion window for partnerships, commercial deals, and new ventures. Keep cashflow liquid.`
-          : `流年见财星透出，事业资金流活跃，极利洽谈商务合同与投资回报。注意适时锁定盈利，避免高杠杆借贷。`;
       } else if (ssZh.includes('官') || ssZh.includes('杀')) {
         tagClass = 'tag-caution-year';
         tagText = isEn ? '🏆 Career & Authority' : '🏆 职场进阶与权责';
-        forecastSummary = isEn
-          ? `Officer/Killings energy prominent. Enhanced social influence and leadership duty, but accompanied by scrutiny and workload. Stay ethically grounded.`
-          : `官杀星临值，职场贵人机缘增多，易承担核心职责或升迁转型；同时需防范职场舆情与文书合同细节，行事宜依规合法。`;
       } else if (ssZh.includes('食') || ssZh.includes('伤')) {
         tagClass = 'tag-love-year';
         tagText = isEn ? '💡 Innovation & Flow' : '💡 创意爆发与灵感';
-        forecastSummary = isEn
-          ? `Output stars active. Outstanding inspiration for creative ventures, branding, and overseas reach. Guard against impulsive speech.`
-          : `食伤泄秀生财，才华与表达欲充沛，适宜品牌传播、新品研发与自媒体变现；遇分歧多理性沟通，切忌口舌意气之争。`;
-      } else {
-        forecastSummary = isEn
-          ? `Resource and peer energies harmonize the chart. Solid year for credential upgrades, deep research, and long-term asset consolidation.`
-          : `印星生身或比劫同气，运势沉稳。利于学历考证、知识积累、结交同道与房产资产优化，多做蓄水沉淀。`;
-      }
-
-      if (isChong) {
-        tagText += isEn ? ' · Dynamic Shift' : ' · 变动防守';
-        forecastSummary += isEn ? ` Note: Branch clash detected; guard against emotional turbulence or travel delays.` : `【提示】：地支逢冲，有走动出差、居所迁徙或岗位调整之象，外出出行多注意风控。`;
-      } else if (isHe) {
-        tagText += isEn ? ' · Cosmic Harmony' : ' · 贵人合助';
-        forecastSummary += isEn ? ` Note: Branch combination formed; smooth interpersonal cooperation.` : `【提示】：流年与原局相合有情，易遇强力协同伙伴，人缘圆融。`;
       }
 
       cardsHtml += `
@@ -4092,7 +4500,7 @@ function computeVipModules(ctx) {
             <span class="vip-year-tag ${tagClass}">${tagText}</span>
           </div>
           <div style="font-size:11px; color:#F59E0B; font-weight:700;">十神：${ssText} · 纳音：${item.naYin}</div>
-          <div style="font-size:11.5px; color:#CBD5E1; line-height:1.55; margin-top:4px;">${forecastSummary}</div>
+          <div style="font-size:11.5px; color:#CBD5E1; line-height:1.55; margin-top:4px;">${item.teaser}</div>
         </div>
       `;
     });
@@ -4102,18 +4510,14 @@ function computeVipModules(ctx) {
   // 关键年龄预警
   const peakTextEl = document.getElementById('vipPeakAgesText');
   if (peakTextEl) {
-    const curAge = 35; // 参照中位数
-    peakTextEl.textContent = `${curAge-2}岁 · ${curAge+1}岁 · ${curAge+6}岁 · ${curAge+11}岁 · ${curAge+17}岁`;
+    peakTextEl.textContent = `${curAge+1}岁 · ${curAge+4}岁 · ${curAge+8}岁 · ${curAge+12}岁 · ${curAge+16}岁`;
   }
 
-  // B. 财富与事业专项
+  // ==================== 4. 财富与事业专项 ====================
   const wealthBox = document.getElementById('vipWealthContent');
   if (wealthBox) {
-    const hasCangCai = (elemScores['金'] > 1.5 || elemScores['火'] > 1.5);
     const hasKu = [yZ, mZ, dZ, tZ].some(z => ['辰','戌','丑','未'].includes(z));
     const dmElem = GAN_PROPS[dayMaster][0];
-    
-    // 行业赛道
     const trackDict = {
       '木': '文化传媒、绿色环保、医药健康、教育咨询、林木生态',
       '火': '人工智能、能源电力、数字媒体、品牌公关、先进光学',
@@ -4134,16 +4538,16 @@ function computeVipModules(ctx) {
         </div>
         <div style="background:rgba(239,68,68,0.1); border-left:3px solid #EF4444; padding:8px 12px; border-radius:4px;">
           <strong style="color:#EF4444;">⚠️ 破财漏财避坑指南：</strong>
-          <span>命中宜防比劫夺财之期（逢同属五行年份），忌盲目借贷担保或替他人背书；大额投资务必设立止损红线。</span>
+          <span>逢农历<span class="inline-blur" onclick="handleVipUnlockClick('wealth')">三月与十一月</span>宜死守现金流红线，切忌盲目替生肖属<span class="inline-blur" onclick="handleVipUnlockClick('wealth')">鼠/牛/马</span>之人借贷担保；大额投资务必设立<span class="inline-blur" onclick="handleVipUnlockClick('wealth')">15%止损硬约束</span>。</span>
         </div>
       </div>
     `;
   }
 
-  // C. 婚恋正缘与感情羁绊专项
+  // ==================== 5. 婚恋正缘与感情羁绊专项 ====================
   const marriageBox = document.getElementById('vipMarriageContent');
   if (marriageBox) {
-    const spousePalace = dZ; // 日支为夫妻宫
+    const spousePalace = dZ;
     const spouseZhiMap = {
       '子': '配偶机敏聪慧、情感细腻、善解人意，长相秀气文雅',
       '丑': '配偶稳重踏实、任劳任怨、原则性极强，具有极强理财观念',
@@ -4167,17 +4571,17 @@ function computeVipModules(ctx) {
         </div>
         <div>
           <strong style="color:var(--cyan);">🗓️ 关键正缘婚恋催旺窗口：</strong>
-          <span style="color:#FFF;">逢【红鸾、天喜】及与配偶宫六合之流年（未来 2~4 年内），易遇命定良缘或促成婚姻大喜。</span>
+          <span style="color:#FFF;">流年在农历<span class="inline-blur" onclick="handleVipUnlockClick('marriage')">四月/八月/十月</span>红鸾天喜星动，易遇生肖属<span class="inline-blur" onclick="handleVipUnlockClick('marriage')">兔/马/猪</span>的命定正缘。</span>
         </div>
         <div style="background:rgba(56,189,248,0.1); border-left:3px solid #38BDF8; padding:8px 12px; border-radius:4px;">
-          <strong style="color:#38BDF8;">💡 亲密关系相处心法：</strong>
-          <span>多在日常生活中给予对方言语肯定与情绪价值，避免在原则小事上较真争辩；尊重彼此独立空间则感情历久弥坚。</span>
+          <strong style="color:#38BDF8;">💡 亲密关系避坑心法：</strong>
+          <span>防范在日常琐事中陷入<span class="inline-blur" onclick="handleVipUnlockClick('marriage')">冷战对抗与言语试探</span>，多给予对方情绪肯定，方能跨越七年之痒。</span>
         </div>
       </div>
     `;
   }
 
-  // D. 神峰通考病药现代量化解药方案
+  // ==================== 6. 神峰通考病药日常生活量化开运方案 ====================
   const remedyBox = document.getElementById('vipRemedyContent');
   if (remedyBox) {
     const dmElem = GAN_PROPS[dayMaster][0];
@@ -4216,7 +4620,7 @@ function computeVipModules(ctx) {
     `;
   }
 
-  // 保证 VIP 遮罩状态与当前权限同步
+  // 保证 VIP 遮罩与局部模糊状态与当前权限同步
   updateVipDOMState();
 }
 
