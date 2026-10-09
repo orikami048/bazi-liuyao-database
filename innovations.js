@@ -336,14 +336,19 @@ window.renderChengGu = function(yG, yZ, mNum, dNum, tZ) {
 };
 
 // 自动初始化与事件监听
-document.addEventListener('DOMContentLoaded', () => {
-  // 案例按钮点击事件委托
+function initFamousCaseListeners() {
   document.querySelectorAll('.famous-case-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.onclick = () => {
       const caseKey = btn.getAttribute('data-case');
       if (caseKey && typeof window.loadFamousCase === 'function') {
         window.loadFamousCase(caseKey);
       }
-    });
+    };
   });
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initFamousCaseListeners);
+} else {
+  initFamousCaseListeners();
+}
