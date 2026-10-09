@@ -45,6 +45,7 @@
       <button type="button" class="nav-tab-btn" data-tab="tab-hex" data-i18n="navHex">📜 六十四卦</button>
       <button type="button" class="nav-tab-btn" data-tab="tab-shensha" data-i18n="navShensha">🌟 神煞大典</button>
       <button type="button" class="nav-tab-btn" data-tab="tab-synastry" data-i18n="navSynastry" style="border:1px solid rgba(245,158,11,0.35); color:#FBBF24;">💍 双人合盘</button>
+      <button type="button" class="nav-tab-btn" data-tab="tab-phone" style="border:1px solid rgba(0,242,254,0.35); color:#00F2FE;">📱 数字能量</button>
     </nav>
 
     <div style="display:flex; align-items:center; gap:12px;">
@@ -863,6 +864,44 @@
     </div>
   </div>
 
+  <!-- ==================== 7. 易经数理 · 八星手机号码数字能量学测算仪 ==================== -->
+  <div id="tab-phone" class="tab-pane-view">
+    <div class="bento-card bazi-input-hero">
+      <div class="bazi-hero-header">
+        <div class="bazi-hero-badge">📱 易经数理 · 八星数字能量学全息测算</div>
+        <h2 class="bazi-hero-title">手机号码八星磁场测算仪</h2>
+        <p class="bazi-hero-subtitle">
+          依据《易经》洛书数理与八星磁场体系，输入手机号或尾号，即时解析天医（财运）、延年（事业）、生气（贵人）、伏位（沉淀）及绝命、五鬼、六煞、祸害八星能量分布。
+        </p>
+      </div>
+
+      <!-- 快速测算输入条 -->
+      <div style="display:flex; gap:12px; max-width:680px; margin:20px auto 0; flex-wrap:wrap; justify-content:center;">
+        <input type="text" id="phoneEnergyInput" class="glass-input-ctrl" placeholder="输入 11 位手机号或后 4 位数（例：13813141988）" value="13813141988" style="flex:1; min-width:260px; font-size:16px; font-family:var(--font-mono); letter-spacing:1px; text-align:center;">
+        <button type="button" class="btn-quantum-run" id="btnRunPhoneEnergy" style="padding:12px 28px; font-size:14px;">
+          <span>⚡ 即刻解算八星磁场</span>
+        </button>
+      </div>
+
+      <!-- 经典号码速选示例 -->
+      <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:14px; flex-wrap:wrap; font-size:12px; color:#94A3B8;">
+        <span>🔥 典型磁场速选：</span>
+        <button type="button" class="famous-case-btn phone-sample-btn" data-phone="13813141988" style="padding:4px 10px; font-size:11px;">
+          13813141988 (财官双美吉星)
+        </button>
+        <button type="button" class="famous-case-btn phone-sample-btn" data-phone="18888888888" style="padding:4px 10px; font-size:11px;">
+          18888888888 (极致伏位号)
+        </button>
+        <button type="button" class="famous-case-btn phone-sample-btn" data-phone="13912181716" style="padding:4px 10px; font-size:11px;">
+          13912181716 (多维冲动挑战)
+        </button>
+      </div>
+
+      <!-- 结果动态呈现区 -->
+      <div id="phoneEnergyResultDeck"></div>
+    </div>
+  </div>
+
   <footer>
     <p data-i18n="footerLine1">⚡ 极光易学东方命理与古籍量化分析系统 · 问真八字排盘架构</p>
     <p style="margin-top:4px;" data-i18n="footerLine2">基于全球边缘网络部署 · 历代易学古籍全息引证引擎</p>
@@ -951,5 +990,7 @@
 <script src="guoxue_auth.js"></script>
 <!-- 🌟 自主研发名造案例库、流日天时气象与袁天罡称骨量化神数引擎 -->
 <script src="innovations.js"></script>
+<!-- 📱 易经数理 · 八星手机号码数字能量学测算引擎 -->
+<script src="js/phone_energy.js"></script>
 </body>
 </html>
