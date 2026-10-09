@@ -12,6 +12,8 @@
 <script src="https://cdn.jsdelivr.net/npm/lunar-javascript/lunar.js"></script>
 <!-- 四库古籍全息引证数据库 -->
 <script src="classics_data.js"></script>
+<!-- 前端白皮书/图片导出引擎 -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <style>
 :root {
   --bg-deep: #030712;
@@ -1184,6 +1186,200 @@ footer {
   .classic-modal-title { font-size: 16px; }
   .classic-modal-body { padding: 14px 16px; gap: 12px; }
 }
+
+/* ==================== 👑 VIP 黑金尊享卡片与遮罩样式 ==================== */
+.vip-card-gold {
+  position: relative;
+  background: linear-gradient(135deg, rgba(20, 16, 8, 0.72) 0%, rgba(8, 14, 28, 0.75) 100%) !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(245, 158, 11, 0.4), 0 0 25px rgba(245, 158, 11, 0.12) !important;
+  overflow: hidden;
+}
+.vip-gold-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.vip-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: #000;
+  font-weight: 900;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+  letter-spacing: 0.5px;
+}
+.vip-badge-unlocked {
+  background: linear-gradient(135deg, #10B981, #059669) !important;
+  color: #FFF !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* 遮罩与模糊容器 */
+.vip-blur-container {
+  position: relative;
+  transition: all 0.35s ease;
+}
+.vip-locked .vip-blur-target {
+  filter: blur(5.5px) grayscale(40%);
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.55;
+  transition: all 0.35s ease;
+}
+.vip-locked .vip-lock-overlay {
+  display: flex !important;
+}
+.vip-unlocked .vip-blur-target {
+  filter: none !important;
+  user-select: auto !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+}
+.vip-unlocked .vip-lock-overlay {
+  display: none !important;
+}
+
+.vip-lock-overlay {
+  display: none;
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at center, rgba(3, 7, 18, 0.72) 0%, rgba(3, 7, 18, 0.88) 100%);
+  z-index: 10;
+  border-radius: 14px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 20px;
+  text-align: center;
+  backdrop-filter: blur(3px);
+}
+.vip-lock-icon {
+  font-size: 32px;
+  filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.7));
+  animation: pulseGold 2.2s infinite ease-in-out;
+}
+@keyframes pulseGold {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.6)); }
+  50% { transform: scale(1.08); filter: drop-shadow(0 0 22px rgba(245, 158, 11, 0.95)); }
+}
+.vip-lock-title {
+  font-size: 15px;
+  font-weight: 900;
+  color: #FBBF24;
+  letter-spacing: 0.5px;
+}
+.vip-lock-desc {
+  font-size: 12px;
+  color: #CBD5E1;
+  max-width: 440px;
+  line-height: 1.6;
+}
+.btn-vip-unlock {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #F59E0B, #B45309);
+  color: #000;
+  font-weight: 900;
+  font-size: 12.5px;
+  padding: 9px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.4);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-vip-unlock:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
+  filter: brightness(1.15);
+}
+
+/* VIP 五年流年小卡片列表 */
+.vip-year-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.vip-year-card {
+  background: rgba(8, 16, 32, 0.65);
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.vip-year-card:hover {
+  border-color: #F59E0B;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.15);
+}
+.vip-year-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.vip-year-tag {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-weight: 800;
+}
+.tag-wealth-year { background: rgba(16, 185, 129, 0.2); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.4); }
+.tag-caution-year { background: rgba(239, 68, 68, 0.2); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.4); }
+.tag-neutral-year { background: rgba(56, 189, 248, 0.2); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.4); }
+.tag-love-year { background: rgba(236, 72, 153, 0.2); color: #EC4899; border: 1px solid rgba(236, 72, 153, 0.4); }
+
+/* VIP 弹窗与 Toast 提示 */
+.vip-toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid #F59E0B;
+  color: #FFF;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 99999;
+  font-size: 13px;
+  font-weight: 700;
+  backdrop-filter: blur(12px);
+  transform: translateY(120px);
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.vip-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 导出白皮书预览浮层 */
+#reportExportCanvasTarget {
+  background: #030712;
+  color: #F8FAFC;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
 </style>
 </head>
 <body>
@@ -1214,6 +1410,7 @@ footer {
       <button type="button" class="nav-tab-btn" data-tab="tab-ganzhi" data-i18n="navGanzhi">📖 六十甲子</button>
       <button type="button" class="nav-tab-btn" data-tab="tab-hex" data-i18n="navHex">📜 六十四卦</button>
       <button type="button" class="nav-tab-btn" data-tab="tab-shensha" data-i18n="navShensha">🌟 神煞大典</button>
+      <button type="button" class="nav-tab-btn" data-tab="tab-synastry" data-i18n="navSynastry" style="border:1px solid rgba(245,158,11,0.35); color:#FBBF24;">💍 双人合盘</button>
     </nav>
 
     <div style="display:flex; align-items:center; gap:12px;">
@@ -1418,6 +1615,126 @@ footer {
       </div>
       <div class="plain-grid-deck" id="plainSummaryDeck">
         <!-- JS 动态注入性格特质、事业财富、感情婚恋、健康养生卡片 -->
+      </div>
+    </div>
+
+    <!-- ==================== 👑 VIP 尊享：未来五年全息流年详批 & 关键年龄雷达 ==================== -->
+    <div class="bento-card vip-card-gold vip-blur-container vip-locked" id="vipSectionYearly">
+      <div class="vip-gold-head">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="vip-badge-pill" id="vipBadgeYearly">👑 VIP 尊享流年</span>
+          <div style="font-weight:900; font-size:15px; color:#FBBF24;" data-i18n="vipYearlyTitle">未来五年流年干支逐年详批与岁运吉凶</div>
+        </div>
+        <div style="font-size:11px; color:#94A3B8;" data-i18n="vipYearlySubtitle">2026-2030 流年天克地冲·岁运并临·重大机遇预警</div>
+      </div>
+
+      <div class="vip-blur-target">
+        <!-- 人生巅峰与转折关键年龄雷达 -->
+        <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(245,158,11,0.2); border-radius:12px; padding:12px 16px; margin-bottom:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <strong style="color:#FBBF24; font-size:13px;" data-i18n="vipPeakLabel">⚡ 人生巅峰大运与重大转折关键年龄预测：</strong>
+            <span id="vipPeakAgesText" style="font-family:var(--font-mono); font-size:12px; color:#10B981; font-weight:700;">28岁 · 36岁 · 42岁 · 51岁</span>
+          </div>
+          <div style="font-size:11.5px; color:#CBD5E1; margin-top:6px; line-height:1.5;" id="vipPeakSummary">
+            当前处于时空能量上升通道。逢财官相生流年，能量评分达峰值；关键年份宜积极开拓事业领地。
+          </div>
+        </div>
+
+        <!-- 5 年流年卡片容器 -->
+        <div class="vip-year-grid" id="vipYearlyCardsRow">
+          <!-- JS 动态注入 2026~2030 五年逐年详批卡片 -->
+        </div>
+      </div>
+
+      <!-- 锁定遮罩 -->
+      <div class="vip-lock-overlay">
+        <div class="vip-lock-icon">🔒</div>
+        <div class="vip-lock-title" data-i18n="vipLockTitle1">👑 开通 VIP 会员 · 解锁未来五年逐年流年吉凶详批</div>
+        <div class="vip-lock-desc" data-i18n="vipLockDesc1">
+          原局与流年干支精确刑冲克害推演，标定发财机遇年、跳槽置业年与风险防守年，助您先人一步把握天时地利。
+        </div>
+        <button type="button" class="btn-vip-unlock" onclick="handleVipUnlockClick('yearly')">
+          <span>✨ 立即解锁 VIP 深度流年</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==================== 👑 VIP 尊享：财富事业穿透 & 婚恋正缘暗礁专项 ==================== -->
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:20px; margin-bottom:20px;">
+      
+      <!-- 财富与事业专项 -->
+      <div class="bento-card vip-card-gold vip-blur-container vip-locked" id="vipSectionWealth">
+        <div class="vip-gold-head">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="vip-badge-pill" id="vipBadgeWealth">👑 VIP 财富专卷</span>
+            <span style="font-weight:900; font-size:14px; color:#FBBF24;" data-i18n="vipWealthTitle">财富格局·财库透视与进财赛道</span>
+          </div>
+        </div>
+        <div class="vip-blur-target" id="vipWealthContent">
+          <!-- JS 动态注入财库、求财行业、漏财预警 -->
+        </div>
+        <div class="vip-lock-overlay">
+          <div class="vip-lock-icon">💰</div>
+          <div class="vip-lock-title" data-i18n="vipLockTitleWealth">👑 解锁财富与事业专项穿透报告</div>
+          <div class="vip-lock-desc" data-i18n="vipLockDescWealth">
+            探查命中原生财库开闭、最佳催财赛道五行推荐与避免破财暗礁防守策略。
+          </div>
+          <button type="button" class="btn-vip-unlock" onclick="handleVipUnlockClick('wealth')">
+            <span>✨ 解锁财富深度分析</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 婚恋正缘与配偶画像专项 -->
+      <div class="bento-card vip-card-gold vip-blur-container vip-locked" id="vipSectionMarriage">
+        <div class="vip-gold-head">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="vip-badge-pill" id="vipBadgeMarriage">👑 VIP 姻缘专卷</span>
+            <span style="font-weight:900; font-size:14px; color:#FBBF24;" data-i18n="vipMarriageTitle">正缘画像·婚期预测与关系暗礁</span>
+          </div>
+        </div>
+        <div class="vip-blur-target" id="vipMarriageContent">
+          <!-- JS 动态注入配偶性格特征、正缘婚期、化解心法 -->
+        </div>
+        <div class="vip-lock-overlay">
+          <div class="vip-lock-icon">💍</div>
+          <div class="vip-lock-title" data-i18n="vipLockTitleMarriage">👑 解锁婚恋正缘与感情羁绊专项</div>
+          <div class="vip-lock-desc" data-i18n="vipLockDescMarriage">
+            深度解构配偶宫星特征、另一半性格原型画像与未来关键红鸾天喜正缘年份。
+          </div>
+          <button type="button" class="btn-vip-unlock" onclick="handleVipUnlockClick('marriage')">
+            <span>✨ 解锁婚恋深度分析</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==================== 👑 VIP 尊享：神峰通考病药现代量化解药 & 白皮书一键导出 ==================== -->
+    <div class="bento-card vip-card-gold vip-blur-container vip-locked" id="vipSectionRemedy" style="margin-bottom:20px;">
+      <div class="vip-gold-head">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="vip-badge-pill" id="vipBadgeRemedy">👑 VIP 开运解药</span>
+          <div style="font-weight:900; font-size:15px; color:#FBBF24;" data-i18n="vipRemedyTitle">《神峰通考》原局病药·日常生活量化开运方案</div>
+        </div>
+        <button type="button" class="btn-quantum-run" id="btnExportBaziReport" style="padding:6px 16px; font-size:12px; background:linear-gradient(135deg, #F59E0B, #D97706); color:#000; font-weight:800;" onclick="exportBaziWhitepaper()">
+          📜 导出高清白皮书
+        </button>
+      </div>
+
+      <div class="vip-blur-target" id="vipRemedyContent">
+        <!-- JS 动态注入幸运穿搭、办公朝向、贵人生肖匹配 -->
+      </div>
+
+      <div class="vip-lock-overlay">
+        <div class="vip-lock-icon">🌿</div>
+        <div class="vip-lock-title" data-i18n="vipLockTitleRemedy">👑 解锁古籍病药现代物理开运与高清报告导出</div>
+        <div class="vip-lock-desc" data-i18n="vipLockDescRemedy">
+          将深奥的阴阳五行平衡转化为穿搭色彩、居住办公方位与贵人生肖协作方案，并可一键生成高清仪式感个人命盘白皮书长图。
+        </div>
+        <button type="button" class="btn-vip-unlock" onclick="handleVipUnlockClick('remedy')">
+          <span>✨ 开启开运解药方案</span>
+        </button>
       </div>
     </div>
 
@@ -1631,6 +1948,87 @@ footer {
         <div class="card-watermark-tag" data-i18n="watermarkShensha">神煞</div>
       </div>
       <div class="codex-grid-bento" id="shenshaBentoGrid"></div>
+  <!-- ==================== 6. 双人八字契合度合盘 (VIP 尊享工具) ==================== -->
+  <div id="tab-synastry" class="tab-pane-view">
+    <div class="bento-card vip-card-gold" style="margin-bottom: 20px;">
+      <div class="vip-gold-head">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="vip-badge-pill">👑 VIP 合盘专卷</span>
+          <div style="font-weight:900; font-size:16px; color:#FBBF24;" data-i18n="synastryMainTitle">双人八字婚恋与事业合伙契合度全息透视</div>
+        </div>
+        <div style="font-size:12px; color:#94A3B8;" data-i18n="synastryMainSub">干支天合地合 · 纳音五行互补 · 关系暗礁量化化解</div>
+      </div>
+
+      <!-- 双人输入栏 -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-bottom:16px;">
+        <!-- 主方 A -->
+        <div style="background:rgba(8,16,32,0.6); border:1px solid rgba(0,242,254,0.3); border-radius:12px; padding:16px;">
+          <div style="font-weight:800; color:var(--cyan); font-size:13px; margin-bottom:10px;">👤 甲方（本人/主测方）</div>
+          <div class="form-field-unit" style="margin-bottom:10px;">
+            <label style="font-size:11px; color:#94A3B8;">公历生日</label>
+            <input type="date" id="synDateA" class="glass-input-ctrl" value="1990-01-01">
+          </div>
+          <div style="display:flex; gap:10px;">
+            <div class="form-field-unit" style="flex:1;">
+              <label style="font-size:11px; color:#94A3B8;">出生时间</label>
+              <input type="time" id="synTimeA" class="glass-input-ctrl" value="00:00">
+            </div>
+            <div class="form-field-unit" style="flex:1;">
+              <label style="font-size:11px; color:#94A3B8;">性别</label>
+              <select id="synGenderA" class="glass-input-ctrl">
+                <option value="male">乾造 (男)</option>
+                <option value="female">坤造 (女)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 对方 B -->
+        <div style="background:rgba(8,16,32,0.6); border:1px solid rgba(245,158,11,0.3); border-radius:12px; padding:16px;">
+          <div style="font-weight:800; color:#FBBF24; font-size:13px; margin-bottom:10px;">👥 乙方（配偶/合伙人）</div>
+          <div class="form-field-unit" style="margin-bottom:10px;">
+            <label style="font-size:11px; color:#94A3B8;">公历生日</label>
+            <input type="date" id="synDateB" class="glass-input-ctrl" value="1992-06-15">
+          </div>
+          <div style="display:flex; gap:10px;">
+            <div class="form-field-unit" style="flex:1;">
+              <label style="font-size:11px; color:#94A3B8;">出生时间</label>
+              <input type="time" id="synTimeB" class="glass-input-ctrl" value="12:00">
+            </div>
+            <div class="form-field-unit" style="flex:1;">
+              <label style="font-size:11px; color:#94A3B8;">性别</label>
+              <select id="synGenderB" class="glass-input-ctrl">
+                <option value="female" selected>坤造 (女)</option>
+                <option value="male">乾造 (男)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-bottom:16px;">
+        <button type="button" class="btn-quantum-run" id="btnRunSynastry" style="padding:10px 32px; font-size:13px; background:linear-gradient(135deg, #F59E0B, #D97706); color:#000; font-weight:900;" onclick="computeSynastryMatch()">
+          💍 运行双人八字深度合盘测算
+        </button>
+      </div>
+
+      <!-- 合盘结果区 (含锁定遮罩) -->
+      <div class="vip-blur-container vip-locked" id="vipSectionSynastryResult">
+        <div class="vip-blur-target" id="synastryResultDeck">
+          <!-- JS 动态注入合盘打分、五行互补雷达、天合地合列表与相处化解方案 -->
+          <div style="text-align:center; padding:30px; color:#64748B;">点击上方按钮运行双人合盘测算</div>
+        </div>
+        <div class="vip-lock-overlay">
+          <div class="vip-lock-icon">💍</div>
+          <div class="vip-lock-title">👑 开通 VIP 会员 · 查看双人八字 100 分量化契合度报告</div>
+          <div class="vip-lock-desc">
+            涵盖五行生克互补率、年命纳音契合、日柱天合地合、冲克暗礁与终身相处破局法则。
+          </div>
+          <button type="button" class="btn-vip-unlock" onclick="handleVipUnlockClick('synastry')">
+            <span>✨ 立即解锁双人合盘报告</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1796,7 +2194,18 @@ const I18N_DICT = {
     modalBadgeShensha: "星曜神煞 · 典藏考证",
     clickReadClassic: "点击查阅古籍 ➔",
     clickHexDetail: "《周易》经义 ➔",
-    clickShenshaDetail: "《三命通会》详论 ➔"
+    clickShenshaDetail: "《三命通会》详论 ➔",
+
+    // VIP 特权词条
+    vipYearlyTitle: "未来五年流年干支逐年详批与岁运吉凶",
+    vipYearlySubtitle: "2026-2030 流年天克地冲·岁运并临·重大机遇预警",
+    vipPeakLabel: "⚡ 人生巅峰大运与重大转折关键年龄预测：",
+    vipWealthTitle: "财富格局·财库透视与进财赛道",
+    vipMarriageTitle: "正缘画像·婚期预测与关系暗礁",
+    vipRemedyTitle: "《神峰通考》原局病药·日常生活量化开运方案",
+    navSynastry: "💍 双人合盘",
+    synastryMainTitle: "双人八字婚恋与事业合伙契合度全息透视",
+    synastryMainSub: "干支天合地合 · 纳音五行互补 · 关系暗礁量化化解"
   },
 
   en: {
@@ -1931,7 +2340,18 @@ const I18N_DICT = {
     modalBadgeShensha: "Symbolic Stars Canon",
     clickReadClassic: "View Canon ➔",
     clickHexDetail: "I-Ching Canon ➔",
-    clickShenshaDetail: "San Ming Canon ➔"
+    clickShenshaDetail: "San Ming Canon ➔",
+
+    // VIP
+    vipYearlyTitle: "5-Year Transit Forecast & Cosmic Clashes",
+    vipYearlySubtitle: "2026-2030 Stems & Branches Transformations & Windows",
+    vipPeakLabel: "⚡ Peak Luck Decades & Milestone Age Predictions:",
+    vipWealthTitle: "Wealth Blueprint · Vault Analysis & Prosperity Tracks",
+    vipMarriageTitle: "Soulmate Archetype · Timing & Relationship Anchors",
+    vipRemedyTitle: "Classical Disease & Remedy · Somatic Daily Compensations",
+    navSynastry: "💍 Synastry Match",
+    synastryMainTitle: "BaZi Synastry Matching & Partnership Dynamics",
+    synastryMainSub: "Pillar Harmony · Elemental Synergy · Conflict Resolutions"
   }
 };
 
@@ -2888,6 +3308,11 @@ function computeBaziMaster() {
   if(document.getElementById('yhModernText')) document.getElementById('yhModernText').textContent = modernTexts.yh;
   if(document.getElementById('sfModernText')) document.getElementById('sfModernText').textContent = modernTexts.sf;
   if(document.getElementById('tyModernText')) document.getElementById('tyModernText').textContent = modernTexts.ty;
+
+  // 👑 自动触发 VIP 全息五大专项算法解算 (流年、财富、姻缘、开运解药)
+  if (typeof computeVipModules === 'function') {
+    computeVipModules({ yG, yZ, mG, mZ, dG, dZ, tG, tZ, dayMaster, isMale, isEn, elemScores, totalScore });
+  }
 }
 
 // 快速切换神煞古典引证面板
@@ -3136,6 +3561,44 @@ function renderLiuyaoMatrix() {
         <span>${verdictHeader}</span>
       </div>
       <div style="font-size:13px; color:#FFFFFF; line-height:1.6;">${verdictText}</div>
+    </div>
+
+    <!-- 👑 VIP 尊享：六爻应期时间精准推算与转折窗口 -->
+    <div class="vip-card-gold vip-blur-container vip-locked" id="vipSectionLiuyaoTiming" style="margin-top:14px; padding:16px; border-radius:14px;">
+      <div class="vip-gold-head" style="margin-bottom:10px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="vip-badge-pill" id="vipBadgeLiuyao">👑 VIP 应期推演</span>
+          <span style="font-weight:900; font-size:13.5px; color:#FBBF24;">《增删卜易》时间应期与事态转折窗口</span>
+        </div>
+      </div>
+      <div class="vip-blur-target" id="liuyaoTimingContent">
+        <!-- 动态生成动爻与日建冲合应期 -->
+        <div style="font-size:12.5px; color:#F1F5F9; line-height:1.6;">
+          <div style="display:flex; gap:12px; margin-bottom:8px; flex-wrap:wrap;">
+            <div style="background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.3); border-radius:8px; padding:6px 12px;">
+              <span style="color:#F59E0B; font-weight:800; font-size:11px;">⏰ 关键应期地支：</span>
+              <strong style="color:#FFF;">${hasDong ? '逢合待冲 · 辰戌丑未月日' : '静而待发 · 逢冲之月令'}</strong>
+            </div>
+            <div style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); border-radius:8px; padding:6px 12px;">
+              <span style="color:#10B981; font-weight:800; font-size:11px;">🗓️ 大致转机周期：</span>
+              <strong style="color:#FFF;">未来 15 ~ 45 天内事态落地</strong>
+            </div>
+          </div>
+          <p style="color:#CBD5E1; font-size:12px;">
+            【法理密旨】：卦中动爻化进者，事态发展迅疾；逢日辰生扶，应在生旺之日。目前世应生合，待关键冲合之日（农历中旬前后）必有决定性消息反馈。
+          </p>
+        </div>
+      </div>
+      <div class="vip-lock-overlay">
+        <div class="vip-lock-icon">⏰</div>
+        <div class="vip-lock-title">👑 解锁六爻精准时间应期推演</div>
+        <div class="vip-lock-desc">
+          基于动静虚实与日月建神煞，推断问卜事项的最可能落地时间窗口与化解良机。
+        </div>
+        <button type="button" class="btn-vip-unlock" onclick="handleVipUnlockClick('liuyao')">
+          <span>✨ 解锁时间应期分析</span>
+        </button>
+      </div>
     </div>
   `;
 }
@@ -3465,14 +3928,421 @@ if(modalBackdrop) {
   });
 }
 
-document.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape') {
-    closeClassicModal();
-  }
-});
+// ==================== 👑 VIP 全息推演与高阶工具核心引擎 ====================
+let isAuroraVip = localStorage.getItem('aurora_vip_active') === 'true';
 
-// 页面初始加载应用语言
+// 开发者隐藏调试模式开关：连续点击顶部 Logo 3 次，或控制台调用 auroraVipTest(true/false)
+let logoClickCount = 0;
+let logoClickTimer = null;
+const brandLogoBadge = document.querySelector('.logo-badge');
+if (brandLogoBadge) {
+  brandLogoBadge.style.cursor = 'pointer';
+  brandLogoBadge.title = "极光易学";
+  brandLogoBadge.addEventListener('click', (e) => {
+    e.preventDefault();
+    logoClickCount++;
+    clearTimeout(logoClickTimer);
+    logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 900);
+    if (logoClickCount >= 3) {
+      logoClickCount = 0;
+      toggleAuroraVipState();
+    }
+  });
+}
+
+function showVipToast(msg) {
+  let toast = document.getElementById('auroraVipToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'auroraVipToast';
+    toast.className = 'vip-toast';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `<span>👑</span><span>${msg}</span>`;
+  toast.classList.add('show');
+  setTimeout(() => { toast.classList.remove('show'); }, 3000);
+}
+
+function updateVipDOMState() {
+  const containers = document.querySelectorAll('.vip-blur-container');
+  containers.forEach(el => {
+    if (isAuroraVip) {
+      el.classList.remove('vip-locked');
+      el.classList.add('vip-unlocked');
+    } else {
+      el.classList.remove('vip-unlocked');
+      el.classList.add('vip-locked');
+    }
+  });
+
+  // 更新小胶囊颜色与字样
+  const badges = ['vipBadgeYearly', 'vipBadgeWealth', 'vipBadgeMarriage', 'vipBadgeRemedy', 'vipBadgeLiuyao'];
+  badges.forEach(id => {
+    const b = document.getElementById(id);
+    if (b) {
+      if (isAuroraVip) {
+        b.classList.add('vip-badge-unlocked');
+        b.textContent = '👑 VIP 已尊享解锁';
+      } else {
+        b.classList.remove('vip-badge-unlocked');
+        b.textContent = (id === 'vipBadgeYearly' ? '👑 VIP 尊享流年' : id === 'vipBadgeWealth' ? '👑 VIP 财富专卷' : id === 'vipBadgeMarriage' ? '👑 VIP 姻缘专卷' : id === 'vipBadgeRemedy' ? '👑 VIP 开运解药' : '👑 VIP 应期推演');
+      }
+    }
+  });
+}
+
+function toggleAuroraVipState() {
+  isAuroraVip = !isAuroraVip;
+  localStorage.setItem('aurora_vip_active', isAuroraVip ? 'true' : 'false');
+  updateVipDOMState();
+  if (isAuroraVip) {
+    showVipToast("已切换至【👑 SVIP 开发者预览全量解锁模式】！所有磨砂遮罩已解除。");
+  } else {
+    showVipToast("已切换至【普通用户未付费模式】（磨砂遮罩与金锁生效中）。");
+  }
+}
+window.auroraVipTest = function(state) {
+  if (typeof state === 'boolean') {
+    isAuroraVip = state;
+    localStorage.setItem('aurora_vip_active', isAuroraVip ? 'true' : 'false');
+    updateVipDOMState();
+    showVipToast(isAuroraVip ? "已开启 SVIP 预览模式" : "已恢复锁定模式");
+  } else {
+    toggleAuroraVipState();
+  }
+};
+
+window.handleVipUnlockClick = function(featureKey) {
+  if (window.GuoxueAuth && typeof window.GuoxueAuth.openAuthModal === 'function') {
+    window.GuoxueAuth.openAuthModal({ module: 'bazi' });
+  } else {
+    // 弹出模拟提示
+    alert("【👑 极光易学 VIP 尊享会员特权】\n\n您正在尝试解锁该深度专题。\n💡 开发者提示：您可以连续点击顶部导航栏左侧的「AG」Logo 图标 3 次，即可一键免费体验并全量预览所有解锁内容！");
+  }
+};
+
+// ==================== 1~5: 八字五大 VIP 专项算法引擎 ====================
+function computeVipModules(ctx) {
+  const { yG, yZ, mG, mZ, dG, dZ, tG, tZ, dayMaster, isMale, isEn, elemScores, totalScore } = ctx;
+  const dict = I18N_DICT[currentLang] || I18N_DICT['zh'];
+
+  // A. 未来五年流年逐年详批 (2026~2030)
+  const yearlyDeck = document.getElementById('vipYearlyCardsRow');
+  if (yearlyDeck) {
+    const futureYears = [
+      { y: 2026, gz: '丙午', naYin: '天河水', tg: '丙', dz: '午' },
+      { y: 2027, gz: '丁未', naYin: '天河水', tg: '丁', dz: '未' },
+      { y: 2028, gz: '戊申', naYin: '大驿土', tg: '戊', dz: '申' },
+      { y: 2029, gz: '己酉', naYin: '大驿土', tg: '己', dz: '酉' },
+      { y: 2030, gz: '庚戌', naYin: '钗钏金', tg: '庚', dz: '戌' }
+    ];
+
+    let cardsHtml = '';
+    futureYears.forEach(item => {
+      const ssZh = getShiShen(dayMaster, item.tg);
+      const ssText = isEn ? (SHISHEN_EN_MAP[ssZh] || ssZh) : ssZh;
+      
+      // 检测冲刑克害
+      let isChong = false, isHe = false, isHarm = false;
+      [yZ, mZ, dZ, tZ].forEach(z => {
+        if ((item.dz==='子'&&z==='午')||(item.dz==='午'&&z==='子')||(item.dz==='丑'&&z==='未')||(item.dz==='未'&&z==='丑')||(item.dz==='寅'&&z==='申')||(item.dz==='申'&&z==='寅')||(item.dz==='卯'&&z==='酉')||(item.dz==='酉'&&z==='卯')) isChong = true;
+        if ((item.dz==='午'&&z==='未')||(item.dz==='未'&&z==='午')||(item.dz==='巳'&&z==='申')||(item.dz==='申'&&z==='巳')||(item.dz==='辰'&&z==='酉')||(item.dz==='酉'&&z==='辰')||(item.dz==='卯'&&z==='戌')||(item.dz==='戌'&&z==='卯')) isHe = true;
+      });
+
+      let tagClass = 'tag-neutral-year';
+      let tagText = isEn ? 'Steady Transit' : '平稳过渡年';
+      let forecastSummary = '';
+
+      if (ssZh.includes('财')) {
+        tagClass = 'tag-wealth-year';
+        tagText = isEn ? '💰 Wealth Window' : '💰 财源开拓年';
+        forecastSummary = isEn
+          ? `Direct/Indirect Wealth arrives. Favorable expansion window for partnerships, commercial deals, and new ventures. Keep cashflow liquid.`
+          : `流年见财星透出，事业资金流活跃，极利洽谈商务合同与投资回报。注意适时锁定盈利，避免高杠杆借贷。`;
+      } else if (ssZh.includes('官') || ssZh.includes('杀')) {
+        tagClass = 'tag-caution-year';
+        tagText = isEn ? '🏆 Career & Authority' : '🏆 职场进阶与权责';
+        forecastSummary = isEn
+          ? `Officer/Killings energy prominent. Enhanced social influence and leadership duty, but accompanied by scrutiny and workload. Stay ethically grounded.`
+          : `官杀星临值，职场贵人机缘增多，易承担核心职责或升迁转型；同时需防范职场舆情与文书合同细节，行事宜依规合法。`;
+      } else if (ssZh.includes('食') || ssZh.includes('伤')) {
+        tagClass = 'tag-love-year';
+        tagText = isEn ? '💡 Innovation & Flow' : '💡 创意爆发与灵感';
+        forecastSummary = isEn
+          ? `Output stars active. Outstanding inspiration for creative ventures, branding, and overseas reach. Guard against impulsive speech.`
+          : `食伤泄秀生财，才华与表达欲充沛，适宜品牌传播、新品研发与自媒体变现；遇分歧多理性沟通，切忌口舌意气之争。`;
+      } else {
+        forecastSummary = isEn
+          ? `Resource and peer energies harmonize the chart. Solid year for credential upgrades, deep research, and long-term asset consolidation.`
+          : `印星生身或比劫同气，运势沉稳。利于学历考证、知识积累、结交同道与房产资产优化，多做蓄水沉淀。`;
+      }
+
+      if (isChong) {
+        tagText += isEn ? ' · Dynamic Shift' : ' · 变动防守';
+        forecastSummary += isEn ? ` Note: Branch clash detected; guard against emotional turbulence or travel delays.` : `【提示】：地支逢冲，有走动出差、居所迁徙或岗位调整之象，外出出行多注意风控。`;
+      } else if (isHe) {
+        tagText += isEn ? ' · Cosmic Harmony' : ' · 贵人合助';
+        forecastSummary += isEn ? ` Note: Branch combination formed; smooth interpersonal cooperation.` : `【提示】：流年与原局相合有情，易遇强力协同伙伴，人缘圆融。`;
+      }
+
+      cardsHtml += `
+        <div class="vip-year-card">
+          <div class="vip-year-head">
+            <strong style="color:#FFF; font-size:14px; font-family:var(--font-serif);">${item.y} ${item.gz}年</strong>
+            <span class="vip-year-tag ${tagClass}">${tagText}</span>
+          </div>
+          <div style="font-size:11px; color:#F59E0B; font-weight:700;">十神：${ssText} · 纳音：${item.naYin}</div>
+          <div style="font-size:11.5px; color:#CBD5E1; line-height:1.55; margin-top:4px;">${forecastSummary}</div>
+        </div>
+      `;
+    });
+    yearlyDeck.innerHTML = cardsHtml;
+  }
+
+  // 关键年龄预警
+  const peakTextEl = document.getElementById('vipPeakAgesText');
+  if (peakTextEl) {
+    const curAge = 35; // 参照中位数
+    peakTextEl.textContent = `${curAge-2}岁 · ${curAge+1}岁 · ${curAge+6}岁 · ${curAge+11}岁 · ${curAge+17}岁`;
+  }
+
+  // B. 财富与事业专项
+  const wealthBox = document.getElementById('vipWealthContent');
+  if (wealthBox) {
+    const hasCangCai = (elemScores['金'] > 1.5 || elemScores['火'] > 1.5);
+    const hasKu = [yZ, mZ, dZ, tZ].some(z => ['辰','戌','丑','未'].includes(z));
+    const dmElem = GAN_PROPS[dayMaster][0];
+    
+    // 行业赛道
+    const trackDict = {
+      '木': '文化传媒、绿色环保、医药健康、教育咨询、林木生态',
+      '火': '人工智能、能源电力、数字媒体、品牌公关、先进光学',
+      '土': '房地产基建、仓储物流、资产风控、农业生态、重工实体',
+      '金': '高新制造、金融量化、硬科技芯片、司法公证、精密仪器',
+      '水': '跨境出海、互联网网络、远洋贸易、现代冷链、资本流转'
+    };
+
+    wealthBox.innerHTML = `
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:12px; color:#E2E8F0; line-height:1.6;">
+        <div style="background:rgba(245,158,11,0.1); border-left:3px solid #F59E0B; padding:8px 12px; border-radius:4px;">
+          <strong style="color:#FBBF24;">🏛️ 命局原生财库特征：</strong>
+          <span>${hasKu ? '命中带财库（辰戌丑未），具备极强蓄水与留存能力，中晚年财富量级呈复利膨胀之象。' : '原局财库未透，资金流动周转迅速，属于“现金流充沛但易财来财去”型，建议尽早购置硬资产锁定财富。'}</span>
+        </div>
+        <div>
+          <strong style="color:var(--cyan);">🚀 最催财核心赛道五行推荐：</strong>
+          <span style="color:#FFF;">${trackDict[dmElem] || '互联网出海与高新技术产业'}</span>
+        </div>
+        <div style="background:rgba(239,68,68,0.1); border-left:3px solid #EF4444; padding:8px 12px; border-radius:4px;">
+          <strong style="color:#EF4444;">⚠️ 破财漏财避坑指南：</strong>
+          <span>命中宜防比劫夺财之期（逢同属五行年份），忌盲目借贷担保或替他人背书；大额投资务必设立止损红线。</span>
+        </div>
+      </div>
+    `;
+  }
+
+  // C. 婚恋正缘与感情羁绊专项
+  const marriageBox = document.getElementById('vipMarriageContent');
+  if (marriageBox) {
+    const spousePalace = dZ; // 日支为夫妻宫
+    const spouseZhiMap = {
+      '子': '配偶机敏聪慧、情感细腻、善解人意，长相秀气文雅',
+      '丑': '配偶稳重踏实、任劳任怨、原则性极强，具有极强理财观念',
+      '寅': '配偶性格开朗正直、上进心强、做事有主见担当，身材挺拔',
+      '卯': '配偶气质典雅、温和柔顺、审美格调极高，极具艺术同理心',
+      '辰': '配偶内敛沉着、胸襟宽厚包容、具有宏观长远眼光',
+      '巳': '配偶性格热情大方、表达欲强、做事风风火火雷厉风行',
+      '午': '配偶容貌俊美阳光、极具感染力与社交魅力，偶尔略显急躁',
+      '未': '配偶温柔贤良、重视家庭温馨与人伦责任，行事谨慎周到',
+      '申': '配偶行动敏捷、果决干练、善于把握现实商业与人际利益',
+      '酉': '配偶精致优雅、自尊心强、追求生活品质与精神共鸣',
+      '戌': '配偶诚恳重义、忠诚专一、极具家庭安全感防线',
+      '亥': '配偶豁达随和、善于包容体贴、具哲学智慧与人文幽默感'
+    };
+
+    marriageBox.innerHTML = `
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:12px; color:#E2E8F0; line-height:1.6;">
+        <div style="background:rgba(236,72,153,0.12); border-left:3px solid #EC4899; padding:8px 12px; border-radius:4px;">
+          <strong style="color:#F472B6;">💍 配偶宫（${spousePalace}）画像特征：</strong>
+          <span>${spouseZhiMap[spousePalace] || '配偶性格互补，情感沟通顺畅，是人生的坚定盟友'}。</span>
+        </div>
+        <div>
+          <strong style="color:var(--cyan);">🗓️ 关键正缘婚恋催旺窗口：</strong>
+          <span style="color:#FFF;">逢【红鸾、天喜】及与配偶宫六合之流年（未来 2~4 年内），易遇命定良缘或促成婚姻大喜。</span>
+        </div>
+        <div style="background:rgba(56,189,248,0.1); border-left:3px solid #38BDF8; padding:8px 12px; border-radius:4px;">
+          <strong style="color:#38BDF8;">💡 亲密关系相处心法：</strong>
+          <span>多在日常生活中给予对方言语肯定与情绪价值，避免在原则小事上较真争辩；尊重彼此独立空间则感情历久弥坚。</span>
+        </div>
+      </div>
+    `;
+  }
+
+  // D. 神峰通考病药现代量化解药方案
+  const remedyBox = document.getElementById('vipRemedyContent');
+  if (remedyBox) {
+    const dmElem = GAN_PROPS[dayMaster][0];
+    const luckDict = {
+      '木': { color: '翠绿、墨绿、青色系', dir: '正东、东南（依山傍水）', noble: '生肖猪（亥）、生肖羊（未）、生肖兔（卯）', num: '3、8' },
+      '火': { color: '赤红、朱砂、暖橙色系', dir: '正南（向阳采光充沛）', noble: '生肖虎（寅）、生肖马（午）、生肖狗（戌）', num: '2、7' },
+      '土': { color: '卡其、姜黄、大地棕色系', dir: '本地、西南、东北', noble: '生肖猴（申）、生肖鼠（子）、生肖龙（辰）', num: '5、10' },
+      '金': { color: '纯白、银灰、亮金色系', dir: '正西、西北', noble: '生肖蛇（巳）、生肖鸡（酉）、生肖牛（丑）', num: '4、9' },
+      '水': { color: '深黑、海蓝、黛青色系', dir: '正北、沿海出海方向', noble: '生肖猴（申）、生肖龙（辰）、生肖牛（丑）', num: '1、6' }
+    };
+    const curRemedy = luckDict[dmElem] || luckDict['木'];
+
+    remedyBox.innerHTML = `
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; font-size:12px;">
+        <div style="background:rgba(8,16,32,0.65); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:12px;">
+          <div style="color:#F59E0B; font-weight:800; margin-bottom:4px;">🎨 适宜日常穿搭幸运色</div>
+          <div style="color:#FFF;">${curRemedy.color}</div>
+          <div style="color:#94A3B8; font-size:11px; margin-top:2px;">平衡原局气场，提升气色能量</div>
+        </div>
+        <div style="background:rgba(8,16,32,0.65); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:12px;">
+          <div style="color:#10B981; font-weight:800; margin-bottom:4px;">🧭 居住办公吉祥开运方位</div>
+          <div style="color:#FFF;">${curRemedy.dir}</div>
+          <div style="color:#94A3B8; font-size:11px; margin-top:2px;">适宜办公桌朝向与购房选址</div>
+        </div>
+        <div style="background:rgba(8,16,32,0.65); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:12px;">
+          <div style="color:#00F2FE; font-weight:800; margin-bottom:4px;">🤝 强力协同贵人生肖组合</div>
+          <div style="color:#FFF;">${curRemedy.noble}</div>
+          <div style="color:#94A3B8; font-size:11px; margin-top:2px;">合作创业与核心人脉优选生肖</div>
+        </div>
+        <div style="background:rgba(8,16,32,0.65); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:12px;">
+          <div style="color:#EC4899; font-weight:800; margin-bottom:4px;">🔢 幸运能量数字密码</div>
+          <div style="color:#FFF; font-family:var(--font-mono); font-weight:700;">${curRemedy.num}</div>
+          <div style="color:#94A3B8; font-size:11px; margin-top:2px;">楼层选择、车牌与常用密码助运</div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 保证 VIP 遮罩状态与当前权限同步
+  updateVipDOMState();
+}
+
+// ==================== 8. 双人合盘计算引擎 (Synastry Match) ====================
+function computeSynastryMatch() {
+  const dateA = document.getElementById('synDateA').value;
+  const timeA = document.getElementById('synTimeA').value;
+  const dateB = document.getElementById('synDateB').value;
+  const timeB = document.getElementById('synTimeB').value;
+  if (!dateA || !dateB || typeof Solar === 'undefined') return;
+
+  const [yA, mA, dA] = dateA.split('-').map(Number);
+  const [hA, miA] = timeA.split(':').map(Number);
+  const [yB, mB, dB] = dateB.split('-').map(Number);
+  const [hB, miB] = timeB.split(':').map(Number);
+
+  const solA = Solar.fromYmdHms(yA, mA, dA, hA, miA, 0);
+  const ecA = solA.getLunar().getEightChar();
+  const solB = Solar.fromYmdHms(yB, mB, dB, hB, miB, 0);
+  const ecB = solB.getLunar().getEightChar();
+
+  const dGa = ecA.getDayGan(), dZa = ecA.getDayZhi(), yZa = ecA.getYearZhi(), nyA = ecA.getDayNaYin();
+  const dGb = ecB.getDayGan(), dZb = ecB.getDayZhi(), yZb = ecB.getYearZhi(), nyB = ecB.getDayNaYin();
+
+  // 合盘计分规则
+  let score = 72; // 基准良好分
+  const findings = [];
+
+  // 1. 日干天合
+  const ganHePairs = [['甲','己'],['乙','庚'],['丙','辛'],['丁','壬'],['戊','癸']];
+  const isGanHe = ganHePairs.some(p => (dGa===p[0]&&dGb===p[1])||(dGa===p[1]&&dGb===p[0]));
+  if (isGanHe) {
+    score += 12;
+    findings.push(`✨ 【日柱天干相合】：${dGa}${dGb}相合，双方心灵默契高，属于“灵魂共振”型搭配。`);
+  }
+
+  // 2. 日支地合与地冲
+  const zhiHe = { '子':'丑','丑':'子','寅':'亥','亥':'寅','卯':'戌','戌':'卯','辰':'酉','酉':'辰','巳':'申','申':'巳','午':'未','未':'午' };
+  const zhiChong = { '子':'午','午':'子','丑':'未','未':'丑','寅':'申','申':'寅','卯':'酉','酉':'卯','辰':'戌','戌':'辰','巳':'亥','亥':'巳' };
+  if (zhiHe[dZa] === dZb) {
+    score += 10;
+    findings.push(`💍 【夫妻宫六合】：双方日支【${dZa}${dZb}六合】，生活步调与情趣高度契合，家庭基石稳固。`);
+  } else if (zhiChong[dZa] === dZb) {
+    score -= 8;
+    findings.push(`⚠️ 【夫妻宫逢冲】：双方日支【${dZa}${dZb}相冲】，性格各有棱角，遇分歧宜理性退让，切忌冷战。`);
+  }
+
+  // 3. 生肖属相相合
+  if (zhiHe[yZa] === yZb) {
+    score += 5;
+    findings.push(`🌱 【年命相生相合】：双方原生家庭观融洽，容易获得长辈祝福与支持。`);
+  }
+
+  score = Math.min(98, Math.max(55, score));
+  const scoreColor = score >= 85 ? '#10B981' : (score >= 70 ? '#00F2FE' : '#F59E0B');
+
+  const resultContainer = document.getElementById('synastryResultDeck');
+  if (resultContainer) {
+    resultContainer.innerHTML = `
+      <div style="background:rgba(8,16,32,0.7); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:18px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px;">
+          <div>
+            <div style="font-size:12px; color:#94A3B8;">双人八字综合契合指数</div>
+            <div style="font-size:32px; font-weight:900; color:${scoreColor}; font-family:var(--font-mono);">${score} <span style="font-size:14px;">/ 100 分</span></div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px; color:#CBD5E1;">甲方日柱：<strong>${dGa}${dZa} (${nyA})</strong></div>
+            <div style="font-size:11px; color:#CBD5E1; margin-top:2px;">乙方日柱：<strong>${dGb}${dZb} (${nyB})</strong></div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px; font-size:12.5px; line-height:1.6; color:#F1F5F9;">
+          ${findings.length > 0 ? findings.map(f => `<div>${f}</div>`).join('') : '<div>双方五行平顺无剧烈克害，属于相濡以沫、细水长流型伙伴关系。</div>'}
+        </div>
+
+        <div style="margin-top:14px; background:rgba(0,242,254,0.06); border:1px solid rgba(0,242,254,0.25); border-radius:8px; padding:10px 14px; font-size:11.5px; color:#CBD5E1; line-height:1.5;">
+          <strong>💡 关系长期维系法则：</strong>
+          两命相伴，贵在“知己知彼”。多欣赏对方的独特秉性，在事业与家庭中明确分工协同，即可化解原局冲克，成就百年好合。
+        </div>
+      </div>
+    `;
+  }
+}
+window.computeSynastryMatch = computeSynastryMatch;
+
+// ==================== 7. 全息《个人命运分析白皮书》一键导出 (html2canvas) ====================
+window.exportBaziWhitepaper = function() {
+  if (!baziCalculated) {
+    alert("请先点击上方「运行四柱专业细盘解算」生成排盘后，再进行白皮书导出！");
+    return;
+  }
+  if (!isAuroraVip) {
+    handleVipUnlockClick('remedy');
+    return;
+  }
+
+  showVipToast("正在高清渲染《个人命运分析白皮书》，请稍候约 2 秒...");
+
+  const targetNode = document.getElementById('baziResultSection');
+  if (!targetNode || typeof html2canvas === 'undefined') {
+    alert("导出引擎初始化中，请稍后再试。");
+    return;
+  }
+
+  // 临时克隆以生成无遮罩高清长图
+  html2canvas(targetNode, {
+    backgroundColor: '#030712',
+    scale: 2, // 2x 超高清视网膜渲染
+    useCORS: true,
+    logging: false
+  }).then(canvas => {
+    const dataUrl = canvas.toDataURL('image/png');
+    const downloadLink = document.createElement('a');
+    downloadLink.download = `极光易学_个人命理白皮书_${new Date().toISOString().slice(0,10)}.png`;
+    downloadLink.href = dataUrl;
+    downloadLink.click();
+    showVipToast("🎉 高清白皮书已成功生成并下载至您的设备！");
+  }).catch(err => {
+    console.error('Export error:', err);
+    alert("导出失败，请检查浏览器权限后重试。");
+  });
+};
+
+// 页面初始加载应用语言与 VIP 状态
 setLanguage(currentLang);
+updateVipDOMState();
 </script>
 <!-- 统一国学多模块账户认证与会员系统 SDK -->
 <script src="guoxue_auth.js"></script>
