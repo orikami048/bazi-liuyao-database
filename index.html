@@ -1571,6 +1571,212 @@ footer {
   max-width: 800px;
   margin: 0 auto;
 }
+
+/* ==================== 🏛️ 经典名造快速研盘横滑卡 ==================== */
+.famous-cases-deck {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+}
+.famous-cases-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.famous-cases-title span {
+  font-size: 13px;
+  font-weight: 800;
+  color: #FBBF24;
+  letter-spacing: 0.5px;
+}
+.famous-cases-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+.famous-case-btn {
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 8px 14px;
+  color: #E2E8F0;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+.famous-case-btn:hover {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+.famous-case-btn.active {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: #FBBF24;
+  color: #FFF;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.35);
+}
+.famous-case-btn-name {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #FCD34D;
+}
+.famous-case-btn-tag {
+  font-size: 10px;
+  color: #94A3B8;
+  margin-top: 2px;
+}
+
+/* ==================== ⚡ 今日流日天时气象与个人能量罗盘 ==================== */
+.daily-transit-card {
+  background: linear-gradient(135deg, rgba(6, 40, 32, 0.85) 0%, rgba(8, 20, 36, 0.95) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  border-radius: 16px;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.12);
+}
+.daily-transit-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #10B981, #00F2FE, #F59E0B);
+}
+.daily-transit-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.daily-transit-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34D399;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.daily-transit-grid {
+  display: grid;
+  grid-template-columns: 220px 1.2fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 900px) {
+  .daily-transit-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.daily-transit-score-box {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.daily-transit-action-box {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.daily-transit-luck-box {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ==================== ⚖️ 袁天罡唐代称骨神数卡片 ==================== */
+.chenggu-bento-card {
+  background: linear-gradient(135deg, rgba(24, 18, 38, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.chenggu-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 16px;
+  margin-top: 14px;
+}
+@media (max-width: 800px) {
+  .chenggu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.chenggu-weight-badge-box {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.chenggu-weight-value {
+  font-size: 32px;
+  font-weight: 900;
+  font-family: var(--font-serif);
+  color: #FBBF24;
+  margin: 6px 0;
+  letter-spacing: 1px;
+  text-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+}
+.chenggu-poem-box {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px;
+}
+.chenggu-poem-title {
+  font-size: 12.5px;
+  color: #FBBF24;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.chenggu-poem-content {
+  font-size: 15px;
+  font-family: var(--font-serif);
+  color: #FFF;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+}
+.chenggu-modern-desc {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+  font-size: 12px;
+  color: #94A3B8;
+  line-height: 1.6;
+}
 </style>
 </head>
 <body>
@@ -1703,6 +1909,63 @@ footer {
         </button>
       </div>
 
+      <!-- 🌟 今日流日天时气象与个人实时能量指南 (结合命主日元与当日干支十神) -->
+      <div class="daily-transit-card" id="dailyTransitCard">
+        <div class="daily-transit-head">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size: 20px;">⚡</span>
+            <div>
+              <div style="font-size: 15px; font-weight: 800; color: #FFF; letter-spacing: 0.5px;">
+                今日流日天时气象 · 个人实时能量罗盘
+              </div>
+              <div style="font-size: 11px; color: var(--text-sub); margin-top: 2px;" id="dailyTransitDateHeader">
+                当前流日天干地支测算中...
+              </div>
+            </div>
+          </div>
+          <div class="daily-transit-badge">
+            <span>● 动态天时校准</span>
+            <span id="dailyTransitShiShen" style="color: #FCD34D;">-</span>
+          </div>
+        </div>
+
+        <div class="daily-transit-grid">
+          <!-- 能量评分与心象状态 -->
+          <div class="daily-transit-score-box">
+            <div style="font-size: 11px; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px;">今日能量指数 · Energy Index</div>
+            <div style="display: flex; align-items: baseline; gap: 4px; margin: 6px 0;">
+              <span style="font-size: 38px; font-weight: 900; font-family: var(--font-serif); color: #10B981;" id="dailyTransitScore">88</span>
+              <span style="font-size: 13px; color: #64748B;">/ 100</span>
+            </div>
+            <div style="font-size: 12px; font-weight: 700; color: #FBBF24;" id="dailyTransitLevel">吉星高照 · 乘风破浪</div>
+          </div>
+
+          <!-- 今日宜忌行动指南 -->
+          <div class="daily-transit-action-box">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+              <span style="background: rgba(16, 185, 129, 0.2); color: #34D399; font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 4px;">宜</span>
+              <span style="font-size: 12.5px; color: #E2E8F0; font-weight: 600;" id="dailyTransitYi">商务签约、推进项目、高能沟通</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="background: rgba(239, 68, 68, 0.2); color: #FCA5A5; font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 4px;">忌</span>
+              <span style="font-size: 12.5px; color: #94A3B8; font-weight: 500;" id="dailyTransitJi">情绪化决策、借贷担保、深夜空耗</span>
+            </div>
+          </div>
+
+          <!-- 今日吉时与开运穿搭 -->
+          <div class="daily-transit-luck-box">
+            <div style="font-size: 12px; color: #CBD5E1; margin-bottom: 6px; display: flex; justify-content: space-between;">
+              <span style="color: #94A3B8;">⏰ 今日黄金时辰：</span>
+              <strong style="color: #FBBF24;" id="dailyTransitHours">巳时 (09:00-11:00) / 申时 (15:00-17:00)</strong>
+            </div>
+            <div style="font-size: 12px; color: #CBD5E1; display: flex; justify-content: space-between;">
+              <span style="color: #94A3B8;">🎨 开运色彩与方位：</span>
+              <span style="color: #38BDF8; font-weight: 700;" id="dailyTransitColorDir">琥珀金、米白 · 正南方</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 核心两列布局: 左侧问真专业细盘表格，右侧五行面积雷达与诊断 (排盘主体) -->
       <div class="bazi-layout-grid">
       
@@ -1794,6 +2057,40 @@ footer {
         </div>
       </div>
     </div> <!-- /bazi-layout-grid -->
+
+    <!-- ⚖️ 唐代袁天罡称骨量化神数 (骨重命数、古籍歌诀与现代格局) -->
+    <div class="chenggu-bento-card" id="chengguBentoCard">
+      <div class="card-head">
+        <div class="card-title-group">
+          <div class="card-title" style="display:flex; align-items:center; gap:8px;">
+            <span>⚖️ 袁天罡称骨量化神数 · 骨重与格局气象</span>
+          </div>
+          <div class="card-title-sub">源自唐代《袁天罡称骨歌》，依生年、月、日、时四柱骨重积算人生福禄底色</div>
+        </div>
+        <div class="card-watermark-tag">称骨量化</div>
+      </div>
+
+      <div class="chenggu-grid">
+        <!-- 骨重总数值与品阶 -->
+        <div class="chenggu-weight-badge-box">
+          <div style="font-size: 11px; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px;">四柱累积骨重 · Total Bone Weight</div>
+          <div class="chenggu-weight-value" id="chengguWeightText">四两八钱</div>
+          <div style="font-size: 12.5px; font-weight: 700; color: #34D399; margin-top: 4px;" id="chengguLevelText">上等福禄格局 · 晚景荣昌</div>
+        </div>
+
+        <!-- 称骨古法七言歌诀与现代白话解构 -->
+        <div class="chenggu-poem-box">
+          <div class="chenggu-poem-title">📜 唐代原著称骨七言断诗：</div>
+          <div class="chenggu-poem-content" id="chengguPoemText">
+            初年运限未曾通，幼年衣禄也未充。<br>
+            骨格清奇成大器，晚年荣昌受皇封。
+          </div>
+          <div class="chenggu-modern-desc" id="chengguModernText">
+            💡 <strong>现代通俗解读</strong>：青年时期需经历磨砺与蓄势，中年后贵人运起，适合厚积薄发、大器晚成。
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ✨ 现代通俗通篇人话总评卡片 (排盘后呈现: 荣格心理原型与四大人生维度透视) -->
     <div class="bento-card plain-summary-card" id="plainSummaryCard">
@@ -3659,6 +3956,16 @@ function computeBaziMaster() {
       birthYear: y, curYear, curAge, activeDaYun, dyPassed, dyRemainYears, dyRemainMonths
     });
   }
+
+  // 🌟 新功能调度：今日流日天时气象与个人实时能量指南
+  if (typeof renderDailyTransit === 'function') {
+    renderDailyTransit(dayMaster);
+  }
+
+  // ⚖️ 新功能调度：唐代袁天罡称骨量化神数
+  if (typeof renderChengGu === 'function') {
+    renderChengGu(yG, yZ, lunar.getMonth(), lunar.getDay(), tZ);
+  }
 }
 
 // 快速切换神煞古典引证面板
@@ -4748,5 +5055,7 @@ updateVipDOMState();
 </script>
 <!-- 统一国学多模块账户认证与会员系统 SDK -->
 <script src="guoxue_auth.js"></script>
+<!-- 🌟 自主研发名造案例库、流日天时气象与袁天罡称骨量化神数引擎 -->
+<script src="innovations.js"></script>
 </body>
 </html>
